@@ -2,13 +2,14 @@ Package: qtkit
 Title: Quantitative Text Kit
 Version: 0.9.5
 Authors@R:
-    person("Jerid", "Francom", , "francojc@wfu.edu", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-5972-6330"))
+    person("Jerid", "Francom", , "francojc@wfu.edu",
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0001-5972-6330"))
 Description: Support package for the textbook "An Introduction to
     Quantitative Text Analysis for Linguists: Reproducible Research using
     R".
-Date: 2024-03-10
 License: GPL (>= 3)
+BugReports: https://qtalr.github.io/qtkit/issues
 Suggests:
     knitr,
     rmarkdown,
