@@ -1,6 +1,6 @@
 library(testthat)
 
-test_that("confirm_permission returns TRUE when user confirms permission", {
+test_that("confirm_permission returns TRUE when user confirms", {
   # Mock user input
   mock_readline <- function(prompt) {
     return("y")
@@ -25,7 +25,7 @@ test_that("confirm_permission returns TRUE when user confirms permission", {
   )
 })
 
-test_that("confirm_permission returns FALSE when user does not confirm permission", {
+test_that("confirm_permission returns FALSE when user does not confirm", {
   # Mock user input
   mock_readline <- function(prompt) {
     return("n")

@@ -7,18 +7,20 @@
 create_data_origin(file_path, return = FALSE, force = FALSE)
 }
 \arguments{
-\item{file_path}{A character string specifying the file path where the data origin file should be saved.}
+\item{file_path}{File path where the data origin file should be saved.}
 
-\item{return}{A logical value indicating whether the data origin should be returned.}
+\item{return}{Logical value indicating whether the data origin should be
+returned.}
 
-\item{force}{A logical value indicating whether to overwrite the file if it already exists.}
+\item{force}{Logical value indicating whether to overwrite the file if it
+already exists.}
 }
 \value{
 A data frame containing the data origin information.
 }
 \description{
-This function creates a data frame with attributes about the origin of the data,
-writes it to a CSV file at the specified file path, and returns the data frame, if requested.
+Data frame with attributes about the data origin, written to a CSV file and
+optionally returned.
 }
 \examples{
 \dontrun{

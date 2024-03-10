@@ -1,4 +1,4 @@
-#' Download an Archive File and Unarchives its Contents
+#' Download an archive file and unarchive its contents
 #'
 #' Possible file types include .zip, .gz, .tar, and .tgz
 #'
@@ -78,7 +78,7 @@ download_and_decompress <- function(url, target_dir, ext) {
 # Helper function to clean filenames
 clean_filenames <- function(target_dir) {
   files <- list.files(target_dir)
-  new_files <- sub(pattern = "^\\.", replacement = "", files)
+  new_files <- gsub(" ", "_", files)
   invisible(
     file.rename(
       from = file.path(target_dir, files),

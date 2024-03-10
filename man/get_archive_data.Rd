@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_archive_data.R
 \name{get_archive_data}
 \alias{get_archive_data}
-\title{Download an Archive File and Unarchives its Contents}
+\title{Download an archive file and unarchive its contents}
 \usage{
 get_archive_data(url, target_dir, force = FALSE, confirmed = FALSE)
 }

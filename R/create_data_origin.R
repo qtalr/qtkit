@@ -1,11 +1,13 @@
 #' Create data origin file
 #'
-#' This function creates a data frame with attributes about the origin of the data,
-#' writes it to a CSV file at the specified file path, and returns the data frame, if requested.
+#' Data frame with attributes about the data origin, written to a CSV file and
+#' optionally returned.
 #'
-#' @param file_path A character string specifying the file path where the data origin file should be saved.
-#' @param return A logical value indicating whether the data origin should be returned.
-#' @param force A logical value indicating whether to overwrite the file if it already exists.
+#' @param file_path File path where the data origin file should be saved.
+#' @param return Logical value indicating whether the data origin should be
+#' returned.
+#' @param force Logical value indicating whether to overwrite the file if it
+#' already exists.
 #' @return A data frame containing the data origin information.
 #' @export
 #'
