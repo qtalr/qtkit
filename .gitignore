@@ -17,9 +17,6 @@ inst/doc
 vignettes/articles/_site/
 vignettes/articles/data/
 
-# GitHub Actions
-.github/workflows/pkgdown.yaml
-
 # macOS
 .DS_Store
 
