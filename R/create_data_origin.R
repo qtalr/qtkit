@@ -26,8 +26,26 @@ create_data_origin <- function(file_path, return = FALSE, force = FALSE) {
 
   # Create a data frame with the data origin information
   data_origin <- data.frame(
-    attribute = c("Resource name", "Data source", "Data sampling frame", "Data collection date(s)", "Data format", "Data schema", "License", "Attribution"),
-    description = c("The name of the resource.", "URL, DOI, etc.", "Language, language variety, modality, genre, etc.", "The dates the data was collected.", ".txt, .csv, .xml, .html, etc.", "Relationships between data elements: files, folders, etc.", "CC BY, CC BY-SA, etc.", "Citation information.")
+    attribute = c(
+      "Resource name",
+      "Data source",
+      "Data sampling frame",
+      "Data collection date(s)",
+      "Data format",
+      "Data schema",
+      "License",
+      "Attribution"
+    ),
+    description = c(
+      "The name of the resource.",
+      "URL, DOI, etc.",
+      "Language, language variety, modality, genre, etc.",
+      "The dates the data was collected.",
+      ".txt, .csv, .xml, .html, etc.",
+      "Relationships between data elements: files, folders, etc.",
+      "CC BY, CC BY-SA, etc.",
+      "Citation information."
+    )
   )
 
   # Write the data origin to a file

@@ -9,7 +9,7 @@ create_data_origin <- function(n = 100, p = 2) {
 
 test_that("test create_data_origin function", {
   # check if create_data_origin returns a data frame
-  expect_is(create_data_origin(), "data.frame")
+  expect_s3_class(create_data_origin(), "data.frame")
 
   # check if number of rows equals to n
   expect_equal(nrow(create_data_origin()), 100)
