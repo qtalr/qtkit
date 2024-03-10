@@ -18,7 +18,8 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN status](https://www.r-pkg.org/badges/version/qtkit)](https://CRAN.R-project.org/package=qtkit)
-[![Update universe](https://github.com/r-universe/francojc/actions/workflows/sync.yml/badge.svg)](https://github.com/r-universe/francojc/actions/workflows/sync.yml)
+[![qtkit status badge](https://francojc.r-universe.dev/badges/qtkit)](https://francojc.r-universe.dev/qtkit)
+[![R-CMD-check](https://github.com/qtalr/qtkit/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/qtalr/qtkit/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of `qtkit` is to provide a support package for the textbook ["An Introduction to Quantitative Text Analysis for Linguistics: Reproducible Research using R"](https://qtalr.github.io/book). It contains functions for collecting and manipulating data and datasets, documentation, and other assorted tasks associated with quantative text analysis in R.
