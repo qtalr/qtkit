@@ -21,3 +21,6 @@ confirm_permission <- function() {
     }
   }
 }
+
+interactive <- NULL
+readline <- NULL
