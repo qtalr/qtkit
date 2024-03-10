@@ -9,7 +9,7 @@ Description: Support package for the textbook "An Introduction to
     Quantitative Text Analysis for Linguists: Reproducible Research using
     R".
 License: GPL (>= 3) + file LICENSE
-URL: https://qtalr.github.io/qtkit/
+URL: https://qtalr.github.io/qtkit/, https://github.com/qtalr/qtkit
 BugReports: https://github.com/qtalr/qtkit/issues
 Depends:
     R (>= 3.6)
@@ -25,4 +25,3 @@ RoxygenNote: 7.3.1
 VignetteBuilder: knitr
 Author: Jerid Francom [aut, cre] (<https://orcid.org/0000-0001-5972-6330>)
 Maintainer: Jerid Francom <francojc@wfu.edu>
-
