@@ -4,9 +4,10 @@
 #'
 #' This function confirms that the user has permission to use the data.
 #' If not, the script is returns FALSE and stops.
-#'
+#' @noRd
 #' @keywords internal
 #' @return TRUE if the user confirms permission, FALSE otherwise
+#'
 confirm_permission <- function() {
   # Confirm that the user has permission to use the data
   # If not, stop the script

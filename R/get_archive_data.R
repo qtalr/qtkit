@@ -11,7 +11,7 @@
 #' If `FALSE`, the function will prompt the user to confirm permission.
 #' Setting this to `TRUE` is useful for reproducible workflows.
 #'
-#' @returns Download and extract the archive file
+#' @returns NULL, the archive file is unarchived in the target directory
 #'
 #' @importFrom utils download.file unzip untar
 #' @importFrom tools file_ext

@@ -20,7 +20,7 @@ If \code{FALSE}, the function will prompt the user to confirm permission.
 Setting this to \code{TRUE} is useful for reproducible workflows.}
 }
 \value{
-Download and extract the archive file
+NULL, the archive file is unarchived in the target directory
 }
 \description{
 Possible file types include .zip, .gz, .tar, and .tgz
