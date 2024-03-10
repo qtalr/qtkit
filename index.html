@@ -42,6 +42,9 @@
 <li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="news/index.html">Changelog</a>
+</li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -54,10 +57,28 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9">
-Support package for the textbook "An Introduction to
-    Quantitative Text Analysis for Linguists: Reproducible Research using
-    R".
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header"><h1 id="quantitative-text-kit-qtkit">Quantitative Text Kit (<code>qtkit</code>)<a class="anchor" aria-label="anchor" href="#quantitative-text-kit-qtkit"></a>
+</h1></div>
+<!-- badges: start -->
+
+<p>The goal of <code>qtkit</code> is to provide a support package for the textbook <a href="https://qtalr.github.io/book" class="external-link">“An Introduction to Quantitative Text Analysis for Linguistics: Reproducible Research using R”</a>. It contains functions for collecting and manipulating data and datasets, documentation, and other assorted tasks associated with quantative text analysis in R.</p>
+<div class="section level2">
+<h2 id="getting-started">Getting started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h2>
+<p>You can install the released version of qtalrkit from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"qtkit"</span><span class="op">)</span></span></code></pre></div>
+<p>The development version of <code>qtkit</code> is on <a href="https://github.com/" class="external-link">GitHub</a> and can be installed with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"qtalr/qtkit"</span><span class="op">)</span></span></code></pre></div>
+<p>Then load the package with:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://qtalr.github.io/qtkit/">qtkit</a></span><span class="op">)</span></span></code></pre></div>
+<p>Please consult the <a href="https://qtalr.github.io/qtkit/reference">package documentation</a> for more information.</p>
+</div>
+</div>
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
@@ -81,7 +102,13 @@ Support package for the textbook "An Introduction to
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://CRAN.R-project.org/package=qtkit" class="external-link"><img src="https://www.r-pkg.org/badges/version/qtkit.png" alt="CRAN status"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
