@@ -2,7 +2,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Quantitative Text Kit (`qtkit`)
+# Quantitative Text Kit
 
 <!-- badges: start -->
 
@@ -10,6 +10,8 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/qtkit.png)](https://CRAN.R-project.org/package=qtkit)
+[![Update
+universe](https://github.com/r-universe/francojc/actions/workflows/sync.yml/badge.svg)](https://github.com/r-universe/francojc/actions/workflows/sync.yml)
 <!-- badges: end -->
 
 The goal of `qtkit` is to provide a support package for the textbook

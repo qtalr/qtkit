@@ -1,9 +1,12 @@
 url: https://qtalr.github.io/qtkit/
 template:
   bootstrap: 5
-  bootswatch: materia
+  bootswatch: flatly
+  bslib:
+    pkgdown-nav-height: 75px
 
 navbar:
+  bg: secondary
   structure:
     left:
       - intro
