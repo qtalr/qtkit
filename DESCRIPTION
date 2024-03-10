@@ -1,3 +1,4 @@
+Package: qtkit
 Title: Quantitative Text Kit
 Version: 0.9.4
 Authors@R:
@@ -14,3 +15,4 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
+URL: https://qtalr.github.io/qtkit/
