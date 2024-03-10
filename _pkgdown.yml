@@ -2,3 +2,36 @@ url: https://qtalr.github.io/qtkit/
 template:
   bootstrap: 5
 
+navbar:
+  structure:
+    left:
+      - intro
+      - reference
+    right:
+      - search
+      - news
+      - github
+  components:
+    reference:
+      text: Reference
+      href: reference/index.html
+    github:
+      icon: fab fa-github fa-lg
+      href: https:://github.com/qtalr/qtkit
+      aria-label: github
+    news:
+      icon: fas fa-newspaper fa-lg
+      href: news/index.html
+      aria-label: news
+
+reference:
+  - title: "Data functions"
+    desc: "Functions to manage and manipulate data"
+    contents:
+      - create_data_origin
+      - get_archive_data
+
+footer:
+  structure:
+    left: developed_by
+    right: built_with
