@@ -1,0 +1,16 @@
+^qtkit\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^README\.Rmd$
+^cran-comments\.md$
+^.*\.code-workspace$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^README\.Rmd$
+^\.github$
+^vignettes/articles$
+^\.httr-oauth$
+^\.lintr
+^data-raw$
+

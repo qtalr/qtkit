@@ -1,0 +1,28 @@
+# RStudio
+.Rproj.user
+.Rhistory
+.Rdata
+.Ruserdata
+.Renviron
+*.Rproj
+
+# VSCode
+*.code-workspace
+.lintr
+
+# R
+.httr-oauth
+data-raw
+inst/doc
+vignettes/articles/_site/
+vignettes/articles/data/
+
+# GitHub Actions
+.github/workflows/pkgdown.yaml
+
+# macOS
+.DS_Store
+
+# Misc
+*_cache
+packages.bib
