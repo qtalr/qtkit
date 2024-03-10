@@ -1,3 +1,3 @@
-# qtkit 0.9.4
+# qtkit 0.9.5
 
 * Initial CRAN submission.

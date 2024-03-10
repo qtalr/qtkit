@@ -24,7 +24,7 @@ analysis in R.
 
 ## Getting started
 
-You can install the released version of qtalrkit from
+You can install the released version of `qtkit` from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r

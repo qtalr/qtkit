@@ -22,11 +22,11 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/qtalr/qtkit/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/qtalr/qtkit/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of `qtkit` is to provide a support package for the textbook ["An Introduction to Quantitative Text Analysis for Linguistics: Reproducible Research using R"](https://qtalr.github.io/book). It contains functions for collecting and manipulating data and datasets, documentation, and other assorted tasks associated with quantative text analysis in R.
+The goal of `qtkit` is to provide a support package for the textbook ["An Introduction to Quantitative Text Analysis for Linguistics: Reproducible Research using R"](https://qtalr.github.io/book). It contains functions for collecting and manipulating data and datasets, documentation, and other assorted tasks associated with quantitative text analysis in R.
 
 ## Getting started
 
-You can install the released version of qtalrkit from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of `qtkit` from [CRAN](https://CRAN.R-project.org) with:
 
 ```r
 install.packages("qtkit")
