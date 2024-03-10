@@ -9,3 +9,6 @@
 ^\.Rproj\.user$
 ^qtkit\.code-workspace$
 ^.github$
+^LICENSE\.md$
+^vignettes/articles$
+^.DS_Store$
