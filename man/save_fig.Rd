@@ -43,7 +43,8 @@ label of the code block.
 \examples{
 \dontrun{
 # Save a plot as a PDF file
-p1 <- ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point()
+p1 <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point()
 save_fig(p1, file = "mtcars_plot", device = "pdf")
 }
 

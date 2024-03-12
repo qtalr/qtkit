@@ -22,7 +22,8 @@
 #' @examples
 #' \dontrun{
 #' # Save a plot as a PDF file
-#' p1 <- ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point()
+#' p1 <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+#'   geom_point()
 #' save_fig(p1, file = "mtcars_plot", device = "pdf")
 #' }
 #'
@@ -61,7 +62,16 @@ save_fig <- function(plot = NULL, file = NULL, target_dir = NULL,
     message("Directory created: ", target_dir)
   }
   # Construct the full file path
+  extension <- switch(device,
+    "pdf" = ".pdf",
+    "png" = ".png",
+    "jpeg" = ".jpeg",
+    "tiff" = ".tiff",
+    "svg" = ".svg"
+  )
+  file <- paste0(file, extension)
   file <- file.path(target_dir, file)
+
   # Save the plot to the specified file
   ggplot2::ggsave(file, plot, device = device, ...)
   # Return the file path, invisibly
