@@ -1,32 +1,31 @@
-#' Save an R object as a file
+#' Write an R object as a file
 #'
-#' @description This function is a wrapper around `dput` that allows
-#' you to save an R object as part of a knitr document. It is designed to
-#' be used in a code block. The file name, if not specified, will be the
-#' label of the code block.
+#' @description This function is a wrapper around `dput` that allows you
+#' to write an R object as part of a knitr document as an output for
+#' later use. It is designed to be used in a code block. The file name, if
+#' not specified, will be the label of the code block.
 #'
-#' @param object The R object to be saved.
-#' @param file The name of the file to be saved. If not specified, the
+#' @param obj The R object to be written.
+#' @param file The name of the file to be written. If not specified, the
 #' label of the code block will be used.
-#' @param target_dir The directory where the file will be saved. If not
+#' @param target_dir The directory where the file will be written. If not
 #' specified, the current working directory will be used.
 #' @param ... Additional arguments to be passed to `dput`.
 #'
-#' @return The path of the saved file.
+#' @return The path of the written file.
 #'
 #' @examples
 #' \dontrun{
-#' # Save a data frame as a file
-#' save_obj(mtcars, file = "mtcars_data")
+#' # Write a data frame as a file
+#' write_obj(mtcars, file = "mtcars_data")
 #' }
 #' @importFrom knitr opts_current
 #'
-#' @export save_obj
+#' @export write_obj
 #' @keywords publishing
-save_obj <- function(object, file = NULL, target_dir = NULL, ...) {
+write_obj <- function(obj, file = NULL, target_dir = NULL, ...) {
   # Retrieve the label of the current code chunk
   block_label <- knitr::opts_current$get("label")
-
   # If file name is not specified, use the block label as the file name
   if (is.null(file)) {
     if (is.null(block_label)) {
@@ -50,7 +49,7 @@ save_obj <- function(object, file = NULL, target_dir = NULL, ...) {
   # Construct the full file path
   file <- file.path(target_dir, file)
   # Save the object to the specified file
-  dput(object, file, ...)
+  dput(obj, file, ...)
   # Return the file path, invisibly
   return(invisible(file))
 }

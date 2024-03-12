@@ -34,6 +34,12 @@ reference:
     contents:
       - create_data_origin
       - get_archive_data
+  - title: "Publishing functions"
+    desc: "Functions to aid in publishing research"
+    contents:
+      - write_gg
+      - write_kbl
+      - write_obj
 
 footer:
   structure:

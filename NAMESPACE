@@ -2,9 +2,9 @@
 
 export(create_data_origin)
 export(get_archive_data)
-export(save_fig)
-export(save_obj)
-export(save_tbl)
+export(write_gg)
+export(write_kbl)
+export(write_obj)
 importFrom(ggplot2,ggsave)
 importFrom(kableExtra,save_kable)
 importFrom(knitr,opts_current)

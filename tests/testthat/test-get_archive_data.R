@@ -28,7 +28,6 @@ test_that("downloads and extracts the archive file when the target directory doe
   unlink(target_dir, recursive = TRUE, force = TRUE)
 })
 
-
 test_that("does not download or extract the archive file when the target directory exists and force is FALSE", {
 
   # Create the target directory path
