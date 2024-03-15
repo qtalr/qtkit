@@ -9,4 +9,7 @@
 library(testthat)
 library(qtkit)
 
+# https://github.com/rstudio/chromote/issues/114#issuecomment-1675406196
+options(chromote.timeout = 60)
+
 test_check("qtkit")
