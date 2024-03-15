@@ -9,6 +9,7 @@
 library(testthat)
 library(qtkit)
 
+# Set the timeout for chromote (Windows only issue)
 # https://github.com/rstudio/chromote/issues/114#issuecomment-1675406196
 options(chromote.timeout = 60)
 
