@@ -4,9 +4,6 @@
     <loc>https://qtalr.github.io/qtkit/404.html</loc>
   </url>
   <url>
-    <loc>https://qtalr.github.io/qtkit/LICENSE-text.html</loc>
-  </url>
-  <url>
     <loc>https://qtalr.github.io/qtkit/LICENSE.html</loc>
   </url>
   <url>
@@ -32,14 +29,5 @@
   </url>
   <url>
     <loc>https://qtalr.github.io/qtkit/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://qtalr.github.io/qtkit/reference/write_gg.html</loc>
-  </url>
-  <url>
-    <loc>https://qtalr.github.io/qtkit/reference/write_kbl.html</loc>
-  </url>
-  <url>
-    <loc>https://qtalr.github.io/qtkit/reference/write_obj.html</loc>
   </url>
 </urlset>
