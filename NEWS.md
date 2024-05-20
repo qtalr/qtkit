@@ -1,3 +1,7 @@
+# qtkit 0.12.0
+
+* Added `add_pkg_to_bib()` to add a package to the bibliography.
+
 # qtkit 0.11.0
 
 * Added `write_*()` functions to aid in publishing results to a variety of formats.

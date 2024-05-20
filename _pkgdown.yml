@@ -11,6 +11,7 @@ navbar:
     left:
       - intro
       - reference
+      - articles
     right:
       - search
       - news
@@ -19,6 +20,9 @@ navbar:
     reference:
       text: Reference
       href: reference/index.html
+    articles:
+      text: Articles
+      href: articles/index.html
     github:
       icon: fab fa-github fa-lg
       href: https:://github.com/qtalr/qtkit
@@ -37,9 +41,17 @@ reference:
   - title: "Publishing functions"
     desc: "Functions to aid in publishing research"
     contents:
+      - add_pkg_to_bib
       - write_gg
       - write_kbl
       - write_obj
+
+articles:
+  - title: "Apply `qtkit` to your workflow"
+    navbar: ~
+    contents:
+      - document
+      - reports
 
 footer:
   structure:

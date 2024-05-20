@@ -1,6 +1,6 @@
 Package: qtkit
 Title: Quantitative Text Kit
-Version: 0.11.0
+Version: 0.12.0
 Authors@R:
     person("Jerid", "Francom", , "francojc@wfu.edu",
     role = c("aut", "cre"),
@@ -29,3 +29,4 @@ RoxygenNote: 7.3.1
 VignetteBuilder: knitr
 Author: Jerid Francom [aut, cre] (<https://orcid.org/0000-0001-5972-6330>)
 Maintainer: Jerid Francom <francojc@wfu.edu>
+Date: 2024-03-14
