@@ -3,11 +3,14 @@ Title: Quantitative Text Kit
 Version: 0.10.0
 Authors@R:
     person("Jerid", "Francom", , "francojc@wfu.edu",
-    role = c("aut", "cre"),
+    role = c("aut", "cre", "cph"),
     comment = c(ORCID = "0000-0001-5972-6330"))
 Description: Support package for the textbook "An Introduction to
     Quantitative Text Analysis for Linguists: Reproducible Research using
-    R".
+    R" (Francom, 2024) <doi:10.4324/9781003393764>. Includes functions to acquire,
+    clean, and analyze text data as well as functions to document and share the
+    results of text analysis. The package is designed to be used in conjunction with
+    the book, but can also be used as a standalone package for text analysis.
 License: GPL (>= 3)
 URL: https://qtalr.github.io/qtkit/, https://github.com/qtalr/qtkit
 BugReports: https://github.com/qtalr/qtkit/issues

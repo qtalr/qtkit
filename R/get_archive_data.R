@@ -16,9 +16,14 @@
 #' @importFrom utils download.file unzip untar
 #' @importFrom tools file_ext
 #'
-#' @examples \dontrun{
-#' get_archive_data(url = "http://www.test.com/file.zip", target_dir = "./")
-#' }
+#' @examples
+#' test_dir <- file.path(tempdir(), "test")
+#' url <- "https://getsamplefiles.com/download/zip/sample-1.zip"
+#' get_archive_data(
+#'  url = url,
+#'  target_dir = test_dir,
+#'  confirmed = TRUE
+#' )
 #' @export
 get_archive_data <-
   function(url, target_dir, force = FALSE, confirmed = FALSE) {
@@ -31,13 +36,13 @@ get_archive_data <-
     validate_file_extension(ext)
 
     if (!dir.exists(target_dir) || force) {
-      cat("Creating target data directory \n")
+      message("Creating target data directory \n")
       dir.create(path = target_dir, recursive = TRUE, showWarnings = FALSE)
 
       download_and_decompress(url, target_dir, ext)
       clean_filenames(target_dir)
     } else {
-      cat("Data already exists \n")
+      message("Data already exists \n")
     }
   }
 
@@ -61,7 +66,7 @@ validate_file_extension <- function(ext) {
 # ' @keywords internal
 # Helper function to download and decompress file
 download_and_decompress <- function(url, target_dir, ext) {
-  cat("Downloading data... \n")
+  message("Downloading data... \n")
   temp <- tempfile()
   utils::download.file(url = url, destfile = temp)
 
@@ -71,7 +76,7 @@ download_and_decompress <- function(url, target_dir, ext) {
     utils::untar(tarfile = temp, exdir = target_dir)
   }
 
-  cat("Data downloaded! \n")
+  message("Data downloaded! \n")
 }
 
 # ' @keywords internal

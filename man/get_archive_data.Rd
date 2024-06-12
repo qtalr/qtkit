@@ -26,7 +26,11 @@ NULL, the archive file is unarchived in the target directory
 Possible file types include .zip, .gz, .tar, and .tgz
 }
 \examples{
-\dontrun{
-get_archive_data(url = "http://www.test.com/file.zip", target_dir = "./")
-}
+test_dir <- file.path(tempdir(), "test")
+url <- "https://getsamplefiles.com/download/zip/sample-1.zip"
+get_archive_data(
+ url = url,
+ target_dir = test_dir,
+ confirmed = TRUE
+)
 }
