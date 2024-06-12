@@ -26,5 +26,5 @@ Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 VignetteBuilder: knitr
-Author: Jerid Francom [aut, cre] (<https://orcid.org/0000-0001-5972-6330>)
+Author: Jerid Francom [aut, cre, cph] (<https://orcid.org/0000-0001-5972-6330>)
 Maintainer: Jerid Francom <francojc@wfu.edu>
