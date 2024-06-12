@@ -27,7 +27,7 @@ Possible file types include .zip, .gz, .tar, and .tgz
 }
 \examples{
 test_dir <- file.path(tempdir(), "test")
-url <- "https://getsamplefiles.com/download/zip/sample-1.zip"
+url <- "https://raw.githubusercontent.com/qtalr/qtkit/main/inst/extdata/test_data.zip"
 get_archive_data(
  url = url,
  target_dir = test_dir,
