@@ -3,7 +3,8 @@
 #' @description This function is a wrapper around `dput` that allows you
 #' to write an R object as part of a knitr document as an output for
 #' later use. It is designed to be used in a code block. The file name, if
-#' not specified, will be the label of the code block.
+#' not specified, will be the label of the code block. Use the standard
+#' `dget` function to read the file back into an R session.
 #'
 #' @param obj The R object to be written.
 #' @param file The name of the file to be written. If not specified, the
@@ -15,10 +16,12 @@
 #' @return The path of the written file.
 #'
 #' @examples
-#' \dontrun{
+#' test_dir <- tempdir()
 #' # Write a data frame as a file
-#' write_obj(mtcars, file = "mtcars_data")
-#' }
+#' write_obj(mtcars, file = "mtcars_data", target_dir = test_dir)
+#' # Read the file back into an R session
+#' mtcars_data <- dget(file.path(test_dir, "mtcars_data"))
+#'
 #' @importFrom knitr opts_current
 #'
 #' @export write_obj
