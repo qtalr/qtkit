@@ -12,9 +12,8 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' create_data_origin("data_origin.csv")
-#' }
+#' tmp_file <- tempfile(fileext = ".csv")
+#' create_data_origin(tmp_file)
 #' @importFrom utils write.csv
 #'
 create_data_origin <- function(file_path, return = FALSE, force = FALSE) {
