@@ -23,7 +23,6 @@ Data frame with attributes about the data origin, written to a CSV file and
 optionally returned.
 }
 \examples{
-\dontrun{
-create_data_origin("data_origin.csv")
-}
+tmp_file <- tempfile(fileext = ".csv")
+create_data_origin(tmp_file)
 }
