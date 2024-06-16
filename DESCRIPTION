@@ -7,7 +7,7 @@ Authors@R:
     comment = c(ORCID = "0000-0001-5972-6330"))
 Description: Support package for the textbook "An Introduction to
     Quantitative Text Analysis for Linguists: Reproducible Research using
-    R" (Francom, 2024) <doi:10.4324/9781003393764>. Includes functions to acquire,
+    R" (Francom, 2024) <doi:10.4324/9781003393764> (available only after August 12, 2024). Includes functions to acquire,
     clean, and analyze text data as well as functions to document and share the
     results of text analysis. The package is designed to be used in conjunction with
     the book, but can also be used as a standalone package for text analysis.
