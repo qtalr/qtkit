@@ -10,7 +10,7 @@ temp_dir <- tempdir()
 url <- "https://raw.githubusercontent.com/qtalr/qtkit/main/inst/extdata/test_data.zip"
 
 # Define a test for the case where the target directory does not exist
-test_that("downloads and extracts the archive file when the target directory does not exist", {
+test_that("do, when the target directory does not exist", {
   # Create the target directory path
   target_dir <- file.path(temp_dir, "test_data")
 
@@ -28,7 +28,7 @@ test_that("downloads and extracts the archive file when the target directory doe
   unlink(target_dir, recursive = TRUE, force = TRUE)
 })
 
-test_that("does not download or extract the archive file when the target directory exists and force is FALSE", {
+test_that("do not, when the target directory exists and force is FALSE", {
 
   # Create the target directory path
   target_dir <- file.path(temp_dir, "test_data")
@@ -52,7 +52,7 @@ test_that("does not download or extract the archive file when the target directo
   unlink(target_dir)
 })
 
-test_that("downloads and extracts the archive file when the target directory exists and force is TRUE", {
+test_that("do, when the target directory exists and force is TRUE", {
 
   # Create the target directory path
   target_dir <- file.path(temp_dir, "test_data")

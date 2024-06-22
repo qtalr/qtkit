@@ -1,6 +1,6 @@
 #' Create data origin file
 #'
-#' Data frame with attributes about the data origin, written to a CSV file 
+#' Data frame with attributes about the data origin, written to a CSV file
 #' and optionally returned.
 #'
 #' @param file_path File path where the data origin file should be saved.
@@ -53,7 +53,7 @@ create_data_origin <- function(file_path, return = FALSE, force = FALSE) {
   # Write the data origin to a file
   write.csv(data_origin, file = file_path, row.names = FALSE)
 
-  # Return message
+  # Return message to user
   message("Data origin file created at `file_path`.")
 
   # Return the data origin, if requested
