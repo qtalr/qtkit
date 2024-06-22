@@ -16,7 +16,7 @@ This function adds a package to a BibTeX file. It uses the
 \code{knitr::write_bib} function to write the package name to the file.
 }
 \examples{
-\dontrun{
-add_pkg_to_bib("dplyr", "my_bib_file.bib")
-}
+my_bib_file <- tempfile(fileext = ".bib")
+add_pkg_to_bib("dplyr", my_bib_file)
+readLines(my_bib_file) |> cat(sep = "\n")
 }
