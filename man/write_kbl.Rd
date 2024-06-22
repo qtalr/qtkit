@@ -43,14 +43,27 @@ the code block.
 }
 \examples{
 \dontrun{
+library(knitr)
+
+mtcars_kbl <- kable(
+ x = mtcars[1:5, ],
+ format = "html")
+
 # Write a kable object as a PDF file
-mtcars_kbl <- knitr::kable(mtcars[1:5, ], format = "html")
-write_kbl(mtcars_kbl, file = "mtcars_kable", device = "pdf")
+write_kbl(
+ kbl_obj = mtcars_kbl,
+ file = "kable_pdf",
+ target_dir = "inst",
+ device = "pdf")
+# Write a kable object as a HTML file
 
 # Write a kable as an HTML file with a custom Bootstrap theme
-write_kbl(mtcars_kbl, file = "mtcars_kable", device = "html",
-bs_theme = "flatly")
+write_kbl(
+ kbl_obj = mtcars_kbl,
+ file = "kable_html",
+ target_dir = "inst",
+ device = "html",
+ bs_theme = "flatly")
 }
-
 }
 \keyword{publishing}

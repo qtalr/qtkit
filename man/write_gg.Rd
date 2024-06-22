@@ -44,11 +44,15 @@ the code block.
 }
 \examples{
 \dontrun{
-# Write a ggplot object as a PDF file
-p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
-  geom_point()
-write_gg(p, file = "mtcars_ggplot", device = "pdf")
-}
+library(ggplot2)
 
+# Write a ggplot object as a PDF file
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point()
+write_gg(
+ gg_obj = p,
+ file = "plot_file",
+ target_dir = temp_dir,
+ device = "pdf")
+}
 }
 \keyword{publishing}

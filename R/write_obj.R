@@ -16,12 +16,16 @@
 #' @return The path of the written file.
 #'
 #' @examples
-#' test_dir <- tempdir()
+#' \dontrun{
 #' # Write a data frame as a file
-#' write_obj(mtcars, file = "mtcars_data", target_dir = test_dir)
-#' # Read the file back into an R session
-#' mtcars_data <- dget(file.path(test_dir, "mtcars_data"))
+#' write_obj(
+#'  obj = mtcars,
+#'  file = "mtcars_data",
+#'  target_dir = "inst")
 #'
+#' # Read the file back into an R session
+#' dget(file.path(test_dir, "mtcars_data"))
+#' }
 #' @importFrom knitr opts_current
 #'
 #' @export write_obj

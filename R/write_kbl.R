@@ -22,18 +22,28 @@
 #'
 #' @examples
 #' \dontrun{
+#' library(knitr)
+#'
+#' mtcars_kbl <- kable(
+#'  x = mtcars[1:5, ],
+#'  format = "html")
+#'
 #' # Write a kable object as a PDF file
-#' mtcars_kbl <- knitr::kable(mtcars[1:5, ], format = "html")
-#' write_kbl(mtcars_kbl, file = "mtcars_kable", device = "pdf")
+#' write_kbl(
+#'  kbl_obj = mtcars_kbl,
+#'  file = "kable_pdf",
+#'  target_dir = "inst",
+#'  device = "pdf")
+#' # Write a kable object as a HTML file
 #'
 #' # Write a kable as an HTML file with a custom Bootstrap theme
-#' write_kbl(mtcars_kbl, file = "mtcars_kable", device = "html",
-#' bs_theme = "flatly")
+#' write_kbl(
+#'  kbl_obj = mtcars_kbl,
+#'  file = "kable_html",
+#'  target_dir = "inst",
+#'  device = "html",
+#'  bs_theme = "flatly")
 #' }
-#'
-#' @importFrom kableExtra save_kable
-#' @importFrom knitr opts_current
-#'
 #' @export write_kbl
 #' @keywords publishing
 write_kbl <-
@@ -41,7 +51,8 @@ write_kbl <-
            device = "pdf", bs_theme = "bootstrap", ...) {
     # Retrieve the label of the current code chunk
     block_label <- knitr::opts_current$get("label")
-    # If file name is not specified, use the block label as the file name
+    # If file name is not specified, use the block label as the file name this
+    # is going tooo far
     if (is.null(file)) {
       if (is.null(block_label)) {
         # Stop execution and throw an error if both file name
