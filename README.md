@@ -1,7 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!--fix color mixing on title-->
 
-# Quantitative Text Kit
+# <span class="first-letter">Q</span>uantitative <span class="first-letter">T</span>ext <span class="first-letter">Kit</span>!
 
 <!-- badges: start -->
 
