@@ -1,6 +1,6 @@
 Package: qtkit
 Title: Quantitative Text Kit
-Version: 0.10.0
+Version: 0.10.0.9000
 Authors@R:
     person("Jerid", "Francom", , "francojc@wfu.edu",
     role = c("aut", "cre", "cph"),
