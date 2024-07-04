@@ -13,3 +13,4 @@
 ^vignettes/articles$
 ^.DS_Store$
 ^CRAN-SUBMISSION$
+^\.github$
