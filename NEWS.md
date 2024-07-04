@@ -5,6 +5,7 @@
 * `write_gg()` writes a ggplot object to a file.
 * `write_kbl()` writes a knitr::kable object to a file.
 * `write_obj()` writes an R object to a file.
+* `find_outliers()` identify observations in a data frame that have outliers for a given variable.
 
 # qtkit 0.10.0
 

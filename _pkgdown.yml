@@ -4,7 +4,6 @@ template:
   bootswatch: flatly
   bslib:
     pkgdown-nav-height: 75px
-
 navbar:
   bg: secondary
   structure:
@@ -31,8 +30,11 @@ navbar:
       icon: fas fa-newspaper fa-lg
       href: news/index.html
       aria-label: news
-
 reference:
+  - title: "Inspection functions"
+    desc: "Functions to inspect data"
+    contents:
+      - find_outliers
   - title: "Data functions"
     desc: "Functions to manage and manipulate data"
     contents:
@@ -45,14 +47,12 @@ reference:
       - write_gg
       - write_kbl
       - write_obj
-
 articles:
   - title: "Apply `qtkit` to your workflow"
     navbar: ~
     contents:
       - document
       - reports
-
 footer:
   structure:
     left: developed_by
