@@ -7,11 +7,11 @@
 #' @param bib_file The name of the BibTeX file to write to.
 #' @return NULL
 #' @importFrom knitr write_bib
-#' @export
 #' @examples
 #' my_bib_file <- tempfile(fileext = ".bib")
 #' add_pkg_to_bib("dplyr", my_bib_file)
 #' readLines(my_bib_file) |> cat(sep = "\n")
-add_pkg_to_bib  <- function(pkg_name, bib_file = "packages.bib") {
+#' @export
+add_pkg_to_bib <- function(pkg_name, bib_file = "packages.bib") {
   knitr::write_bib(c(.packages(), pkg_name), file = bib_file)
 }
