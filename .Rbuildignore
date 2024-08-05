@@ -1,5 +1,7 @@
 ^_pkgdown\.yml$
+^.direnv$
 ^.DS_Store$
+^.envrc$
 ^.github$
 ^\.github$
 ^\.Rproj\.user$
@@ -8,6 +10,8 @@
 ^data-raw$
 ^doc$
 ^docs$
+^flake.lock$
+^flake.nix$
 ^Meta$
 ^LICENSE\.md$
 ^pkgdown$
