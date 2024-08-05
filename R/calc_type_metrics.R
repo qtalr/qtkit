@@ -59,22 +59,15 @@
 calc_type_metrics <- function(data, type, document,
                               frequency = NULL, dispersion = NULL) {
   # Validate inputs
-  validate_inputs(data, type, document, frequency, dispersion)
+  validate_inputs_ctm(data, type, document, frequency, dispersion)
 
   # Create a Sparse Term-Document Matrix (TDM)
   tdm <- data |>
     dplyr::count({{ type }}, {{ document }}) |>
     tidytext::cast_sparse({{ type }}, {{ document }}, n)
 
-  # Convert frequencies to row proportions
-  row_sums <- Matrix::rowSums(tdm)
-  tdm_normalized <- tdm / row_sums
-
-  # Calculate the proportion of each document in the corpus
-  col_sums <- Matrix::colSums(tdm)
-  corpus_parts <- col_sums / sum(tdm)
-
   # Initialize an empty data frame
+  row_sums <- Matrix::rowSums(tdm)
   output_df <- tibble::tibble(type = rownames(tdm), n = row_sums)
 
   # Calculate metrics based on user choice
@@ -85,14 +78,14 @@ calc_type_metrics <- function(data, type, document,
       "all" %in% dispersion ||
       metric %in% dispersion) {
       output_df[[metric]] <-
-        get(paste0("calc_", metric))(tdm, tdm_normalized, corpus_parts)
+        get(paste0("calc_", metric))(tdm)
     }
   }
 
   return(output_df)
 }
 
-validate_inputs <- function(data, type, document, frequency, dispersion) {
+validate_inputs_ctm <- function(data, type, document, frequency, dispersion) {
   # Check if data is a data.frame
   if (!is.data.frame(data)) {
     stop("The argument 'data' must be a data frame.")

@@ -28,11 +28,11 @@
 # FIX: replace this toy dataset with a dataset from an R package
 calc_assoc_metrics <- function(data, doc_index, token_index, type,
                                association = "all", verbose = FALSE) {
-  doc_index <- deparse(substitute(doc_index))
-  token_index <- deparse(substitute(token_index))
-  type <- deparse(substitute(type))
 
-  validate_assoc_metrics_input(data, doc_index, token_index, type, association)
+  doc_index <- rlang::ensym(doc_index)
+  token_index <- rlang::ensym(token_index)
+  type <- rlang::ensym(type)
+  validate_inputs_cam(data, doc_index, token_index, type, association)
 
   bigram_probs <-
     calculate_bigram_probabilities(data, doc_index, token_index, type)
@@ -41,29 +41,10 @@ calc_assoc_metrics <- function(data, doc_index, token_index, type,
 
   if (!verbose) {
     metrics <- metrics[, !colnames(metrics) %in% c("p_xy", "p_x", "p_y")]
-  }
-
   return(metrics)
+  }
 }
 
-# Helper function to validate input
-validate_assoc_metrics_input <-
-  function(data, doc_index, token_index, type, association) {
-    if (!is.data.frame(data)) {
-      stop("The argument 'data' must be a data frame.")
-    }
-
-    required_cols <- c(doc_index, token_index, type)
-    if (!all(required_cols %in% names(data))) {
-      stop("All specified columns must exist in 'data'.")
-    }
-
-    valid_associations <- c("all", "pmi", "dice_coeff", "g_score")
-    if (!is.character(association) ||
-      !all(association %in% valid_associations)) { # nolint
-      stop("Invalid 'association' argument.")
-    }
-  }
 
 # Helper function to calculate bigram probabilities
 calculate_bigram_probabilities <-
@@ -121,4 +102,28 @@ calculate_metrics <-
     }
 
     return(metrics)
+  }
+
+
+# Helper function to validate input
+validate_inputs_cam <-
+  function(data, doc_index, token_index, type, association) {
+    if (!is.data.frame(data)) {
+      stop("The argument 'data' must be a data frame.")
+    }
+
+    doc_index_str <- rlang::as_string(doc_index)
+    token_index_str <- rlang::as_string(token_index)
+    type_str <- rlang::as_string(type)
+
+    required_cols <- c(doc_index_str, token_index_str, type_str)
+    if (!all(required_cols %in% names(data))) {
+      stop("All specified columns must exist in 'data'.")
+    }
+
+    valid_associations <- c("all", "pmi", "dice_coeff", "g_score")
+    if (!is.character(association) ||
+      !all(association %in% valid_associations)) { # nolint
+      stop("Invalid 'association' argument.")
+    }
   }
