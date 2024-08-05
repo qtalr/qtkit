@@ -13,6 +13,7 @@
           packages = [ pkgs.bashInteractive ];
           buildInputs = with pkgs; [
             # Software
+            gettext
             gh
             git
             pandoc
@@ -22,6 +23,7 @@
             # R packages: development
             rPackages.devtools
             rPackages.pkgdown
+            rPackages.languageserver
             rPackages.testthat
             rPackages.usethis
             rPackages.goodpractice
@@ -33,6 +35,7 @@
             rPackages.knitr
             rPackages.rlang
             rPackages.rmarkdown
+            rPackages.sessioninfo
             rPackages.tibble
             rPackages.tidytext
             rPackages.webshot2
