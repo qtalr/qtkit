@@ -47,8 +47,13 @@
 #' @export write_kbl
 #' @keywords publishing
 write_kbl <-
-  function(kbl_obj, file = NULL, target_dir = NULL,
-           device = "pdf", bs_theme = "bootstrap", ...) {
+  function(
+    kbl_obj,
+    file = NULL,
+    target_dir = NULL,
+    device = "pdf",
+    bs_theme = "bootstrap",
+    ...) {
     # Retrieve the label of the current code chunk
     block_label <- knitr::opts_current$get("label")
     # If file name is not specified, use the block label as the file name this

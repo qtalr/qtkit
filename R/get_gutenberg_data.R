@@ -42,14 +42,14 @@
 #' \dontrun{
 #' # Retrieve works with LCC subject "Political Theory" and save to
 #' "/path/to/works_fiction.csv"
-#' get_gutenberg_works("/path/to", "JC")
+#' get_gutenberg_data("/path/to", "JC")
 #' }
 #'
 #' @import gutenbergr
 #' @importFrom dplyr select mutate filter
 #' @importFrom readr write_csv
 #' @export
-get_gutenberg_works <-
+get_gutenberg_data <-
   function(
     target_dir,
     lcc_subject,

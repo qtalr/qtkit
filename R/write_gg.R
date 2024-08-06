@@ -38,8 +38,14 @@
 #'
 #' @export write_gg
 #' @keywords publishing
-write_gg <- function(gg_obj = NULL, file = NULL, target_dir = NULL,
-                     device = "pdf", theme = NULL, ...) {
+write_gg <-
+  function(
+    gg_obj = NULL,
+    file = NULL,
+    target_dir = NULL,
+    device = "pdf",
+    theme = NULL,
+    ...) {
   # Retrieve the label of the current code chunk
   block_label <- knitr::opts_current$get("label")
   # If ggplot is not specified, use the last ggplot created

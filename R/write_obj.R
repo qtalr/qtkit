@@ -30,7 +30,12 @@
 #'
 #' @export write_obj
 #' @keywords publishing
-write_obj <- function(obj, file = NULL, target_dir = NULL, ...) {
+write_obj <-
+  function(
+    obj,
+    file = NULL,
+    target_dir = NULL,
+    ...) {
   # Retrieve the label of the current code chunk
   block_label <- knitr::opts_current$get("label")
   # If file name is not specified, use the block label as the file name

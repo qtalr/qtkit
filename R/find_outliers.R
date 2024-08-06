@@ -19,7 +19,10 @@
 #' find_outliers(mtcars, wt)
 #'
 #' @importFrom stats quantile
-find_outliers <- function(data, variable_name) {
+find_outliers <-
+  function(
+    data,
+    variable_name) {
   # Check if `data` is a data.frame
   if (!is.data.frame(data)) {
     stop("The first argument must be a data.frame.")

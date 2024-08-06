@@ -26,8 +26,14 @@
 #'
 #' @export
 # FIX: replace this toy dataset with a dataset from an R package
-calc_assoc_metrics <- function(data, doc_index, token_index, type,
-                               association = "all", verbose = FALSE) {
+calc_assoc_metrics <-
+  function(
+    data,
+    doc_index,
+    token_index,
+    type,
+    association = "all",
+    verbose = FALSE) {
 
   doc_index <- rlang::ensym(doc_index)
   token_index <- rlang::ensym(token_index)

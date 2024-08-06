@@ -17,7 +17,11 @@
 #' read.csv(tmp_file)
 #' @importFrom utils write.csv
 #'
-create_data_origin <- function(file_path, return = FALSE, force = FALSE) {
+create_data_origin <-
+  function(
+    file_path,
+    return = FALSE,
+    force = FALSE) {
   # Check to see if `file_path` is a character string
   if (!is.character(file_path)) stop("`file_path` must be a character string.")
 

@@ -26,7 +26,11 @@
 #' )
 #' @export
 get_archive_data <-
-  function(url, target_dir, force = FALSE, confirmed = FALSE) {
+  function(
+    url,
+    target_dir,
+    force = FALSE,
+    confirmed = FALSE) {
     confirmed <- confirm_if_needed(confirmed)
     if (!confirmed) {
       return(message("Aborted."))

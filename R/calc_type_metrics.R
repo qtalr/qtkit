@@ -56,8 +56,13 @@
 #' @importFrom tidytext cast_sparse
 #' @importFrom tibble tibble
 #' @export
-calc_type_metrics <- function(data, type, document,
-                              frequency = NULL, dispersion = NULL) {
+calc_type_metrics <-
+  function(
+    data,
+    type,
+    document,
+    frequency = NULL,
+    dispersion = NULL) {
   # Validate inputs
   validate_inputs_ctm(data, type, document, frequency, dispersion)
 
