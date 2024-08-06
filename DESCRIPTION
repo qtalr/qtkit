@@ -20,9 +20,11 @@ Depends:
 Imports:
     dplyr,
     ggplot2,
+    gutenbergr,
     kableExtra,
     knitr,
     Matrix,
+    readr,
     rlang,
     tibble,
     tidytext

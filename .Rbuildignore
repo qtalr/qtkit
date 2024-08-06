@@ -1,8 +1,7 @@
 ^_pkgdown\.yml$
-^.direnv$
-^.DS_Store$
-^.envrc$
-^.github$
+^\.direnv$
+^\.DS_Store$
+^\.envrc$
 ^\.github$
 ^\.Rproj\.user$
 ^cran-comments\.md$
@@ -10,12 +9,11 @@
 ^data-raw$
 ^doc$
 ^docs$
-^flake.lock$
-^flake.nix$
+^flake\.lock$
+^flake\.nix$
 ^Meta$
+^Library$
 ^LICENSE\.md$
 ^pkgdown$
-^qtkit\.code-workspace$
-^qtkit\.Rproj$
 ^README\.Rmd$
 ^vignettes/articles$

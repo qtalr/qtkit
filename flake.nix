@@ -31,6 +31,7 @@
             rPackages.Matrix
             rPackages.dplyr
             rPackages.ggplot2
+            rPackages.gutenbergr
             rPackages.kableExtra
             rPackages.knitr
             rPackages.rlang
