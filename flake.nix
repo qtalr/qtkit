@@ -13,6 +13,7 @@
           packages = [ pkgs.bashInteractive ];
           buildInputs = with pkgs; [
             # Software
+            curl
             gettext
             gh
             git
@@ -22,8 +23,8 @@
             radianWrapper
             # R packages: development
             rPackages.devtools
-            rPackages.pkgdown
             rPackages.languageserver
+            rPackages.pak
             rPackages.testthat
             rPackages.usethis
             rPackages.goodpractice
@@ -31,16 +32,25 @@
             rPackages.Matrix
             rPackages.dplyr
             rPackages.ggplot2
+            rPackages.glue
             rPackages.gutenbergr
             rPackages.kableExtra
             rPackages.knitr
+            rPackages.openai
+            rPackages.purrr
+            rPackages.readr
             rPackages.rlang
             rPackages.rmarkdown
             rPackages.sessioninfo
+            rPackages.stringr
             rPackages.tibble
             rPackages.tidytext
             rPackages.webshot2
           ];
+
+          shellHook = ''
+            # export R_LIBS_USER=$PWD/Library
+          '';
         };
       });
 }
