@@ -3,11 +3,11 @@
 #' These functions are for internal use only.
 #'
 #' To be used with the `calc_type_metrics` function.
-#' Includes dispersion measures: `calc_df()` Document Frequency 'DF', `calc_idf()` Inverse
-#' Document Frequency 'IDF', and `calc_dp()` Gries' Deviation of Proportions
-#' 'DP' functions. Frequency measures include: `calc_rf()` and `calc_orf()`.
-#' Takes a term-document matrix (TDM) as input and returns
-#' the respective dispersion metrics for each type in the TDM.
+#' Includes dispersion measures: `calc_df()` Document Frequency 'DF',
+#' `calc_idf()` Inverse Document Frequency 'IDF', and `calc_dp()` Gries'
+#' Deviation of Proportions 'DP' functions. Frequency measures include:
+#' `calc_rf()` and `calc_orf()`. Takes a term-document matrix (TDM) as
+#' input and returns the respective dispersion metrics for each type in the TDM.
 #'
 #' @keywords internal
 #'
@@ -53,4 +53,3 @@ calc_dp <- function(tdm) {
   dp_norm <- dp / (1 - min(corpus_parts))
   return(dp_norm)
 }
-

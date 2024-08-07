@@ -9,10 +9,10 @@ calc_rf(tdm)
 }
 \description{
 To be used with the \code{calc_type_metrics} function.
-Includes dispersion measures: \code{calc_df()} Document Frequency 'DF', \code{calc_idf()} Inverse
-Document Frequency 'IDF', and \code{calc_dp()} Gries' Deviation of Proportions
-'DP' functions. Frequency measures include: \code{calc_rf()} and \code{calc_orf()}.
-Takes a term-document matrix (TDM) as input and returns
-the respective dispersion metrics for each type in the TDM.
+Includes dispersion measures: \code{calc_df()} Document Frequency 'DF',
+\code{calc_idf()} Inverse Document Frequency 'IDF', and \code{calc_dp()} Gries'
+Deviation of Proportions 'DP' functions. Frequency measures include:
+\code{calc_rf()} and \code{calc_orf()}. Takes a term-document matrix (TDM) as
+input and returns the respective dispersion metrics for each type in the TDM.
 }
 \keyword{internal}
