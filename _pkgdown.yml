@@ -43,6 +43,7 @@ reference:
   - title: 'Data functions'
     desc: 'Functions to manage and manipulate data'
     contents:
+      - create_data_dictionary
       - create_data_origin
       - get_archive_data
       - get_gutenberg_data
