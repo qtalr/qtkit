@@ -29,13 +29,14 @@
             rPackages.usethis
             rPackages.goodpractice
             # R packages: package
-            rPackages.Matrix
             rPackages.dplyr
+            rPackages.fs
             rPackages.ggplot2
             rPackages.glue
             rPackages.gutenbergr
             rPackages.kableExtra
             rPackages.knitr
+            rPackages.Matrix
             rPackages.openai
             rPackages.purrr
             rPackages.readr
@@ -44,12 +45,13 @@
             rPackages.sessioninfo
             rPackages.stringr
             rPackages.tibble
+            rPackages.tidyr
             rPackages.tidytext
             rPackages.webshot2
           ];
 
           shellHook = ''
-            # export R_LIBS_USER=$PWD/Library
+            export R_LIBS_USER=$PWD/Library
           '';
         };
       });
