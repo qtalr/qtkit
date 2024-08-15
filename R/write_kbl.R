@@ -24,6 +24,8 @@
 #' \dontrun{
 #' library(knitr)
 #'
+#' table_dir <- file.path(tempdir(), "table")
+#'
 #' mtcars_kbl <- kable(
 #'  x = mtcars[1:5, ],
 #'  format = "html")
@@ -32,7 +34,7 @@
 #' write_kbl(
 #'  kbl_obj = mtcars_kbl,
 #'  file = "kable_pdf",
-#'  target_dir = "inst",
+#'  target_dir = table_dir,
 #'  device = "pdf")
 #' # Write a kable object as a HTML file
 #'
@@ -40,9 +42,11 @@
 #' write_kbl(
 #'  kbl_obj = mtcars_kbl,
 #'  file = "kable_html",
-#'  target_dir = "inst",
+#'  target_dir = table_dir,
 #'  device = "html",
 #'  bs_theme = "flatly")
+#'
+#' unlink(table_dir)
 #' }
 #' @export write_kbl
 #' @keywords publishing
