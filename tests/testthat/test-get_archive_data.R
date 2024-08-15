@@ -1,5 +1,3 @@
-# Load the testthat library
-library(testthat)
 
 # Test get_archive_data() ------------------------------------------
 

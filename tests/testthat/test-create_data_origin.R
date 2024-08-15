@@ -1,4 +1,3 @@
-library(testthat)
 
 create_data_origin <- function(n = 100, p = 2) {
   x <- matrix(rnorm(n * p), ncol = p)

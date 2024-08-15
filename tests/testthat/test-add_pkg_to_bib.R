@@ -1,5 +1,3 @@
-# Load the testthat package
-library(testthat)
 
 test_that("add_pkg_to_bib writes citations to a bib file", {
   # Create a temporary file for testing

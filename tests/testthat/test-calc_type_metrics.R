@@ -1,8 +1,5 @@
 # Test: calc_type_metrics
 
-library(testthat)
-library(qtkit)
-
 # Load the data
 data_path <- system.file("extdata", "types_data.rds", package = "qtkit")
 data <- readRDS(data_path)

@@ -1,6 +1,5 @@
 # Test: calc_disp
 
-library(testthat)
 library(Matrix)
 
 # Create a dummy term-document matrix for testing

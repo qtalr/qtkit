@@ -1,4 +1,3 @@
-library(testthat)
 
 test_that("confirm_permission returns TRUE when user confirms", {
   # Mock user input

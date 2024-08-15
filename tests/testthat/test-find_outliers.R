@@ -1,4 +1,3 @@
-library(testthat)
 
 # Tests for find_outliers()
 test_that("Finds outlier(s) correctly", {
