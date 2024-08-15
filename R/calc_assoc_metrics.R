@@ -17,15 +17,14 @@
 #' calculated metric.
 #'
 #' @examples
-#' data <- data.frame(
-#'   doc_index = c(1, 1, 1, 2),
-#'   token_index = c(1, 2, 3, 1),
-#'   type = c("word1", "word2", "word3", "word2")
-#' )
+#' data_path <- system.file("extdata", "bigrams_data.rds", package = "qtkit")
+#' data <- readRDS(data_path)
+#'
 #' calc_assoc_metrics(data, doc_index, token_index, type)
 #'
+#' @importFrom rlang ensym as_string
+
 #' @export
-# FIX: replace this toy dataset with a dataset from an R package
 calc_assoc_metrics <-
   function(
     data,
@@ -47,7 +46,9 @@ calc_assoc_metrics <-
 
   if (!verbose) {
     metrics <- metrics[, !colnames(metrics) %in% c("p_xy", "p_x", "p_y")]
-  return(metrics)
+    return(metrics)
+  } else {
+    return(metrics)
   }
 }
 
@@ -57,56 +58,45 @@ calculate_bigram_probabilities <-
   function(data, doc_index, token_index, type) {
     # Sort data by document and token
     data <- data[order(data[[doc_index]], data[[token_index]]), ]
-
     # Create bigrams
     x <- data[[type]]
     y <- c(x[-1], NA)
     bigrams <- data.frame(x = x, y = y)
     bigrams <- bigrams[!is.na(bigrams$y), ]
-
     # Count bigrams
     bigram_counts <- table(bigrams)
     total_bigrams <- sum(bigram_counts)
-
     # Calculate probabilities
     p_xy <- as.data.frame(bigram_counts / total_bigrams)
     colnames(p_xy) <- c("x", "y", "p_xy")
-
     # Calculate unigram probabilities
     p_x <- as.data.frame(table(x) / length(x))
     colnames(p_x) <- c("x", "p_x")
     p_y <- as.data.frame(table(y) / length(y))
     colnames(p_y) <- c("y", "p_y")
-
     # Merge probabilities
     result <- merge(p_xy, p_x, by = "x", all.x = TRUE)
     result <- merge(result, p_y, by = "y", all.x = TRUE)
-
     # Convert to numeric
     result$p_xy <- as.numeric(result$p_xy)
     result$p_x <- as.numeric(result$p_x)
     result$p_y <- as.numeric(result$p_y)
-
     return(result)
   }
 
 calculate_metrics <-
   function(bigram_probs, association) {
     metrics <- bigram_probs
-
     if ("all" %in% association || "pmi" %in% association) {
       metrics$pmi <- log(metrics$p_xy / (metrics$p_x * metrics$p_y))
     }
-
     if ("all" %in% association || "dice_coeff" %in% association) {
       metrics$dice_coeff <- 2 * metrics$p_xy / (metrics$p_x + metrics$p_y)
     }
-
     if ("all" %in% association || "g_score" %in% association) {
       metrics$g_score <- 2 * log(metrics$p_xy) -
         log(metrics$p_x) - log(metrics$p_y)
     }
-
     return(metrics)
   }
 
