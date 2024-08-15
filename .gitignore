@@ -23,3 +23,5 @@ Meta/
 packages.bib
 doc/
 Library/
+.lintr
+
