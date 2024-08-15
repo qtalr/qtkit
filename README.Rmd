@@ -45,4 +45,4 @@ Then load the package with:
 library(qtkit)
 ```
 
-Please consult the [package documentation](https://qtalr.github.io/qtkit/reference/) for more information.
+Please consult the [package documentation](https://qtalr.com/qtkit/reference/) for more information.

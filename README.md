@@ -1,17 +1,18 @@
 
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!--fix color mixing on title-->
 
-# <span class="first-letter">Q</span>uantitative <span class="first-letter">T</span>ext <span class="first-letter">Kit</span>!
+# Quantitative Text Kit
 
 <!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/qtkit)](https://CRAN.R-project.org/package=qtkit)
+status](https://www.r-pkg.org/badges/version/qtkit.png)](https://CRAN.R-project.org/package=qtkit)
 [![qtkit status
-badge](https://francojc.r-universe.dev/badges/qtkit)](https://francojc.r-universe.dev/qtkit/)
+badge](https://francojc.r-universe.dev/badges/qtkit.png)](https://francojc.r-universe.dev/qtkit/)
 [![R-CMD-check](https://github.com/qtalr/qtkit/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/qtalr/qtkit/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -46,5 +47,4 @@ library(qtkit)
 ```
 
 Please consult the [package
-documentation](https://qtalr.github.io/qtkit/reference/) for more
-information.
+documentation](https://qtalr.com/qtkit/reference/) for more information.
