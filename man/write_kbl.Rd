@@ -24,8 +24,10 @@ specified, the current working directory will be used.}
 
 \item{device}{The device to be used for saving the file. Options
 include "pdf" (default), "html", "latex", "png", and "jpeg". Note that
-selecting "html" requires that a Chromium-based browser be installed on
-your system (e.g., Google Chrome, Chromium, Microsoft Edge or Brave).}
+a Chromium-based browser (e.g., Google Chrome, Chromium, Microsoft Edge or
+Brave) is required on your system for all options except "latex'. If a
+suitable browser is not available, the function will stop and return an
+error message.}
 
 \item{bs_theme}{The Bootstrap theme to be applied to the kable object
 (only applicable for HTML output). Default is "bootstrap".}

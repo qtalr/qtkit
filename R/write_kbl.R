@@ -13,8 +13,10 @@
 #' specified, the current working directory will be used.
 #' @param device The device to be used for saving the file. Options
 #' include "pdf" (default), "html", "latex", "png", and "jpeg". Note that
-#' selecting "html" requires that a Chromium-based browser be installed on
-#' your system (e.g., Google Chrome, Chromium, Microsoft Edge or Brave).
+#' a Chromium-based browser (e.g., Google Chrome, Chromium, Microsoft Edge or
+#' Brave) is required on your system for all options except "latex'. If a
+#' suitable browser is not available, the function will stop and return an
+#' error message.
 #' @param bs_theme The Bootstrap theme to be applied to the kable object
 #' (only applicable for HTML output). Default is "bootstrap".
 #' @param ... Additional arguments to be passed to the `save_kable`
@@ -67,7 +69,7 @@ write_kbl <-
       if (is.null(block_label)) {
         # Stop execution and throw an error if both file name
         # and block label are not specified
-        stop("file must be specified")
+        stop("File must be specified")
       }
       # Use the block label as the file name
       file <- block_label
@@ -91,15 +93,17 @@ write_kbl <-
       "jpeg" = ".jpeg"
     )
 
-    # Check if a Chromium-based browser is installed on the system
-    if (device == "html") {
-      browser_path <- check_chromium_browser ()
+    # Check if a Chromium-based browser is required
+    if (device %in% c("html", "pdf", "png", "jpeg")) {
+      browser_path <- check_chromium_browser()
       if (!is.null(browser_path)) {
         # Set the path to the browser
         options(chromote.browser_path = browser_path)
       } else {
-        message("A Chromium-based browser (e.g., Google Chrome, Chromium, Microsoft Edge, or Brave) is required to save kable objects as HTML files. PDF output will be used instead.")
-        extension <- ".pdf"
+        msg <- paste0("A Chromium-based browser (e.g., Google Chrome, ",
+          "Chromium, Microsoft Edge, or Brave) is required on your system ",
+          "to save kable objects in ", device, " format.")
+        stop(msg)
       }
     }
 

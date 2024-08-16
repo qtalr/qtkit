@@ -34,6 +34,7 @@ Imports:
     tibble,
     tidytext
 Suggests:
+    chromote,
     httptest,
     rmarkdown,
     testthat (>= 3.0.0),

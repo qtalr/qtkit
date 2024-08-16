@@ -9,6 +9,7 @@
 library(testthat)
 library(qtkit)
 library(httptest)
+library(chromote)
 
 # Function to delete Crashpad directories
 cleanup_crashpad <- function() {
@@ -20,6 +21,16 @@ cleanup_crashpad <- function() {
 
 testthat::setup(cleanup_crashpad)
 testthat::teardown(cleanup_crashpad)
+
+# Function to check if Chromium is available
+is_chromium_available <- function() {
+  tryCatch({
+    chromote::find_chrome()
+    TRUE
+  }, error = function(e) {
+    FALSE
+  })
+}
 
 # Set the timeout for chromote (Windows only issue)
 # https://github.com/rstudio/chromote/issues/114#issuecomment-1675406196
