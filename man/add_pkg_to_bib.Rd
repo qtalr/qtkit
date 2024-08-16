@@ -19,4 +19,5 @@ This function adds a package to a BibTeX file. It uses the
 my_bib_file <- tempfile(fileext = ".bib")
 add_pkg_to_bib("dplyr", my_bib_file)
 readLines(my_bib_file) |> cat(sep = "\n")
+
 }
