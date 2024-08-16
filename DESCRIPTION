@@ -16,7 +16,7 @@ License: GPL (>= 3)
 URL: https://cran.r-project.org/package=qtkit
 BugReports: https://github.com/qtalr/qtkit/issues
 Depends:
-    R (>= 3.6)
+    R (>= 4.1)
 Imports:
     dplyr,
     fs,
