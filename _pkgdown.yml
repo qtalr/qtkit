@@ -47,7 +47,6 @@ reference:
       - create_data_origin
       - get_archive_data
       - get_gutenberg_data
-      - get_talkbank_data
   - title: 'Publishing functions'
     desc: 'Functions to aid in publishing research'
     contents:

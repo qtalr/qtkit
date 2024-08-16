@@ -19,7 +19,6 @@ Depends:
     R (>= 4.1)
 Imports:
     dplyr,
-    fs,
     ggplot2,
     glue,
     gutenbergr,
@@ -28,21 +27,16 @@ Imports:
     Matrix,
     openai,
     purrr,
-    R.utils,
     readr,
     rlang,
     stringr,
-    TBDBr,
     tibble,
-    tidyr,
     tidytext
 Suggests:
     httptest,
     rmarkdown,
     testthat (>= 3.0.0),
     webshot2
-Remotes:
-    TalkBank/TBDBr
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
