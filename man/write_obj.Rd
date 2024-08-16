@@ -29,14 +29,18 @@ not specified, will be the label of the code block. Use the standard
 }
 \examples{
 \dontrun{
+obj_dir <- file.path(tempdir(), "obj")
+
 # Write a data frame as a file
 write_obj(
  obj = mtcars,
  file = "mtcars_data",
- target_dir = "inst")
+ target_dir = obj_dir)
 
 # Read the file back into an R session
-dget(file.path(test_dir, "mtcars_data"))
+my_mtcars <- dget(file.path(obj_dir, "mtcars_data"))
+
+unlink(obj_dir)
 }
 }
 \keyword{publishing}

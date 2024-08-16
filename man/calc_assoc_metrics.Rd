@@ -38,11 +38,9 @@ This function calculates various association metrics
 (PMI, Dice's Coefficient, G-score) for bigrams in a given corpus.
 }
 \examples{
-data <- data.frame(
-  doc_index = c(1, 1, 1, 2),
-  token_index = c(1, 2, 3, 1),
-  type = c("word1", "word2", "word3", "word2")
-)
+data_path <- system.file("extdata", "bigrams_data.rds", package = "qtkit")
+data <- readRDS(data_path)
+
 calc_assoc_metrics(data, doc_index, token_index, type)
 
 }

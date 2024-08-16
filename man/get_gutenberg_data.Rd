@@ -64,9 +64,12 @@ Congress Classification Guide}.
 }
 \examples{
 \dontrun{
-# Retrieve works with LCC subject "Political Theory" and save to
-"/path/to/works_fiction.csv"
-get_gutenberg_data("/path/to", "JC")
+data_dir <- file.path(tempdir(), "data")
+get_gutenberg_data(
+ target_dir = data_dir,
+ lcc_subject = "JC"
+ n_works = 5,
+ confirmed = TRUE)
 }
 
 }
