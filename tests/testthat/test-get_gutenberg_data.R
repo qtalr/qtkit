@@ -1,4 +1,3 @@
-
 library(dplyr)
 
 test_that("get_gutenberg_data function works correctly", {
@@ -19,7 +18,8 @@ test_that("get_gutenberg_data function works correctly", {
     confirmed = confirmed
   )
   # Define the expected output file path
-  expected_file <- file.path(temp_dir, paste0("works_", tolower(lcc_subject), ".csv"))
+  expected_file <-
+    file.path(temp_dir, paste0("works_", tolower(lcc_subject), ".csv"))
   # Check if the output file was created
   expect_true(file.exists(expected_file))
   # Read the output file
@@ -27,7 +27,14 @@ test_that("get_gutenberg_data function works correctly", {
   # Check if the output data has the expected number of rows
   expect_equal(length(unique(output_data$gutenberg_id)), n_works)
   # Check if the output data has the expected columns
-  expected_columns <- c("gutenberg_id", "lcc", "gutenberg_bookshelf", "gutenberg_author_id", "author", "title", "text")
+  expected_columns <-
+    c("gutenberg_id",
+      "lcc",
+      "gutenberg_bookshelf",
+      "gutenberg_author_id",
+      "author",
+      "title",
+      "text")
   expect_equal(colnames(output_data), expected_columns)
   file.remove(expected_file)
 })
