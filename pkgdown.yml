@@ -1,10 +1,10 @@
 pandoc: 3.1.11
-pkgdown: 2.0.9
+pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
-  qtkit: qtkit.html
-last_built: 2024-07-04T01:42Z
+  document: document.html
+  reports: reports.html
+last_built: 2024-08-16T18:30Z
 urls:
-  reference: https://qtalr.github.io/qtkit/reference
-  article: https://qtalr.github.io/qtkit/articles
-
+  reference: https://qtalr.com/qtkit/reference
+  article: https://qtalr.com/qtkit/articles

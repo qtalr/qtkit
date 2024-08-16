@@ -1,33 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://qtalr.github.io/qtkit/404.html</loc>
-  </url>
-  <url>
-    <loc>https://qtalr.github.io/qtkit/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://qtalr.github.io/qtkit/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://qtalr.github.io/qtkit/articles/qtkit.html</loc>
-  </url>
-  <url>
-    <loc>https://qtalr.github.io/qtkit/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://qtalr.github.io/qtkit/index.html</loc>
-  </url>
-  <url>
-    <loc>https://qtalr.github.io/qtkit/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://qtalr.github.io/qtkit/reference/create_data_origin.html</loc>
-  </url>
-  <url>
-    <loc>https://qtalr.github.io/qtkit/reference/get_archive_data.html</loc>
-  </url>
-  <url>
-    <loc>https://qtalr.github.io/qtkit/reference/index.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://qtalr.com/qtkit/404.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/CONTRIBUTING.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/LICENSE.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/articles/document.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/articles/index.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/articles/reports.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/authors.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/index.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/news/index.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/reference/add_pkg_to_bib.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/reference/calc_assoc_metrics.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/reference/calc_rf.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/reference/calc_type_metrics.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/reference/create_data_dictionary.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/reference/create_data_origin.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/reference/find_outliers.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/reference/get_archive_data.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/reference/get_gutenberg_data.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/reference/get_talkbank_data.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/reference/index.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/reference/write_gg.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/reference/write_kbl.html</loc></url>
+<url><loc>https://qtalr.com/qtkit/reference/write_obj.html</loc></url>
 </urlset>
+
