@@ -1,38 +1,37 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
+about: Create a report to help us improve qtkit
+---
+
+### Tips for a helpful bug report:
+
+- If you have a question, please don't use this form. Instead, ask on:
+
+  1. <https://github.com/qtalr/discussions>
+  2. <https://community.rstudio.com/>
+  3. <https://stackoverflow.com/>
+
+- Please include a **minimal reproducible example**, a reprex, to demonstrate the bug.
+  If you've never heard of a reprex, please read ["Make a reprex"](https://www.tidyverse.org/help/#reprex).
+  Do not include session info unless it is explicitly asked for.
+
+- If you can, use one of the built-in R datasets or a small toy dataset that exposes the bug.
+  If for some reason, the bug only occurs on your original data, try to limit the number of rows that are necessary to expose the bug.
+  Share such data by copying `dput()` output rather than an external file.
+
+- Please check whether somebody has reported the same problem in the [issues](https://github.com/qtalr/qtkit/issues).
+
+Delete these instructions once you have read them.
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+I found a problem with ...
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+I expected ...
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+Here is the code to reproduce the bug:
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+```r
+# copy your code to the clipboard and run:
+reprex::reprex()
+```
