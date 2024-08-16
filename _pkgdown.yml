@@ -1,4 +1,4 @@
-url: https://qtalr.github.io/qtkit/
+url: https://qtalr.com/qtkit/
 template:
   bootstrap: 5
   bootswatch: flatly
@@ -41,12 +41,13 @@ reference:
     contents:
       - find_outliers
   - title: 'Data functions'
-    desc: 'Functions to manage and manipulate data'
+    desc: 'Functions to acquire, manage, and manipulate data'
     contents:
       - create_data_dictionary
       - create_data_origin
       - get_archive_data
       - get_gutenberg_data
+      - get_talkbank_data
   - title: 'Publishing functions'
     desc: 'Functions to aid in publishing research'
     contents:
