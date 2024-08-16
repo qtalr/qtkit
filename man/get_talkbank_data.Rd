@@ -44,10 +44,12 @@ target directory.
 \examples{
 \dontrun{
 data_dir <- file.path(tempdir(), "data")
+
 get_talkbank_data(
  corpus_name = "ca",
  corpus_path = c("ca", "Nahuatl"),
  target_dir = data_dir,
  confirmed = TRUE)
 }
+
 }

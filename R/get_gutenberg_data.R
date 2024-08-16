@@ -20,7 +20,9 @@
 #' If `FALSE`, the function will prompt the user to confirm permission.
 #' Setting this to `TRUE` is useful for reproducible workflows.
 #'
-#' @return None
+#' @return A message indicating whether the data was acquired or already
+#' existed on disk, writes the data files to disk in the specified target
+#' directory.
 #'
 #' @details This function retrieves Gutenberg works based on the specified LCC
 #' subjects and optional author birth and death years.
@@ -41,6 +43,7 @@
 #' @examples
 #' \dontrun{
 #' data_dir <- file.path(tempdir(), "data")
+#'
 #' get_gutenberg_data(
 #'  target_dir = data_dir,
 #'  lcc_subject = "JC"
@@ -51,6 +54,7 @@
 #' @import gutenbergr
 #' @importFrom dplyr select mutate filter
 #' @importFrom readr write_csv
+#'
 #' @export
 get_gutenberg_data <-
   function(

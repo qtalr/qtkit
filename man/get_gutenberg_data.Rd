@@ -38,7 +38,9 @@ If \code{FALSE}, the function will prompt the user to confirm permission.
 Setting this to \code{TRUE} is useful for reproducible workflows.}
 }
 \value{
-None
+A message indicating whether the data was acquired or already
+existed on disk, writes the data files to disk in the specified target
+directory.
 }
 \description{
 Retrieves works from Project Gutenberg based on specified criteria
@@ -65,6 +67,7 @@ Congress Classification Guide}.
 \examples{
 \dontrun{
 data_dir <- file.path(tempdir(), "data")
+
 get_gutenberg_data(
  target_dir = data_dir,
  lcc_subject = "JC"

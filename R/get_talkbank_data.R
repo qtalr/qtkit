@@ -20,6 +20,17 @@
 #' existed on disk, writes the data files to disk in the specified target
 #' directory.
 #'
+#' @examples
+#' \dontrun{
+#' data_dir <- file.path(tempdir(), "data")
+#'
+#' get_talkbank_data(
+#'  corpus_name = "ca",
+#'  corpus_path = c("ca", "Nahuatl"),
+#'  target_dir = data_dir,
+#'  confirmed = TRUE)
+#' }
+#'
 #' @importFrom dplyr everything
 #' @importFrom fs dir_exists dir_create file_exists path
 #' @importFrom R.utils withTimeout
@@ -27,15 +38,6 @@
 #' @import TBDBr
 #' @importFrom tidyr unnest
 #'
-#' @examples
-#' \dontrun{
-#' data_dir <- file.path(tempdir(), "data")
-#' get_talkbank_data(
-#'  corpus_name = "ca",
-#'  corpus_path = c("ca", "Nahuatl"),
-#'  target_dir = data_dir,
-#'  confirmed = TRUE)
-#' }
 #' @export
 get_talkbank_data <-
   function(
