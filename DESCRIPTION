@@ -15,6 +15,7 @@ Description: Support package for the textbook "An Introduction to
 License: GPL (>= 3)
 URL: https://cran.r-project.org/package=qtkit
 BugReports: https://github.com/qtalr/qtkit/issues
+SystemRequirements: Chromium-based browser (e.g., Chrome, Chromium, or Brave)
 Depends:
     R (>= 4.1)
 Imports:

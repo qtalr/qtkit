@@ -23,7 +23,9 @@ the name will be based on the current knitr code block label.}
 specified, the current working directory will be used.}
 
 \item{device}{The device to be used for saving the file. Options
-include "pdf" (default), "html", "latex", "png", and "jpeg".}
+include "pdf" (default), "html", "latex", "png", and "jpeg". Note that
+selecting "html" requires that a Chromium-based browser be installed on
+your system (e.g., Google Chrome, Chromium, Microsoft Edge or Brave).}
 
 \item{bs_theme}{The Bootstrap theme to be applied to the kable object
 (only applicable for HTML output). Default is "bootstrap".}
@@ -57,7 +59,6 @@ write_kbl(
  file = "kable_pdf",
  target_dir = table_dir,
  device = "pdf")
-# Write a kable object as a HTML file
 
 # Write a kable as an HTML file with a custom Bootstrap theme
 write_kbl(

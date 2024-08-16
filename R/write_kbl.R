@@ -12,7 +12,9 @@
 #' @param target_dir The directory where the file will be written. If not
 #' specified, the current working directory will be used.
 #' @param device The device to be used for saving the file. Options
-#' include "pdf" (default), "html", "latex", "png", and "jpeg".
+#' include "pdf" (default), "html", "latex", "png", and "jpeg". Note that
+#' selecting "html" requires that a Chromium-based browser be installed on
+#' your system (e.g., Google Chrome, Chromium, Microsoft Edge or Brave).
 #' @param bs_theme The Bootstrap theme to be applied to the kable object
 #' (only applicable for HTML output). Default is "bootstrap".
 #' @param ... Additional arguments to be passed to the `save_kable`
@@ -36,7 +38,6 @@
 #'  file = "kable_pdf",
 #'  target_dir = table_dir,
 #'  device = "pdf")
-#' # Write a kable object as a HTML file
 #'
 #' # Write a kable as an HTML file with a custom Bootstrap theme
 #' write_kbl(
@@ -89,6 +90,19 @@ write_kbl <-
       "png" = ".png",
       "jpeg" = ".jpeg"
     )
+
+    # Check if a Chromium-based browser is installed on the system
+    if (device == "html") {
+      browser_path <- check_chromium_browser ()
+      if (!is.null(browser_path)) {
+        # Set the path to the browser
+        options(chromote.browser_path = browser_path)
+      } else {
+        message("A Chromium-based browser (e.g., Google Chrome, Chromium, Microsoft Edge, or Brave) is required to save kable objects as HTML files. PDF output will be used instead.")
+        extension <- ".pdf"
+      }
+    }
+
     file <- paste0(file, extension)
     file <- file.path(target_dir, file)
 
@@ -97,3 +111,41 @@ write_kbl <-
     # Return the file path, invisibly
     return(invisible(file))
   }
+
+# Helper functions
+check_chromium_browser <- function() {
+  if (.Platform$OS.type == "windows") {
+    # Check for Chrome on Windows
+    chrome_paths <- c(
+      file.path(Sys.getenv("LOCALAPPDATA"), "Google/Chrome/Application/chrome.exe"),
+      file.path(Sys.getenv("PROGRAMFILES"), "Google/Chrome/Application/chrome.exe"),
+      file.path(Sys.getenv("PROGRAMFILES(X86)"), "Google/Chrome/Application/chrome.exe")
+    )
+    # Check for Edge on Windows
+    edge_paths <- c(
+      file.path(Sys.getenv("PROGRAMFILES(X86)"), "Microsoft/Edge/Application/msedge.exe"),
+      file.path(Sys.getenv("PROGRAMFILES"), "Microsoft/Edge/Application/msedge.exe")
+    )
+    all_paths <- c(chrome_paths, edge_paths)
+    existing_paths <- all_paths[file.exists(all_paths)]
+    if (length(existing_paths) > 0) {
+      return(existing_paths[1])
+    }
+  } else {
+    # Check for Chrome, Chromium, or Brave on Unix-like systems
+    browsers <- c("google-chrome", "chromium", "chromium-browser", "brave-browser")
+    for (browser in browsers) {
+      path <- Sys.which(browser)
+      if (path != "") {
+        return(path)
+      }
+    }
+  }
+  # Check if CHROMOTE_CHROME environment variable is set
+  chrome_env <- Sys.getenv("CHROMOTE_CHROME")
+  if (chrome_env != "" && file.exists(chrome_env)) {
+    return(chrome_env)
+  }
+
+  return(NULL)
+}
