@@ -1,11 +1,16 @@
 ---
-title: "qtkit"
+title: "Documenting data and datasets"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{qtkit}
+  %\VignetteIndexEntry{Documenting data and datasets}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+<!--
+
+- [ ] Add vignette using documentation functions
+-->
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(

@@ -1,0 +1,24 @@
+---
+title: "Leveraging publishing functions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Leveraging publishing functions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<!--
+- [ ] Add vignette using publishing functions
+-->
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(qtkit)
+```

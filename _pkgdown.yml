@@ -1,16 +1,16 @@
-url: https://qtalr.github.io/qtkit/
+url: https://qtalr.com/qtkit/
 template:
   bootstrap: 5
   bootswatch: flatly
   bslib:
     pkgdown-nav-height: 75px
-
 navbar:
   bg: secondary
   structure:
     left:
       - intro
       - reference
+      - articles
     right:
       - search
       - news
@@ -19,6 +19,9 @@ navbar:
     reference:
       text: Reference
       href: reference/index.html
+    articles:
+      text: Articles
+      href: articles/index.html
     github:
       icon: fab fa-github fa-lg
       href: https:://github.com/qtalr/qtkit
@@ -27,14 +30,37 @@ navbar:
       icon: fas fa-newspaper fa-lg
       href: news/index.html
       aria-label: news
-
 reference:
-  - title: "Data functions"
-    desc: "Functions to manage and manipulate data"
+  - title: 'Calculation functions'
+    desc: 'Functions to create calculations'
     contents:
+      - calc_assoc_metrics
+      - calc_type_metrics
+  - title: 'Inspection functions'
+    desc: 'Functions to inspect data'
+    contents:
+      - find_outliers
+  - title: 'Data functions'
+    desc: 'Functions to acquire, manage, and manipulate data'
+    contents:
+      - create_data_dictionary
       - create_data_origin
       - get_archive_data
-
+      - get_gutenberg_data
+      - get_talkbank_data
+  - title: 'Publishing functions'
+    desc: 'Functions to aid in publishing research'
+    contents:
+      - add_pkg_to_bib
+      - write_gg
+      - write_kbl
+      - write_obj
+articles:
+  - title: 'Apply `qtkit` to your workflow'
+    navbar: ~
+    contents:
+      - document
+      - reports
 footer:
   structure:
     left: developed_by

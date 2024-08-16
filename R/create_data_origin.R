@@ -1,7 +1,7 @@
 #' Create data origin file
 #'
-#' Data frame with attributes about the data origin, written to a CSV file and
-#' optionally returned.
+#' Data frame with attributes about the data origin, written to a CSV file
+#' and optionally returned.
 #'
 #' @param file_path File path where the data origin file should be saved.
 #' @param return Logical value indicating whether the data origin should be
@@ -14,9 +14,14 @@
 #' @examples
 #' tmp_file <- tempfile(fileext = ".csv")
 #' create_data_origin(tmp_file)
+#' read.csv(tmp_file)
 #' @importFrom utils write.csv
 #'
-create_data_origin <- function(file_path, return = FALSE, force = FALSE) {
+create_data_origin <-
+  function(
+    file_path,
+    return = FALSE,
+    force = FALSE) {
   # Check to see if `file_path` is a character string
   if (!is.character(file_path)) stop("`file_path` must be a character string.")
 
@@ -52,7 +57,7 @@ create_data_origin <- function(file_path, return = FALSE, force = FALSE) {
   # Write the data origin to a file
   write.csv(data_origin, file = file_path, row.names = FALSE)
 
-  # Return message
+  # Return message to user
   message("Data origin file created at `file_path`.")
 
   # Return the data origin, if requested

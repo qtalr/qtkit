@@ -1,21 +1,19 @@
-# RStudio
-.Rproj.user
+# R
 .Rhistory
 .Rdata
 .Ruserdata
 .Renviron
-*.Rproj
 
-# VSCode
-*.code-workspace
-.lintr
-
-# R
-.httr-oauth
-data-raw
+# Package
+data-raw/
 inst/doc
 vignettes/articles/_site/
 vignettes/articles/data/
+docs/
+Meta/
+
+# Flake
+.direnv/
 
 # macOS
 .DS_Store
@@ -23,6 +21,7 @@ vignettes/articles/data/
 # Misc
 *_cache
 packages.bib
-docs
-/doc/
-/Meta/
+doc/
+Library/
+.lintr
+

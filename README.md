@@ -1,5 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!--fix color mixing on title-->
 
 # Quantitative Text Kit
 
@@ -16,22 +17,22 @@ badge](https://francojc.r-universe.dev/badges/qtkit)](https://francojc.r-univers
 
 The goal of `qtkit` is to provide a support package for the textbook
 [“An Introduction to Quantitative Text Analysis for Linguistics:
-Reproducible Research using R”](https://qtalr.github.io/book/). It
-contains functions for collecting and manipulating data and datasets,
+Reproducible Research using R”](https://qtalr.com/book/). It contains
+functions for collecting and manipulating data and datasets,
 documentation, and other assorted tasks associated with quantitative
 text analysis in R.
 
 ## Getting started
 
 You can install the released version of `qtkit` from
-[CRAN](https://CRAN.R-project.org) with:
+[CRAN](https://cran.r-project.org/package=qtkit) with:
 
 ``` r
 install.packages("qtkit")
 ```
 
-The development version of `qtkit` is on [GitHub](https://github.com/)
-and can be installed with:
+The development version of `qtkit` is on
+[GitHub](https://github.com/qtalr/qtkit) and can be installed with:
 
 ``` r
 install.packages("remotes")
@@ -45,5 +46,4 @@ library(qtkit)
 ```
 
 Please consult the [package
-documentation](https://qtalr.github.io/qtkit/reference/) for more
-information.
+documentation](https://qtalr.com/qtkit/reference/) for more information.

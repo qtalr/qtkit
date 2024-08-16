@@ -26,11 +26,13 @@ NULL, the archive file is unarchived in the target directory
 Possible file types include .zip, .gz, .tar, and .tgz
 }
 \examples{
-test_dir <- file.path(tempdir(), "test")
-url <- "https://raw.githubusercontent.com/qtalr/qtkit/main/inst/extdata/test_data.zip"
+\dontrun{
+data_dir <- file.path(tempdir(), "data")
+url <-
+ "https://raw.githubusercontent.com/qtalr/qtkit/main/inst/extdata/test_data.zip"
 get_archive_data(
  url = url,
- target_dir = test_dir,
- confirmed = TRUE
-)
+ target_dir = data_dir,
+ confirmed = TRUE)
+}
 }

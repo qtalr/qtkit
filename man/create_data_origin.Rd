@@ -19,10 +19,11 @@ already exists.}
 A data frame containing the data origin information.
 }
 \description{
-Data frame with attributes about the data origin, written to a CSV file and
-optionally returned.
+Data frame with attributes about the data origin, written to a CSV file
+and optionally returned.
 }
 \examples{
 tmp_file <- tempfile(fileext = ".csv")
 create_data_origin(tmp_file)
+read.csv(tmp_file)
 }

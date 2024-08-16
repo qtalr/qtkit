@@ -17,16 +17,22 @@
 #' @importFrom tools file_ext
 #'
 #' @examples
-#' test_dir <- file.path(tempdir(), "test")
-#' url <- "https://raw.githubusercontent.com/qtalr/qtkit/main/inst/extdata/test_data.zip"
+#' \dontrun{
+#' data_dir <- file.path(tempdir(), "data")
+#' url <-
+#'  "https://raw.githubusercontent.com/qtalr/qtkit/main/inst/extdata/test_data.zip"
 #' get_archive_data(
 #'  url = url,
-#'  target_dir = test_dir,
-#'  confirmed = TRUE
-#' )
+#'  target_dir = data_dir,
+#'  confirmed = TRUE)
+#' }
 #' @export
 get_archive_data <-
-  function(url, target_dir, force = FALSE, confirmed = FALSE) {
+  function(
+    url,
+    target_dir,
+    force = FALSE,
+    confirmed = FALSE) {
     confirmed <- confirm_if_needed(confirmed)
     if (!confirmed) {
       return(message("Aborted."))
