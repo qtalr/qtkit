@@ -35,7 +35,7 @@
 #' @importFrom fs dir_exists dir_create file_exists path
 #' @importFrom R.utils withTimeout
 #' @importFrom readr write_csv
-#' @import TBDBr
+#' @importFrom TBDBr getUtterances getTranscripts getParticipants getTokens
 #' @importFrom tidyr unnest
 #'
 #' @export
@@ -135,12 +135,26 @@ get_talkbank_data <-
 # Helper functions
 
 suppress_output <- function(func, ...) {
-  sink("/dev/null") # redirect output to null
+  # Create a text connection to capture output
+  temp_output <- character()
+  tc <- textConnection("temp_output", "w", local = TRUE)
+
+  # Redirect output to the text connection
+  sink(tc)
+  sink(tc, type = "message")
+
+  # Run the function and capture the result
   result <- tryCatch({
-    func(...) # run the function
+    func(...)
   }, finally = {
-    sink(NULL) # restore normal output
+    # Restore normal output
+    sink(type = "message")
+    sink()
+
+    # Close the text connection
+    close(tc)
   })
+
   return(result)
 }
 
