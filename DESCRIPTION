@@ -37,6 +37,7 @@ Imports:
     tidyr,
     tidytext
 Suggests:
+    httptest,
     rmarkdown,
     testthat (>= 3.0.0),
     webshot2

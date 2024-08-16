@@ -23,6 +23,8 @@
             radianWrapper
             # R packages: development
             rPackages.devtools
+            rPackages.httr
+            rPackages.httptest
             rPackages.languageserver
             rPackages.pak
             rPackages.testthat
