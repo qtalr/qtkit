@@ -98,7 +98,6 @@ write_kbl <-
       browser_path <- check_chromium_browser()
       if (!is.null(browser_path)) {
         if (file.exists(browser_path)) {
-          # Set the path to the browser
           options(chromote.browser_path = browser_path)
         } else {
           stop("The detected browser path does not exist: ", browser_path)
@@ -138,38 +137,3 @@ check_chromium_browser <- function() {
 
   return(NULL)
 }
-# check_chromium_browser <- function() {
-#   if (.Platform$OS.type == "windows") {
-#     # Check for Chrome on Windows
-#     chrome_paths <- c(
-#       file.path(Sys.getenv("LOCALAPPDATA"), "Google/Chrome/Application/chrome.exe"),
-#       file.path(Sys.getenv("PROGRAMFILES"), "Google/Chrome/Application/chrome.exe"),
-#       file.path(Sys.getenv("PROGRAMFILES(X86)"), "Google/Chrome/Application/chrome.exe")
-#     )
-#     # Check for Edge on Windows
-#     edge_paths <- c(
-#       file.path(Sys.getenv("PROGRAMFILES(X86)"), "Microsoft/Edge/Application/msedge.exe"),
-#       file.path(Sys.getenv("PROGRAMFILES"), "Microsoft/Edge/Application/msedge.exe")
-#     )
-#     all_paths <- c(chrome_paths, edge_paths)
-#     existing_paths <- all_paths[file.exists(all_paths)]
-#     if (length(existing_paths) > 0) {
-#       return(existing_paths[1])
-#     }
-#   } else {
-#     # Check for Chrome, Chromium, or Brave on Unix-like systems
-#     browsers <- c("google-chrome", "chromium", "chromium-browser", "brave-browser")
-#     for (browser in browsers) {
-#       path <- Sys.which(browser)
-#       if (path != "") {
-#         return(path)
-#       }
-#     }
-#   }
-#   # Check if CHROMOTE_CHROME environment variable is set
-#   chrome_env <- Sys.getenv("CHROMOTE_CHROME")
-#   if (chrome_env != "" && file.exists(chrome_env)) {
-#     return(chrome_env)
-#   }
-#   return(NULL)
-# }
