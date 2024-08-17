@@ -22,10 +22,11 @@ cleanup_crashpad <- function() {
 testthat::setup(cleanup_crashpad)
 testthat::teardown(cleanup_crashpad)
 
-# Function to check if Chromium is available
+# Function to check if Chromium is
+# available and can be initialized
 is_chromium_available <- function() {
   tryCatch({
-    chromote::find_chrome()
+    chromote::Chromote$new()
     TRUE
   }, error = function(e) {
     FALSE

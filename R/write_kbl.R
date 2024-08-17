@@ -97,8 +97,12 @@ write_kbl <-
     if (device %in% c("html", "pdf", "png", "jpeg")) {
       browser_path <- check_chromium_browser()
       if (!is.null(browser_path)) {
-        # Set the path to the browser
-        options(chromote.browser_path = browser_path)
+        if (file.exists(browser_path)) {
+          # Set the path to the browser
+          options(chromote.browser_path = browser_path)
+        } else {
+          stop("The detected browser path does not exist: ", browser_path)
+        }
       } else {
         msg <- paste0("A Chromium-based browser (e.g., Google Chrome, ",
           "Chromium, Microsoft Edge, or Brave) is required on your system ",
@@ -150,6 +154,5 @@ check_chromium_browser <- function() {
   if (chrome_env != "" && file.exists(chrome_env)) {
     return(chrome_env)
   }
-
   return(NULL)
 }
