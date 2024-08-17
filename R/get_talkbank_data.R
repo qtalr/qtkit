@@ -39,6 +39,7 @@
 #' @importFrom tidyr unnest
 #'
 #' @export
+# FIX: deal with API calls to TalkBank
 get_talkbank_data <-
   function(
     corpus_name,
