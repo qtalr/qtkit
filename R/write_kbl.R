@@ -122,37 +122,54 @@ write_kbl <-
 
 # Helper functions
 check_chromium_browser <- function() {
-  if (.Platform$OS.type == "windows") {
-    # Check for Chrome on Windows
-    chrome_paths <- c(
-      file.path(Sys.getenv("LOCALAPPDATA"), "Google/Chrome/Application/chrome.exe"),
-      file.path(Sys.getenv("PROGRAMFILES"), "Google/Chrome/Application/chrome.exe"),
-      file.path(Sys.getenv("PROGRAMFILES(X86)"), "Google/Chrome/Application/chrome.exe")
-    )
-    # Check for Edge on Windows
-    edge_paths <- c(
-      file.path(Sys.getenv("PROGRAMFILES(X86)"), "Microsoft/Edge/Application/msedge.exe"),
-      file.path(Sys.getenv("PROGRAMFILES"), "Microsoft/Edge/Application/msedge.exe")
-    )
-    all_paths <- c(chrome_paths, edge_paths)
-    existing_paths <- all_paths[file.exists(all_paths)]
-    if (length(existing_paths) > 0) {
-      return(existing_paths[1])
-    }
-  } else {
-    # Check for Chrome, Chromium, or Brave on Unix-like systems
-    browsers <- c("google-chrome", "chromium", "chromium-browser", "brave-browser")
-    for (browser in browsers) {
-      path <- Sys.which(browser)
-      if (path != "") {
-        return(path)
+  if (requireNamespace("chromote", quietly = TRUE)) {
+    tryCatch({
+      browser_path <- chromote::find_chrome()
+      if (!is.null(browser_path) && file.exists(browser_path)) {
+        return(browser_path)
       }
-    }
+    }, error = function(e) {
+      warning("Error in chromote::find_chrome(): ", e$message)
+    })
   }
-  # Check if CHROMOTE_CHROME environment variable is set
-  chrome_env <- Sys.getenv("CHROMOTE_CHROME")
-  if (chrome_env != "" && file.exists(chrome_env)) {
-    return(chrome_env)
-  }
+
+  # Fallback to your manual checks if chromote is not available or fails
+  # (You can keep your existing manual checks here)
+
   return(NULL)
 }
+# check_chromium_browser <- function() {
+#   if (.Platform$OS.type == "windows") {
+#     # Check for Chrome on Windows
+#     chrome_paths <- c(
+#       file.path(Sys.getenv("LOCALAPPDATA"), "Google/Chrome/Application/chrome.exe"),
+#       file.path(Sys.getenv("PROGRAMFILES"), "Google/Chrome/Application/chrome.exe"),
+#       file.path(Sys.getenv("PROGRAMFILES(X86)"), "Google/Chrome/Application/chrome.exe")
+#     )
+#     # Check for Edge on Windows
+#     edge_paths <- c(
+#       file.path(Sys.getenv("PROGRAMFILES(X86)"), "Microsoft/Edge/Application/msedge.exe"),
+#       file.path(Sys.getenv("PROGRAMFILES"), "Microsoft/Edge/Application/msedge.exe")
+#     )
+#     all_paths <- c(chrome_paths, edge_paths)
+#     existing_paths <- all_paths[file.exists(all_paths)]
+#     if (length(existing_paths) > 0) {
+#       return(existing_paths[1])
+#     }
+#   } else {
+#     # Check for Chrome, Chromium, or Brave on Unix-like systems
+#     browsers <- c("google-chrome", "chromium", "chromium-browser", "brave-browser")
+#     for (browser in browsers) {
+#       path <- Sys.which(browser)
+#       if (path != "") {
+#         return(path)
+#       }
+#     }
+#   }
+#   # Check if CHROMOTE_CHROME environment variable is set
+#   chrome_env <- Sys.getenv("CHROMOTE_CHROME")
+#   if (chrome_env != "" && file.exists(chrome_env)) {
+#     return(chrome_env)
+#   }
+#   return(NULL)
+# }

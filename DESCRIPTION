@@ -19,6 +19,7 @@ SystemRequirements: Chromium-based browser (e.g., Chrome, Chromium, or Brave)
 Depends:
     R (>= 4.1)
 Imports:
+    chromote,
     dplyr,
     ggplot2,
     glue,
@@ -34,7 +35,6 @@ Imports:
     tibble,
     tidytext
 Suggests:
-    chromote,
     httptest,
     rmarkdown,
     testthat (>= 3.0.0),
