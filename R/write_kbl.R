@@ -92,7 +92,6 @@ write_kbl <-
       "png" = ".png",
       "jpeg" = ".jpeg"
     )
-
     # Check if a Chromium-based browser is required
     if (device %in% c("html", "pdf", "png", "jpeg")) {
       browser_path <- check_chromium_browser()
@@ -109,10 +108,8 @@ write_kbl <-
         stop(msg)
       }
     }
-
     file <- paste0(file, extension)
     file <- file.path(target_dir, file)
-
     # Save the kable to the specified file
     kableExtra::save_kable(kbl_obj, file, bs_theme, ...)
     # Return the file path, invisibly
@@ -131,9 +128,5 @@ check_chromium_browser <- function() {
       warning("Error in chromote::find_chrome(): ", e$message)
     })
   }
-
-  # Fallback to your manual checks if chromote is not available or fails
-  # (You can keep your existing manual checks here)
-
   return(NULL)
 }
