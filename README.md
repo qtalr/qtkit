@@ -1,4 +1,5 @@
 
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!--fix color mixing on title-->
 
@@ -6,13 +7,29 @@
 
 <!-- badges: start -->
 
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/qtkit)](https://CRAN.R-project.org/package=qtkit)
-[![qtkit status
-badge](https://francojc.r-universe.dev/badges/qtkit)](https://francojc.r-universe.dev/qtkit/)
-[![R-CMD-check](https://github.com/qtalr/qtkit/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/qtalr/qtkit/actions/workflows/R-CMD-check.yaml)
+<figure>
+<a href="https://CRAN.R-project.org/package=qtkit"><img
+src="https://www.r-pkg.org/badges/version/qtkit.png"
+alt="CRAN status" /></a>
+<figcaption>CRAN status</figcaption>
+</figure>
+
+<figure>
+<a href="https://francojc.r-universe.dev/qtkit/"><img
+src="https://francojc.r-universe.dev/badges/qtkit.png"
+alt="qtkit status badge" /></a>
+<figcaption>qtkit status badge</figcaption>
+</figure>
+
+<figure>
+<a
+href="https://github.com/qtalr/qtkit/actions/workflows/R-CMD-check.yaml"><img
+src="https://github.com/qtalr/qtkit/actions/workflows/R-CMD-check.yaml/badge.svg"
+alt="R-CMD-check" /></a>
+<figcaption>R-CMD-check</figcaption>
+</figure>
+
+[![](https://cranlogs.r-pkg.org/badges/qtkit.png)](https://cran.r-project.org/package=qtkit)
 <!-- badges: end -->
 
 The goal of `qtkit` is to provide a support package for the textbook
