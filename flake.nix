@@ -54,6 +54,7 @@
 
           shellHook = ''
             export R_LIBS_USER=$PWD/Library
+            mkdir -p $R_LIBS_USER
           '';
         };
       });
