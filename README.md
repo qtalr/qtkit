@@ -10,17 +10,10 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/qtkit.png)](https://CRAN.R-project.org/package=qtkit)
 [![qtkit status
-badge](https://francojc.r-universe.dev/badges/qtkit.png)](https://francojc.r-universe.dev/qtkit/)
-[![R-CMD-check](https://github.com/qtalr/qtkit/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/qtalr/qtkit/actions/workflows/R-CMD-check.yaml)
-[![](https://cranlogs.r-pkg.org/badges/qtkit.png)](https://cran.r-project.org/package=qtkit)
+badge](https://qtalr.r-universe.dev/badges/qtkit.png)](https://qtalr.r-universe.dev/qtkit)
+[![R CMD
+Check](https://github.com/francojc/qtkit/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/francojc/qtkit/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
-
-The goal of `qtkit` is to provide a support package for the textbook
-[“An Introduction to Quantitative Text Analysis for Linguistics:
-Reproducible Research using R”](https://qtalr.com/book/). It contains
-functions for collecting and manipulating data and datasets,
-documentation, and other assorted tasks associated with quantitative
-text analysis in R.
 
 ## Getting started
 

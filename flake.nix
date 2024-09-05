@@ -21,12 +21,14 @@
             quarto
             R
             radianWrapper
+
             # R packages: development
             rPackages.devtools
             rPackages.httr
             rPackages.httptest
             rPackages.languageserver
             rPackages.pak
+            rPackages.rcompendium
             rPackages.testthat
             rPackages.usethis
             rPackages.goodpractice
