@@ -21,7 +21,6 @@
             quarto
             R
             radianWrapper
-
             # R packages: development
             rPackages.devtools
             rPackages.httr
