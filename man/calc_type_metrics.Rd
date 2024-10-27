@@ -21,7 +21,7 @@ Other options:
 'all',
 'rf' calculates relative frequency,
 'orf' calculates observed relative frequency.
-Can specify multiple options: c("rf", "orf").}
+Can specify multiple options: c('rf', 'orf').}
 
 \item{dispersion}{A character vector indicating which
 dispersion metrics to use. If NULL (default),
@@ -31,7 +31,7 @@ Other options:
 'df' calculates Document Frequency.
 'idf' calculates Inverse Document Frequency.
 'dp' calculates Gries' Deviation of Proportions.
-Can specify multiple options: c("df", "idf").}
+Can specify multiple options: c('df', 'idf').}
 }
 \value{
 A data frame with columns:
@@ -52,15 +52,14 @@ This function calculates type metrics for tokenized text data.
 }
 \examples{
 data_path <- system.file("extdata", "types_data.rds", package = "qtkit")
-data <- readRDS(data_path)
+df <- readRDS(data_path)
 calc_type_metrics(
-  data = data,
-  type = type,
-  document = document,
+  data = df,
+  type = letter,
+  document = doc_id,
   frequency = c("rf", "orf"),
-  dispersion = c("df", "idf")
+  dispersion = "dp"
 )
-
 }
 \references{
 Gries, Stefan Th. (2023). Statistical Methods in Corpus Linguistics.
