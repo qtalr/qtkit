@@ -15,8 +15,7 @@
             # Software
             curl
             gettext
-            gh
-            git
+            imagemagick
             pandoc
             quarto
             R
@@ -51,12 +50,13 @@
             rPackages.tibble
             rPackages.tidyr
             rPackages.tidytext
+            rPackages.xml2
             rPackages.webshot2
           ];
 
           shellHook = ''
             export R_LIBS_USER=$PWD/Library
-            mkdir -p $R_LIBS_USER
+            mkdir -p "$R_LIBS_USER"
           '';
         };
       });

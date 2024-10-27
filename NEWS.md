@@ -1,3 +1,8 @@
+# qtkit 1.0.1
+
+- Bug fix: `calc_type_metrics()` now correctly allows for the `type` and `document` arguments to be specified as symbols that can take values other than type and document.
+- ...
+
 # qtkit 1.0.0
 
 - Adds `calc_assoc_metrics()` to calculate association metrics between two variables.

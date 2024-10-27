@@ -35,7 +35,8 @@ Imports:
     TBDBr,
     tibble,
     tidyr,
-    tidytext
+    tidytext,
+    xml2
 Suggests:
     httptest,
     rmarkdown,
