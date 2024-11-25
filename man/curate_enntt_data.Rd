@@ -7,18 +7,38 @@
 curate_enntt_data(dir_path)
 }
 \arguments{
-\item{dir_path}{A string. The path to the directory containing the data files.}
+\item{dir_path}{A string. The path to the directory containing the ENNTT data files.}
 }
 \value{
-A data frame. The curated ENNTT data.
+A tibble containing the curated ENNTT data with columns:
+\itemize{
+\item session_id: Parliamentary session identifier
+\item speaker_id: Speaker's MEP ID
+\item state: Representative's state/country
+\item session_seq: Sequential position in session
+\item text: Speech content
+\item type: Corpus type identifier
+}
 }
 \description{
-This function curates ENNTT data from a specified directory. It searches for files with .dat or .tok extensions,
-extracts the unique types from these files, and then curates each type of data using the \code{curate_enntt_file()} function.
-The curated data from each type is then combined into a single data frame which is returned.
+This function processes and curates ENNTT (European Parliament) data from a specified directory.
+It handles both .dat files (containing XML metadata) and .tok files (containing text content).
+}
+\details{
+The function expects a directory containing paired .dat and .tok files with matching names. As found in the raw ENNTT data \url{https://github.com/senisioi/enntt-release}.
+The .dat files should contain XML-formatted metadata with attributes:
+\itemize{
+\item session_id: Unique identifier for the parliamentary session
+\item mepid: Member of European Parliament ID
+\item state: Country or state representation
+\item seq_speaker_id: Sequential ID within the session
+}
+
+The .tok files should contain the corresponding text content, one entry per line.
 }
 \examples{
 \dontrun{
-curated_data <- curate_enntt_data('/path/to/data')
+curated_data <- curate_enntt_data("/path/to/enntt/data/")
 }
+
 }

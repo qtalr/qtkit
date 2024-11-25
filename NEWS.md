@@ -1,6 +1,7 @@
-# qtkit 1.0.1
+# qtkit 1.1.0
 
-- Bug fix: `calc_type_metrics()` now correctly allows for the `type` and `document` arguments to be specified as symbols that can take values other than type and document.
+- Bug fix (#7): `calc_type_metrics()` now correctly allows for the `type` and `document` arguments to be specified as symbols that can take values other than type and document.
+- Adds `curate_enntt_data()` to curate the ENNTT data downloaded from GitHub [here](https://github.com/senisioi/enntt-release).
 - ...
 
 # qtkit 1.0.0

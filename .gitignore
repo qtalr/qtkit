@@ -25,3 +25,5 @@ doc/
 Library/
 .lintr
 
+.aider*
+.env

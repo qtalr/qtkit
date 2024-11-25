@@ -1,6 +1,6 @@
 Package: qtkit
 Title: Quantitative Text Kit
-Version: 1.0.0
+Version: 1.1.0
 Authors@R:
     person("Jerid", "Francom", , "francojc@wfu.edu",
     role = c("aut", "cre", "cph"),
@@ -19,7 +19,6 @@ Depends:
     R (>= 4.1)
 Imports:
     dplyr,
-    fs,
     ggplot2,
     glue,
     gutenbergr,
@@ -28,13 +27,10 @@ Imports:
     Matrix,
     openai,
     purrr,
-    R.utils,
     readr,
     rlang,
     stringr,
-    TBDBr,
     tibble,
-    tidyr,
     tidytext,
     xml2
 Suggests:
@@ -43,7 +39,6 @@ Suggests:
     testthat (>= 3.0.0),
     webshot2
 Remotes:
-    TalkBank/TBDBr
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US

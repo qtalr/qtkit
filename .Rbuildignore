@@ -18,3 +18,5 @@
 ^pkgdown$
 ^README\.Rmd$
 ^vignettes/articles$
+^\.aider*
+^\.env$

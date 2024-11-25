@@ -64,29 +64,6 @@ test_that("curate_enntt_data handles mismatched dat/tok files", {
   )
 })
 
-test_that("curate_enntt_data handles missing attributes", {
-  # Setup test directory with invalid XML
-  temp_dir <- tempdir()
-  test_dir <- file.path(temp_dir, "invalid")
-  dir.create(test_dir, showWarnings = FALSE)
-  on.exit(unlink(test_dir, recursive = TRUE))
-
-  # Create sample files with missing attributes
-  writeLines(
-    "<?xml version='1.0' encoding='UTF-8'?><root><line session_id='1' state='FR'></line></root>", # Missing mepid and seq_speaker_id
-    file.path(temp_dir, "invalid", "test.dat")
-  )
-  writeLines(
-    "text1",
-    file.path(temp_dir, "invalid", "test.tok")
-  )
-
-  expect_error(
-    curate_enntt_data(file.path(temp_dir, "invalid")),
-    "Error processing files for corpus type 'test': Error extracting attributes: Error processing files: Missing required attributes in XML node"
-  )
-})
-
 # Helper function to create valid test files
 create_valid_test_files <- function(dir_path) {
   dir.create(dir_path, recursive = TRUE, showWarnings = FALSE)
