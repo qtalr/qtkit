@@ -29,7 +29,6 @@ curate_swda_data <- function(dir_path) {
   if (!dir.exists(dir_path)) {
     stop("Directory does not exist: ", dir_path)
   }
-
   # Find all .utt files
   utt_files <- list.files(
     path = dir_path,
@@ -37,15 +36,14 @@ curate_swda_data <- function(dir_path) {
     full.names = TRUE,
     recursive = TRUE
   )
-
   # Check if any files were found
   if (length(utt_files) == 0) {
     warning("No .utt files found in directory: ", dir_path)
     return(data.frame())
   }
-
   # Process all files and combine results using base R
-  data_df <- do.call(rbind, 
+  data_df <- do.call(
+    rbind,
     lapply(utt_files, function(f) {
       result <- curate_swda_file(f)
       # Ensure row names don't clash when combining
@@ -53,10 +51,8 @@ curate_swda_data <- function(dir_path) {
       result
     })
   )
-
   return(data_df)
 }
-
 #' Process a single SWDA utterance file
 #'
 #' @param file_path Character string. Path to the .utt file
@@ -65,16 +61,12 @@ curate_swda_data <- function(dir_path) {
 curate_swda_file <- function(file_path) {
   # Read file contents
   doc_lines <- readLines(file_path)
-
   # Extract speaker information
   speaker_info <- extract_speaker_info(doc_lines)
-
   # Extract and process utterances
   utterances_df <- extract_utterances(doc_lines, speaker_info)
-
   return(utterances_df)
 }
-
 #' Extract speaker information from document lines
 #'
 #' @param doc_lines Character vector of file lines
@@ -83,23 +75,19 @@ curate_swda_file <- function(file_path) {
 extract_speaker_info <- function(doc_lines) {
   speaker_pattern <- "\\d+_\\d+_\\d+"
   speaker_line <- grep(speaker_pattern, doc_lines, value = TRUE)
-
   if (length(speaker_line) == 0) {
     stop("Could not find speaker information in file")
   }
-
   speaker_info_parts <- strsplit(
     sub(".*\\t", "", speaker_line),
     "_"
   )[[1]]
-
   return(list(
     doc_id = speaker_info_parts[1],
     speaker_a_id = speaker_info_parts[2],
     speaker_b_id = speaker_info_parts[3]
   ))
 }
-
 #' Extract and process utterances from document lines
 #'
 #' @param doc_lines Character vector of file lines
@@ -110,21 +98,18 @@ extract_utterances <- function(doc_lines, speaker_info) {
   # Find text section
   text_start <- grep("={3,}", doc_lines)[1] + 1
   text_end <- length(doc_lines)
-
   # Extract non-empty lines
   text_lines <- grep(
     ".+",
     trimws(doc_lines[text_start:text_end]),
     value = TRUE
   )
-
   # Create initial data frame
   df <- data.frame(
     doc_id = speaker_info$doc_id,
     text = text_lines,
     stringsAsFactors = FALSE
   )
-
   # Extract components using regular expressions
   df <- transform(df,
     damsl_tag = trimws(sub("^(.+?)\\s.*$", "\\1", text)),
@@ -132,14 +117,12 @@ extract_utterances <- function(doc_lines, speaker_info) {
     utterance_num = sub("^.*utt(\\d+).*$", "\\1", text),
     utterance_text = trimws(sub("^.*:(.+)$", "\\1", text))
   )
-
   # Process speaker information
   speaker_info <- process_speaker_info(
     df$speaker_turn,
     speaker_info$speaker_a_id,
     speaker_info$speaker_b_id
   )
-
   # Combine all information
   result_df <- data.frame(
     doc_id = df$doc_id,
@@ -151,10 +134,8 @@ extract_utterances <- function(doc_lines, speaker_info) {
     utterance_text = df$utterance_text,
     stringsAsFactors = FALSE
   )
-
   return(result_df)
 }
-
 #' Process speaker turn information
 #'
 #' @param speaker_turn Vector of speaker turns
@@ -165,14 +146,11 @@ extract_utterances <- function(doc_lines, speaker_info) {
 process_speaker_info <- function(speaker_turn, speaker_a_id, speaker_b_id) {
   # Split speaker turn information
   turn_parts <- strsplit(speaker_turn, "\\.")
-
   # Extract components
   speaker <- sapply(turn_parts, "[[", 1)
   turn_num <- sapply(turn_parts, "[[", 2)
-
   # Assign speaker IDs
   speaker_id <- ifelse(speaker == "A", speaker_a_id, speaker_b_id)
-
   return(list(
     speaker = speaker,
     turn_num = turn_num,
