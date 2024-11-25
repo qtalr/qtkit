@@ -43,11 +43,11 @@ test_that("curate_enntt_data fails gracefully with empty directory", {
 test_that("curate_enntt_data handles mismatched dat/tok files", {
   # Setup test directory with mismatched files
   temp_dir <- tempdir()
-  dir.create(file.path(temp_dir, "mismatched"))
+  dir.create(file.path(temp_dir, "mismatched"), showWarnings = FALSE)
 
   # Create sample mismatched files
   writeLines(
-    "<line session_id='1' mepid='123' state='FR' seq_speaker_id='1'></line>",
+    "<?xml version='1.0' encoding='UTF-8'?><root><line session_id='1' mepid='123' state='FR' seq_speaker_id='1'></line></root>",
     file.path(temp_dir, "mismatched", "test.dat")
   )
   writeLines(
@@ -64,7 +64,7 @@ test_that("curate_enntt_data handles mismatched dat/tok files", {
 test_that("curate_enntt_data handles missing attributes", {
   # Setup test directory with invalid XML
   temp_dir <- tempdir()
-  dir.create(file.path(temp_dir, "invalid"))
+  dir.create(file.path(temp_dir, "invalid"), showWarnings = FALSE)
 
   # Create sample files with missing attributes
   writeLines(
