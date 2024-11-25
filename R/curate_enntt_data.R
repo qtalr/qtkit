@@ -4,7 +4,7 @@
 #' It handles both .dat files (containing XML metadata) and .tok files (containing text content).
 #'
 #' @details
-#' The function expects a directory containing paired .dat and .tok files with matching names.
+#' The function expects a directory containing paired .dat and .tok files with matching names. As found in the raw ENNTT data \link{https://github.com/senisioi/enntt-release}.
 #' The .dat files should contain XML-formatted metadata with attributes:
 #' - session_id: Unique identifier for the parliamentary session
 #' - mepid: Member of European Parliament ID
@@ -38,22 +38,22 @@
 curate_enntt_data <- function(dir_path) {
   # Validate input directory
   validate_dir_path(dir_path)
-  
   # Find and process corpus files
   corpus_types <- find_enntt_files(dir_path)
-  
-  tryCatch({
-    data_df <- purrr::map_dfr(
-      corpus_types,
-      ~curate_enntt_file(dir_path, .x),
-      .progress = TRUE
-    ) |>
-      tibble::as_tibble()
-    
-    return(data_df)
-  }, error = function(e) {
-    stop("Error processing ENNTT data: ", e$message)
-  })
+  tryCatch(
+    {
+      data_df <- purrr::map_dfr(
+        corpus_types,
+        ~ curate_enntt_file(dir_path, .x),
+        .progress = TRUE
+      ) |>
+        tibble::as_tibble()
+      return(data_df)
+    },
+    error = function(e) {
+      stop("Error processing ENNTT data: ", e$message)
+    }
+  )
 }
 
 #' Validate Directory Path
@@ -94,32 +94,30 @@ curate_enntt_file <- function(dir_path, corpus_type) {
   # Create file paths
   dat_file <- file.path(dir_path, paste0(corpus_type, ".dat"))
   tok_file <- file.path(dir_path, paste0(corpus_type, ".tok"))
-  
   # Validate file existence
   if (!file.exists(dat_file)) stop("DAT file not found: ", dat_file)
   if (!file.exists(tok_file)) stop("TOK file not found: ", tok_file)
-  
-  tryCatch({
-    # Read and process files
-    dat <- xml2::read_html(dat_file)
-    dat <- xml2::xml_find_all(dat, "//line")
-    tok <- readLines(tok_file)
-    
-    # Validate content alignment
-    if (length(dat) != length(tok)) {
-      stop("Mismatched lengths between DAT and TOK files")
+  tryCatch(
+    {
+      # Read and process files
+      dat <- xml2::read_html(dat_file)
+      dat <- xml2::xml_find_all(dat, "//line")
+      tok <- readLines(tok_file)
+      # Validate content alignment
+      if (length(dat) != length(tok)) {
+        stop("Mismatched lengths between DAT and TOK files")
+      }
+      # Process data
+      dat_attrs <- lapply(dat, extract_dat_attrs)
+      dat_attrs <- do.call(rbind, dat_attrs)
+      dataset <- cbind(dat_attrs, text = tok)
+      dataset$type <- corpus_type
+      return(dataset)
+    },
+    error = function(e) {
+      stop("Error processing files for corpus type '", corpus_type, "': ", e$message)
     }
-    
-    # Process data
-    dat_attrs <- lapply(dat, extract_dat_attrs)
-    dat_attrs <- do.call(rbind, dat_attrs)
-    dataset <- cbind(dat_attrs, text = tok)
-    dataset$type <- corpus_type
-    
-    return(dataset)
-  }, error = function(e) {
-    stop("Error processing files for corpus type '", corpus_type, "': ", e$message)
-  })
+  )
 }
 
 #' Extract Attributes from XML Line Node
@@ -128,24 +126,25 @@ curate_enntt_file <- function(dir_path, corpus_type) {
 #' @return Data frame of extracted attributes
 #' @keywords internal
 extract_dat_attrs <- function(line_node) {
-  tryCatch({
-    session_id <- xml2::xml_attr(line_node, "session_id")
-    speaker_id <- xml2::xml_attr(line_node, "mepid")
-    state <- xml2::xml_attr(line_node, "state")
-    session_seq <- xml2::xml_attr(line_node, "seq_speaker_id")
-    
-    if (any(sapply(list(session_id, speaker_id, state, session_seq), is.null))) {
-      stop("Missing required attributes in XML node")
+  tryCatch(
+    {
+      session_id <- xml2::xml_attr(line_node, "session_id")
+      speaker_id <- xml2::xml_attr(line_node, "mepid")
+      state <- xml2::xml_attr(line_node, "state")
+      session_seq <- xml2::xml_attr(line_node, "seq_speaker_id")
+      if (any(sapply(list(session_id, speaker_id, state, session_seq), is.null))) {
+        stop("Missing required attributes in XML node")
+      }
+      data.frame(
+        session_id,
+        speaker_id,
+        state,
+        session_seq,
+        stringsAsFactors = FALSE
+      )
+    },
+    error = function(e) {
+      stop("Error extracting attributes: ", e$message)
     }
-    
-    data.frame(
-      session_id,
-      speaker_id,
-      state,
-      session_seq,
-      stringsAsFactors = FALSE
-    )
-  }, error = function(e) {
-    stop("Error extracting attributes: ", e$message)
-  })
+  )
 }
