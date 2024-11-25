@@ -78,7 +78,7 @@ test_that("curate_enntt_data handles missing attributes", {
 
   expect_error(
     curate_enntt_data(file.path(temp_dir, "invalid")),
-    "Missing required attributes in XML node"
+    "Error processing files for corpus type 'test': Error extracting attributes: Error processing files: Missing required attributes in XML node"
   )
 })
 
