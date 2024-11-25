@@ -5,9 +5,9 @@
 #' format.
 #'
 #' @param dir_path Character string. Path to the directory containing .utt
-#' files.
+#'        files. Must be an existing directory with read permissions.
 #'
-#' @return A tibble containing the curated SWDA data with columns:
+#' @return A data frame containing the curated SWDA data with columns:
 #'   \itemize{
 #'     \item doc_id: Document identifier
 #'     \item damsl_tag: Dialog act annotation
@@ -17,10 +17,18 @@
 #'     \item utterance_num: Utterance number
 #'     \item utterance_text: Actual spoken text
 #'   }
+#'   Returns an empty data frame if no .utt files are found.
+#'
+#' @throws Error if directory does not exist
+#' @throws Warning if no .utt files are found in directory
 #'
 #' @examples
 #' \dontrun{
-#' swda_data <- curate_swda_data("/path/to/directory")
+#' # Process all .utt files in a directory
+#' swda_data <- curate_swda_data("/path/to/swda/files")
+#'
+#' # Check the structure of the returned data
+#' str(swda_data)
 #' }
 #'
 #' @export
