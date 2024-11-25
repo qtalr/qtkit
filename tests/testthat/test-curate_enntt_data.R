@@ -33,6 +33,7 @@ test_that("curate_enntt_data fails gracefully with invalid directory", {
 test_that("curate_enntt_data fails gracefully with empty directory", {
   # Create temporary empty directory
   temp_dir <- tempdir()
+  on.exit(unlink(temp_dir, recursive = TRUE))
 
   expect_error(
     curate_enntt_data(temp_dir),
@@ -43,7 +44,9 @@ test_that("curate_enntt_data fails gracefully with empty directory", {
 test_that("curate_enntt_data handles mismatched dat/tok files", {
   # Setup test directory with mismatched files
   temp_dir <- tempdir()
-  dir.create(file.path(temp_dir, "mismatched"), showWarnings = FALSE)
+  test_dir <- file.path(temp_dir, "mismatched")
+  dir.create(test_dir, showWarnings = FALSE)
+  on.exit(unlink(test_dir, recursive = TRUE))
 
   # Create sample mismatched files
   writeLines(
@@ -64,7 +67,9 @@ test_that("curate_enntt_data handles mismatched dat/tok files", {
 test_that("curate_enntt_data handles missing attributes", {
   # Setup test directory with invalid XML
   temp_dir <- tempdir()
-  dir.create(file.path(temp_dir, "invalid"), showWarnings = FALSE)
+  test_dir <- file.path(temp_dir, "invalid")
+  dir.create(test_dir, showWarnings = FALSE)
+  on.exit(unlink(test_dir, recursive = TRUE))
 
   # Create sample files with missing attributes
   writeLines(
@@ -104,6 +109,7 @@ test_that("curate_enntt_data processes valid files correctly", {
   temp_dir <- tempdir()
   test_dir <- file.path(temp_dir, "valid")
   create_valid_test_files(test_dir)
+  on.exit(unlink(test_dir, recursive = TRUE))
 
   result <- curate_enntt_data(test_dir)
 
