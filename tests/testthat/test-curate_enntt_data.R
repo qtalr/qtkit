@@ -68,7 +68,7 @@ test_that("curate_enntt_data handles missing attributes", {
 
   # Create sample files with missing attributes
   writeLines(
-    "<line session_id='1' state='FR'></line>", # Missing mepid and seq_speaker_id
+    "<?xml version='1.0' encoding='UTF-8'?><root><line session_id='1' state='FR'></line></root>", # Missing mepid and seq_speaker_id
     file.path(temp_dir, "invalid", "test.dat")
   )
   writeLines(

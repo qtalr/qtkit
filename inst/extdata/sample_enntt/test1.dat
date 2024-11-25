@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<line session_id="EP-2020-001" mepid="MEP123" state="FR" seq_speaker_id="1"></line>
+<line session_id="EP-2020-001" mepid="MEP124" state="DE" seq_speaker_id="2"></line>
+</root>

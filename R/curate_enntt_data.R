@@ -132,7 +132,7 @@ extract_dat_attrs <- function(line_node) {
       state <- xml2::xml_attr(line_node, "state")
       session_seq <- xml2::xml_attr(line_node, "seq_speaker_id")
       if (any(sapply(list(session_id, speaker_id, state, session_seq), is.null))) {
-        stop("Missing required attributes in XML node")
+        stop("Error processing files: Missing required attributes in XML node")
       }
       data.frame(
         session_id,
