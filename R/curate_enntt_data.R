@@ -31,8 +31,6 @@
 #' }
 #'
 #' @importFrom xml2 xml_attr xml_find_all read_html
-#' @importFrom purrr map_dfr
-#' @importFrom tibble as_tibble
 #'
 #' @export
 curate_enntt_data <- function(dir_path) {
@@ -40,20 +38,18 @@ curate_enntt_data <- function(dir_path) {
   validate_dir_path(dir_path)
   # Find and process corpus files
   corpus_types <- find_enntt_files(dir_path)
-  tryCatch(
-    {
-      data_df <- purrr::map_dfr(
-        corpus_types,
-        ~ curate_enntt_file(dir_path, .x),
-        .progress = TRUE
-      ) |>
-        tibble::as_tibble()
-      return(data_df)
-    },
-    error = function(e) {
-      stop("Error processing ENNTT data: ", e$message)
-    }
-  )
+  tryCatch({
+    # Process each corpus type and combine results
+    data_list <- lapply(corpus_types, function(x) {
+      curate_enntt_file(dir_path, x)
+    })
+    data_df <- do.call(rbind, data_list)
+    # Convert row names to sequential numbers
+    rownames(data_df) <- NULL
+    return(data_df)
+  }, error = function(e) {
+    stop("Error processing ENNTT data: ", e$message)
+  })
 }
 
 #' Validate Directory Path
