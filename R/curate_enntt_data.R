@@ -4,7 +4,7 @@
 #' It handles both .dat files (containing XML metadata) and .tok files (containing text content).
 #'
 #' @details
-#' The function expects a directory containing paired .dat and .tok files with matching names. As found in the raw ENNTT data \link{https://github.com/senisioi/enntt-release}.
+#' The function expects a directory containing paired .dat and .tok files with matching names. As found in the raw ENNTT data \url{https://github.com/senisioi/enntt-release}.
 #' The .dat files should contain XML-formatted metadata with attributes:
 #' - session_id: Unique identifier for the parliamentary session
 #' - mepid: Member of European Parliament ID
@@ -38,18 +38,21 @@ curate_enntt_data <- function(dir_path) {
   validate_dir_path(dir_path)
   # Find and process corpus files
   corpus_types <- find_enntt_files(dir_path)
-  tryCatch({
-    # Process each corpus type and combine results
-    data_list <- lapply(corpus_types, function(x) {
-      curate_enntt_file(dir_path, x)
-    })
-    data_df <- do.call(rbind, data_list)
-    # Convert row names to sequential numbers
-    rownames(data_df) <- NULL
-    return(data_df)
-  }, error = function(e) {
-    stop("Error processing ENNTT data: ", e$message)
-  })
+  tryCatch(
+    {
+      # Process each corpus type and combine results
+      data_list <- lapply(corpus_types, function(x) {
+        curate_enntt_file(dir_path, x)
+      })
+      data_df <- do.call(rbind, data_list)
+      # Convert row names to sequential numbers
+      rownames(data_df) <- NULL
+      return(data_df)
+    },
+    error = function(e) {
+      stop("Error processing ENNTT data: ", e$message)
+    }
+  )
 }
 
 #' Validate Directory Path
