@@ -26,11 +26,9 @@ Imports:
     knitr,
     Matrix,
     openai,
-    purrr,
     readr,
     rlang,
     stringr,
-    tibble,
     tidytext,
     xml2
 Suggests:

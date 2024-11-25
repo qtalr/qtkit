@@ -23,9 +23,6 @@
 #' swda_data <- curate_swda_data("/path/to/directory")
 #' }
 #'
-#' @importFrom purrr map_dfr
-#' @importFrom tibble as_tibble
-#'
 #' @export
 curate_swda_data <- function(dir_path) {
   # Validate directory path
@@ -36,7 +33,7 @@ curate_swda_data <- function(dir_path) {
   # Find all .utt files
   utt_files <- list.files(
     path = dir_path,
-    pattern = "\\.utt$", # More specific pattern
+    pattern = "\\.utt$",
     full.names = TRUE,
     recursive = TRUE
   )
@@ -44,16 +41,18 @@ curate_swda_data <- function(dir_path) {
   # Check if any files were found
   if (length(utt_files) == 0) {
     warning("No .utt files found in directory: ", dir_path)
-    return(tibble::tibble())
+    return(data.frame())
   }
 
-  # Process all files and combine results
-  data_df <- purrr::map_dfr(
-    .x = utt_files,
-    .f = curate_swda_file,
-    .progress = TRUE
-  ) |>
-    tibble::as_tibble()
+  # Process all files and combine results using base R
+  data_df <- do.call(rbind, 
+    lapply(utt_files, function(f) {
+      result <- curate_swda_file(f)
+      # Ensure row names don't clash when combining
+      rownames(result) <- NULL
+      result
+    })
+  )
 
   return(data_df)
 }
