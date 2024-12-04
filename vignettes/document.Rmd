@@ -7,9 +7,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-<!--
+## Introduction
 
-- [ ] Add vignette using documentation functions
+<!--
+- TODO: Add vignette using documentation functions
 -->
 
 ```{r, include = FALSE}
@@ -21,4 +22,24 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(qtkit)
+```
+
+: Data origin information
+
+| Attribute                | Description                                               |
+|--------------------------|-----------------------------------------------------------|
+| Resource name            | The name of the resource.                                 |
+| Data source              | URL, DOI, etc.                                            |
+| Data sampling frame      | Language, language variety, modality, genre, etc.         |
+| Data collection date(s)  | The dates the data was collected.                         |
+| Data format              | .txt, .csv, .xml, .html, etc.                             |
+| Data schema              | Relationships between data elements: files, folders, etc. |
+| License                  | CC BY, CC BY-SA, etc.                                     |
+| Attribution              | Citation information.                                     |
+
+The {qtkit} package provides the function `create_data_origin()` to help create data origin files. By default the function will create the scaffolding for the data origin file in CSV format.
+
+
+```{r}
+ls("package:qtkit")
 ```
