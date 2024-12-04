@@ -1,19 +1,25 @@
 #' Curate ENNTT Data
 #'
-#' This function processes and curates ENNTT (European Parliament) data from a specified directory.
-#' It handles both .dat files (containing XML metadata) and .tok files (containing text content).
+#' This function processes and curates ENNTT (European Parliament) data from a
+#' specified directory.
+#' It handles both .dat files (containing XML metadata) and .tok files
+#' '(containing text content).
 #'
 #' @details
-#' The function expects a directory containing paired .dat and .tok files with matching names. As found in the raw ENNTT data \url{https://github.com/senisioi/enntt-release}.
+#' The function expects a directory containing paired .dat and .tok files with
+#' matching names, as found in the raw ENNTT data
+#' '\url{https://github.com/senisioi/enntt-release}.
 #' The .dat files should contain XML-formatted metadata with attributes:
 #' - session_id: Unique identifier for the parliamentary session
 #' - mepid: Member of European Parliament ID
 #' - state: Country or state representation
 #' - seq_speaker_id: Sequential ID within the session
 #'
-#' The .tok files should contain the corresponding text content, one entry per line.
+#' The .tok files should contain the corresponding text content, one entry per
+#' line.
 #'
-#' @param dir_path A string. The path to the directory containing the ENNTT data files.
+#' @param dir_path A string. The path to the directory containing the ENNTT
+#' data files. Must be an existing directory.
 #'
 #' @return A tibble containing the curated ENNTT data with columns:
 #'   \itemize{
@@ -28,6 +34,9 @@
 #' @examples
 #' \dontrun{
 #' curated_data <- curate_enntt_data("/path/to/enntt/data/")
+#'
+#' # Check the structure of the returned data
+#' str(curated_data)
 #' }
 #'
 #' @importFrom xml2 xml_attr xml_find_all read_html
@@ -114,7 +123,12 @@ curate_enntt_file <- function(dir_path, corpus_type) {
       return(dataset)
     },
     error = function(e) {
-      stop("Error processing files for corpus type '", corpus_type, "': ", e$message)
+      stop(
+        "Error processing files for corpus type '",
+        corpus_type,
+        "': ",
+        e$message
+      )
     }
   )
 }
@@ -131,7 +145,9 @@ extract_dat_attrs <- function(line_node) {
       speaker_id <- xml2::xml_attr(line_node, "mepid")
       state <- xml2::xml_attr(line_node, "state")
       session_seq <- xml2::xml_attr(line_node, "seq_speaker_id")
-      if (any(sapply(list(session_id, speaker_id, state, session_seq), is.null))) {
+      if (any(sapply(
+        list(session_id, speaker_id, state, session_seq), is.null
+      ))) {
         stop("Error processing files: Missing required attributes in XML node")
       }
       data.frame(
