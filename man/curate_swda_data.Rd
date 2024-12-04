@@ -7,17 +7,38 @@
 curate_swda_data(dir_path)
 }
 \arguments{
-\item{dir_path}{The path to the directory containing the .utt files.}
+\item{dir_path}{Character string. Path to the directory containing .utt
+files. Must be an existing directory.}
 }
 \value{
-A data frame containing the curated SWDA data.
+A data frame containing the curated SWDA data with columns:
+\itemize{
+\item doc_id: Document identifier
+\item damsl_tag: Dialog act annotation
+\item speaker_id: Unique speaker identifier
+\item speaker: Speaker designation (A or B)
+\item turn_num: Turn number in conversation
+\item utterance_num: Utterance number
+\item utterance_text: Actual spoken text
+} Returns an empty data frame if no .utt files are found.
 }
 \description{
-This function curates the SWDA (Switchboard Dialog Act) data by processing
-all the .utt files in the specified directory.
+Process and curate Switchboard Dialog Act (SWDA) data by reading all .utt
+files from a specified directory and converting them into a structured
+format.
+}
+\details{
+The function expects a directory containing .utt files or subdirectories
+with .utt files, as found in the raw SWDA data
+'\url{https://catalog.ldc.upenn.edu/docs/LDC97S62}.
 }
 \examples{
 \dontrun{
-curate_swda_data('/path/to/directory')
+# Process all .utt files in a directory
+swda_data <- curate_swda_data("/path/to/swda/files")
+
+# Check the structure of the returned data
+str(swda_data)
 }
+
 }

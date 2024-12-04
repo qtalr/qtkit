@@ -4,8 +4,13 @@
 #' files from a specified directory and converting them into a structured
 #' format.
 #'
+#' @details
+#' The function expects a directory containing .utt files or subdirectories
+#' with .utt files, as found in the raw SWDA data
+#' '\url{https://catalog.ldc.upenn.edu/docs/LDC97S62}.
+#'
 #' @param dir_path Character string. Path to the directory containing .utt
-#'        files. Must be an existing directory with read permissions.
+#'        files. Must be an existing directory.
 #'
 #' @return A data frame containing the curated SWDA data with columns:
 #'   \itemize{
@@ -17,10 +22,6 @@
 #'     \item utterance_num: Utterance number
 #'     \item utterance_text: Actual spoken text
 #'   }
-#'   Returns an empty data frame if no .utt files are found.
-#'
-#' @throws Error if directory does not exist
-#' @throws Warning if no .utt files are found in directory
 #'
 #' @examples
 #' \dontrun{
