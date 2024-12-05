@@ -2,7 +2,7 @@
 
 test_that("curate_enntt_data handles valid input correctly", {
   # Setup test data path
-  test_dir <- system.file("extdata", "sample_enntt", package = "qtkit")
+  test_dir <- system.file("extdata", "simul_enntt", package = "qtkit")
 
   # Run function
   result <- curate_enntt_data(test_dir)
