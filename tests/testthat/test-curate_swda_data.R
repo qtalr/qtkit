@@ -27,9 +27,9 @@ test_that("curate_swda_data handles valid input correctly", {
   expect_gt(nrow(result), 0)
 
   # Check specific values from the simul_swda files
-  expect_equal(result$doc_id[1], "0001")
-  expect_equal(result$speaker_id[1], "4325")
-  expect_match(result$utterance_text[1], "Okay.")
+  expect_equal(result$doc_id[1], "4325")
+  expect_equal(result$speaker_id[1], "1632")
+  expect_match(result$utterance_text[1], "Meep.  /")
 })
 
 
