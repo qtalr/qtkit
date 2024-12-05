@@ -32,13 +32,11 @@
 #'   }
 #'
 #' @examples
-#' \dontrun{
 #' # Example using simulated data bundled with the package
-#' example_data <- system.file("extdata", "simul_enntt", package = "mypkgname")
+#' example_data <- system.file("extdata", "simul_enntt", package = "qtkit")
 #' curated_data <- curate_enntt_data(example_data)
 #'
 #' str(curated_data)
-#' }
 #'
 #' @importFrom xml2 xml_attr xml_find_all read_html
 #'

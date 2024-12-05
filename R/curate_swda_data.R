@@ -24,13 +24,11 @@
 #'   }
 #'
 #' @examples
-#' \dontrun{
 #' # Example using simulated data bundled with the package
-#' example_data <- system.file("extdata", "simul_swda", "sw00utt", package = "mypkgname")
+#' example_data <- system.file("extdata", "simul_swda", package = "qtkit")
 #' swda_data <- curate_swda_data(example_data)
 #'
 #' str(swda_data)
-#' }
 #'
 #' @export
 curate_swda_data <- function(dir_path) {
