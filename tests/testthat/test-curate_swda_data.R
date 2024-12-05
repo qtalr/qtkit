@@ -45,9 +45,12 @@ test_that("curate_swda_data handles empty directory", {
   # Create a temporary empty directory
   temp_dir <- tempdir()
   dir.create(temp_dir, recursive = TRUE, showWarnings = FALSE)
-  on.exit({
-    unlink(temp_dir, recursive = TRUE, force = TRUE)
-  }, add = TRUE)
+  on.exit(
+    {
+      unlink(temp_dir, recursive = TRUE, force = TRUE)
+    },
+    add = TRUE
+  )
 
   # Expect a warning and an empty data frame
   expect_warning(
@@ -65,9 +68,12 @@ test_that("curate_swda_data handles malformed .utt file", {
   dir.create(temp_dir, recursive = TRUE, showWarnings = FALSE)
   malformed_file <- file.path(temp_dir, "malformed.utt")
   writeLines("This is a malformed file", malformed_file) # Missing speaker info and utterances
-  on.exit({
-    unlink(temp_dir, recursive = TRUE, force = TRUE)
-  }, add = TRUE)
+  on.exit(
+    {
+      unlink(temp_dir, recursive = TRUE, force = TRUE)
+    },
+    add = TRUE
+  )
 
 
   # Expect an error
@@ -84,9 +90,12 @@ test_that("curate_swda_data handles partially malformed .utt file (missing speak
   dir.create(temp_dir, recursive = TRUE, showWarnings = FALSE)
   malformed_file <- file.path(temp_dir, "malformed.utt")
   writeLines(c("*A: Hello", "*B: Hi"), malformed_file) # Missing speaker info line
-  on.exit({
-    unlink(temp_dir, recursive = TRUE, force = TRUE)
-  }, add = TRUE)
+  on.exit(
+    {
+      unlink(temp_dir, recursive = TRUE, force = TRUE)
+    },
+    add = TRUE
+  )
 
   # Expect an error
   expect_error(
