@@ -33,9 +33,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' curated_data <- curate_enntt_data("/path/to/enntt/data/")
+#' # Example using simulated data bundled with the package
+#' example_data <- system.file("extdata", "simul_enntt", package = "mypkgname")
+#' curated_data <- curate_enntt_data(example_data)
 #'
-#' # Check the structure of the returned data
 #' str(curated_data)
 #' }
 #'

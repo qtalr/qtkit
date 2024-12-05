@@ -25,10 +25,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' # Process all .utt files in a directory
-#' swda_data <- curate_swda_data("/path/to/swda/files")
+#' # Example using simulated data bundled with the package
+#' example_data <- system.file("extdata", "simul_swda", "sw00utt", package = "mypkgname")
+#' swda_data <- curate_swda_data(example_data)
 #'
-#' # Check the structure of the returned data
 #' str(swda_data)
 #' }
 #'
