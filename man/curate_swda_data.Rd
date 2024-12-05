@@ -20,7 +20,7 @@ A data frame containing the curated SWDA data with columns:
 \item turn_num: Turn number in conversation
 \item utterance_num: Utterance number
 \item utterance_text: Actual spoken text
-} Returns an empty data frame if no .utt files are found.
+}
 }
 \description{
 Process and curate Switchboard Dialog Act (SWDA) data by reading all .utt
