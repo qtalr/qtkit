@@ -79,7 +79,7 @@ confirm_if_needed <- function(confirmed) {
 #'
 #' @return No return value, called for side effects
 #'
-#' @throws Stops execution if extension is not supported
+#' @details Stops execution if extension is not supported
 #'
 #' @keywords internal
 validate_file_extension <- function(ext) {

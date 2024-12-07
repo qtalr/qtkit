@@ -11,7 +11,6 @@
 #'
 #' @keywords internal
 #'
-#' @importFrom Matrix rowSums
 
 #' Calculate Relative Frequency
 #'
@@ -21,6 +20,8 @@
 #' @param tdm A term-document matrix
 #'
 #' @return A numeric vector of relative frequencies for each term
+#'
+#' @importFrom Matrix rowSums
 #'
 #' @keywords internal
 calc_rf <- function(tdm) {

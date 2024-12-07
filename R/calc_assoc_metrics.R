@@ -151,7 +151,7 @@ calculate_metrics <-
 #'
 #' @return No return value, called for side effects
 #'
-#' @throws Stops execution with error message if:
+#' @details Stops execution with error message if:
 #'   \item{data is not a data frame}
 #'   \item{required columns are missing}
 #'   \item{association contains invalid metric names}
