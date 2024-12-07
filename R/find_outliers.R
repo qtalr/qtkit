@@ -32,16 +32,20 @@
 #'
 #' @export
 #'
+#' @param verbose Logical. If TRUE, prints diagnostic information about quartiles,
+#'        fences, and number of outliers found. Default is TRUE.
+#'
 #' @examples
 #' data(mtcars)
 #' find_outliers(mtcars, mpg)
-#' find_outliers(mtcars, wt)
+#' find_outliers(mtcars, wt, verbose = FALSE)
 #'
 #' @importFrom stats quantile
-# Add an argument 'verbose' to control the diagnostic output AI!
 find_outliers <-
   function(
       data,
+      variable_name,
+      verbose = TRUE) {
       variable_name) {
     # Check if `data` is a data.frame
     if (!is.data.frame(data)) {
@@ -89,11 +93,13 @@ find_outliers <-
     # Remove NA values from consideration
     outlier_rows[is.na(outlier_rows)] <- FALSE
 
-    # Diagnostic output
-    message("Variable name: ", var_name)
-    message("Q1: ", q1, " Q3: ", q3, " IQR: ", iqr)
-    message("Upper fence: ", upper_fence, " Lower fence: ", lower_fence)
-    message("Number of outliers: ", sum(outlier_rows))
+    # Diagnostic output if verbose is TRUE
+    if (verbose) {
+      message("Variable name: ", var_name)
+      message("Q1: ", q1, " Q3: ", q3, " IQR: ", iqr)
+      message("Upper fence: ", upper_fence, " Lower fence: ", lower_fence)
+      message("Number of outliers: ", sum(outlier_rows))
+    }
 
     # Return outliers if any are found
     if (any(outlier_rows)) {
