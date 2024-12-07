@@ -29,7 +29,6 @@ Imports:
     purrr,
     rlang,
     stringr,
-    tidytext,
     xml2
 Suggests:
     httptest,

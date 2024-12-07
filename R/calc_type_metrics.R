@@ -55,17 +55,29 @@
 #' )
 #' @importFrom rlang as_label enquo
 #' @importFrom dplyr count
-#' @importFrom tidytext cast_sparse
 #' @export
 calc_type_metrics <-
   function(data, type, document, frequency = NULL, dispersion = NULL) {
     # Validate inputs
     validate_inputs_ctm(data, {{ type }}, {{ document }}, frequency, dispersion)
     # Create a Sparse Term-Document Matrix (TDM)
-    tdm <-
-      data |>
-      dplyr::count({{ type }}, {{ document }}) |>
-      tidytext::cast_sparse({{ type }}, {{ document }}, n)
+    # Create document-term counts
+    counts <- as.data.frame(table(
+      data[[rlang::as_name(rlang::enquo(type))]], 
+      data[[rlang::as_name(rlang::enquo(document))]]
+    ))
+    colnames(counts) <- c("type", "document", "n")
+    
+    # Create sparse matrix
+    tdm <- Matrix::sparseMatrix(
+      i = as.numeric(factor(counts$type)),
+      j = as.numeric(factor(counts$document)), 
+      x = counts$n,
+      dimnames = list(
+        levels(factor(counts$type)),
+        levels(factor(counts$document))
+      )
+    )
     # Initialize an empty data frame
     row_sums <- Matrix::rowSums(tdm)
     output_df <- data.frame(type = rownames(tdm), n = row_sums, 
