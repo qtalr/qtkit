@@ -24,8 +24,6 @@ knitr::opts_chunk$set(
 library(qtkit)
 ```
 
-: Data origin information
-
 | Attribute                | Description                                               |
 |--------------------------|-----------------------------------------------------------|
 | Resource name            | The name of the resource.                                 |
@@ -43,3 +41,5 @@ The {qtkit} package provides the function `create_data_origin()` to help create 
 ```{r}
 ls("package:qtkit")
 ```
+
+
