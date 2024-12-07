@@ -27,30 +27,29 @@
 #' @export
 calc_assoc_metrics <-
   function(
-    data,
-    doc_index,
-    token_index,
-    type,
-    association = "all",
-    verbose = FALSE) {
+      data,
+      doc_index,
+      token_index,
+      type,
+      association = "all",
+      verbose = FALSE) {
+    doc_index <- rlang::ensym(doc_index)
+    token_index <- rlang::ensym(token_index)
+    type <- rlang::ensym(type)
+    validate_inputs_cam(data, doc_index, token_index, type, association)
 
-  doc_index <- rlang::ensym(doc_index)
-  token_index <- rlang::ensym(token_index)
-  type <- rlang::ensym(type)
-  validate_inputs_cam(data, doc_index, token_index, type, association)
+    bigram_probs <-
+      calculate_bigram_probabilities(data, doc_index, token_index, type)
 
-  bigram_probs <-
-    calculate_bigram_probabilities(data, doc_index, token_index, type)
+    metrics <- calculate_metrics(bigram_probs, association)
 
-  metrics <- calculate_metrics(bigram_probs, association)
-
-  if (!verbose) {
-    metrics <- metrics[, !colnames(metrics) %in% c("p_xy", "p_x", "p_y")]
-    return(metrics)
-  } else {
-    return(metrics)
+    if (!verbose) {
+      metrics <- metrics[, !colnames(metrics) %in% c("p_xy", "p_x", "p_y")]
+      return(metrics)
+    } else {
+      return(metrics)
+    }
   }
-}
 
 
 #' Calculate Probabilities for Bigrams
@@ -101,6 +100,7 @@ calculate_bigram_probabilities <-
     return(result)
   }
 
+# Document this funciton AI!
 calculate_metrics <-
   function(bigram_probs, association) {
     metrics <- bigram_probs
