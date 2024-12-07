@@ -133,7 +133,7 @@ get_gutenberg_data <-
         text
       )
     # Write works to disk
-    readr::write_csv(results, file = target_file)
+    write.csv(results, file = target_file, row.names = FALSE)
     message("Data saved to ", target_file)
   }
 

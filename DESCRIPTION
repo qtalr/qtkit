@@ -27,7 +27,6 @@ Imports:
     Matrix,
     openai,
     purrr,
-    readr,
     rlang,
     stringr,
     tibble,
