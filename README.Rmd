@@ -12,14 +12,11 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-<!--fix color mixing on title-->
 # Quantitative Text Kit
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[[CRAN status](https://www.r-pkg.org/badges/version/qtkit)](https://CRAN.R-project.org/package=qtkit)
-[![qtkit status badge](https://francojc.r-universe.dev/badges/qtkit)](https://francojc.r-universe.dev/qtkit/)
-[![R-CMD-check](https://github.com/qtalr/qtkit/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/qtalr/qtkit/actions/workflows/R-CMD-check.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/qtkit)](https://CRAN.R-project.org/package=qtkit)
+[![qtkit status badge](https://qtalr.r-universe.dev/badges/qtkit)](https://qtalr.r-universe.dev/qtkit)
 <!-- badges: end -->
 
 ## Getting started
