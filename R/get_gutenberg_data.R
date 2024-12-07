@@ -37,18 +37,19 @@
 #' directory.
 #'
 #' For more information on Library of Congress Classification (LCC) subjects,
-#' refer to the \href{https://www.loc.gov/catdir/cpso/lcco/}{Library of
-#' Congress Classification Guide}.
+#' refer to the \url{https://www.loc.gov/catdir/cpso/lcco/} Library of
+#' Congress Classification Guide.
 #'
 #' @examples
 #' \dontrun{
 #' data_dir <- file.path(tempdir(), "data")
 #'
 #' get_gutenberg_data(
-#'  target_dir = data_dir,
-#'  lcc_subject = "JC"
-#'  n_works = 5,
-#'  confirmed = TRUE)
+#'   target_dir = data_dir,
+#'   lcc_subject = "JC",
+#'   n_works = 5,
+#'   confirmed = TRUE
+#' )
 #' }
 #'
 #' @import gutenbergr
@@ -56,14 +57,13 @@
 #'
 #' @export
 get_gutenberg_data <-
-  function(
-      target_dir,
-      lcc_subject,
-      birth_year = NULL,
-      death_year = NULL,
-      n_works = 100,
-      force = FALSE,
-      confirmed = FALSE) {
+  function(target_dir,
+           lcc_subject,
+           birth_year = NULL,
+           death_year = NULL,
+           n_works = 100,
+           force = FALSE,
+           confirmed = FALSE) {
     # Confirm permission to use the data
     confirmed <- confirm_if_needed(confirmed)
     if (!confirmed) {
@@ -73,14 +73,18 @@ get_gutenberg_data <-
     if (is.null(lcc_subject) || length(lcc_subject) == 0) {
       stop("lcc_subject must be provided and non-empty.")
     }
-    file_name <- paste0("works_",
-                        tolower(paste0(lcc_subject, collapse = "_")),
-                        ".csv")
+    file_name <- paste0(
+      "works_",
+      tolower(paste0(lcc_subject, collapse = "_")),
+      ".csv"
+    )
     target_file <- file.path(target_dir, file_name)
     # Check to see if the data already exists
     if (file.exists(target_file) && !force) {
-      message("Data already exists at ", target_file,
-              "\nUse 'force = TRUE' to overwrite existing data.")
+      message(
+        "Data already exists at ", target_file,
+        "\nUse 'force = TRUE' to overwrite existing data."
+      )
       return(invisible())
     }
     # Ensure the directory exists
