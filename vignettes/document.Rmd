@@ -1,45 +1,208 @@
 ---
-title: "Documenting data and datasets"
+title: "Documenting Datasets with qtkit"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Documenting data and datasets}
+  %\VignetteIndexEntry{Documenting Datasets with qtkit}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-## Introduction
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(qtkit)
+library(tidyverse)  # Load core tidyverse packages
+```
 
-<!--
-- TODO: Add vignette using documentation functions
--->
+# Introduction
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+Proper dataset documentation is crucial for reproducible research and effective data sharing. The {qtkit} package provides two main functions to help standardize and automate the documentation process:
+
+- `create_data_origin()`: Creates standardized metadata about dataset sources
+- `create_data_dictionary()`: Generates detailed variable-level documentation
+
+# Creating Dataset Origin Documentation
+
+## Basic Usage
+
+Let's start with documenting the built-in `mtcars` dataset:
+
+```{r}
+# Create a temporary file for our documentation
+origin_file <- fs::file_temp(ext = "csv")
+
+# Create the origin documentation template
+origin_doc <- create_data_origin(
+  file_path = origin_file,
+  return = TRUE
+)
+
+# View the template
+origin_doc %>% 
+  glimpse()
+```
+
+The template provides fields for essential metadata. Here's how you might fill it out for `mtcars`:
+
+```{r}
+origin_doc %>%
+  mutate(description = c(
+    "Motor Trend Car Road Tests",
+    "Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391–411.",
+    "US automobile market, passenger vehicles",
+    "1973-74",
+    "Built-in R dataset (.rda)",
+    "Single data frame with 32 observations of 11 variables",
+    "Public Domain",
+    "Citation: Henderson and Velleman (1981)"
+  )) %>%
+  write_csv(origin_file)
+```
+
+## Customizing Origin Documentation
+
+You can force overwrite existing documentation:
+
+```{r}
+create_data_origin(
+  file_path = origin_file,
+  force = TRUE
 )
 ```
 
-```{r setup}
-library(qtkit)
-```
+# Creating Data Dictionaries
 
-| Attribute                | Description                                               |
-|--------------------------|-----------------------------------------------------------|
-| Resource name            | The name of the resource.                                 |
-| Data source              | URL, DOI, etc.                                            |
-| Data sampling frame      | Language, language variety, modality, genre, etc.         |
-| Data collection date(s)  | The dates the data was collected.                         |
-| Data format              | .txt, .csv, .xml, .html, etc.                             |
-| Data schema              | Relationships between data elements: files, folders, etc. |
-| License                  | CC BY, CC BY-SA, etc.                                     |
-| Attribution              | Citation information.                                     |
+## Basic Dictionary Creation
 
-The {qtkit} package provides the function `create_data_origin()` to help create data origin files. By default the function will create the scaffolding for the data origin file in CSV format.
-
+Create a basic data dictionary without AI assistance:
 
 ```{r}
-ls("package:qtkit")
+# Create a temporary file for our dictionary
+dict_file <- fs::file_temp(ext = "csv")
+
+# Generate dictionary for iris dataset
+iris_dict <- create_data_dictionary(
+  data = iris,
+  file_path = dict_file
+)
+
+# View the results
+iris_dict %>%
+  glimpse()
 ```
+
+## AI-Enhanced Data Dictionaries
+
+If you have an OpenAI API key, you can generate more detailed descriptions:
+
+```{r, eval=FALSE}
+# Not run - requires API key
+Sys.setenv(OPENAI_API_KEY = "your-api-key")
+
+iris_dict_ai <- create_data_dictionary(
+  data = iris,
+  file_path = dict_file,
+  model = "gpt-3.5-turbo",
+  sample_n = 5
+)
+```
+
+Example output might look like:
+
+```{r echo=FALSE}
+# Simulated AI output
+tibble(
+  variable = c("Sepal.Length", "Sepal.Width"),
+  name = c("Sepal Length", "Sepal Width"),
+  type = c("numeric", "numeric"),
+  description = c(
+    "Length of the sepal in centimeters",
+    "Width of the sepal in centimeters"
+  )
+)
+```
+
+## Working with Larger Datasets
+
+For larger datasets, you can use sampling and grouping:
+
+```{r, eval=FALSE}
+diamonds_dict <- diamonds %>%
+  create_data_dictionary(
+    file_path = "diamonds_dict.csv",
+    model = "gpt-3.5-turbo",
+    sample_n = 3,
+    grouping = "cut"  # Sample across different cut categories
+  )
+```
+
+# Workflow Integration
+
+Here's a complete workflow combining both functions:
+
+```{r}
+document_dataset <- function(data, name, base_path) {
+  # Create file paths using fs package
+  origin_path <- fs::path(base_path, str_glue("{name}_origin.csv"))
+  dict_path <- fs::path(base_path, str_glue("{name}_dictionary.csv"))
+  
+  # Create origin documentation
+  create_data_origin(origin_path)
+  
+  # Create data dictionary
+  create_data_dictionary(
+    data = data,
+    file_path = dict_path
+  )
+  
+  cli::cli_alert_success("Documentation created at: {base_path}")
+}
+
+# Example usage
+tmp_dir <- fs::file_temp()
+document_dataset(mtcars, "mtcars", tmp_dir)
+```
+
+## Best Practices
+
+1. Create documentation when first obtaining/creating a dataset
+2. Update documentation when:
+   - Adding new variables
+   - Modifying data structure
+   - Changing data sources
+3. Store documentation alongside data in version control
+4. Include documentation paths in your project README
+
+# Advanced Topics
+
+## Custom Templates
+
+You can modify the default templates using tidyverse functions:
+
+```{r}
+# Add custom fields to origin documentation
+custom_origin <- function(file_path) {
+  create_data_origin(fs::file_temp(), return = TRUE) %>%
+    bind_rows(
+      tibble(
+        attribute = c("Data quality notes", "Processing script"),
+        description = c(
+          "Notes about data quality issues",
+          "Path to data processing script"
+        )
+      )
+    ) %>%
+    write_csv(file_path)
+}
+```
+
+# Conclusion
+
+The {qtkit} package provides flexible tools for standardizing dataset documentation. By combining `create_data_origin()` and `create_data_dictionary()`, you can create comprehensive documentation that enhances reproducibility and data sharing.
+
+## Additional Resources
+
+- Package documentation: `help(package = "qtkit")`
+- Related packages: {dataMaid}, {codebook}
+- [Project homepage](https://github.com/yourusername/qtkit)
 
 
