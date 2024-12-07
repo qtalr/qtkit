@@ -43,7 +43,7 @@ These functions handle common tasks like:
 
 Let's create and save a simple table using `write_kbl()`:
 
-```{r mtcars_table}
+```{r mtcars_table, eval = FALSE}
 # Create a basic table
 mtcars_table <- mtcars[1:5, 1:4] |>
   kable(format = "html") |>
@@ -62,7 +62,7 @@ write_kbl(
 
 You can customize the output format and styling:
 
-```{r mtcars_table_styled}
+```{r mtcars_table_styled, eval = FALSE}
 mtcars_table <- mtcars[1:5, 1:4] |>
   kable(format = "html") |>
   kable_styling(
@@ -86,7 +86,7 @@ write_kbl(
 
 Save ggplot2 plots with `write_gg()`:
 
-```{r mtcars_plot}
+```{r mtcars_plot, eval = FALSE}
 # Create a basic plot
 p <- ggplot(mtcars, aes(wt, mpg)) +
   geom_point() +
@@ -105,7 +105,7 @@ write_gg(
 
 Add custom themes and formatting:
 
-```{r mtcars_plot_styled}
+```{r mtcars_plot_styled, eval = FALSE}
 p <- ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
   geom_point(size = 3) +
   theme_minimal() +
@@ -149,13 +149,7 @@ write_obj(
 
 ## Reading Saved Artifacts
 
-These objects have all been saved in the `artifacts` directory, as seen below:
-
-```{r artifacts_list}
-fs::dir_tree("artifacts")
-```
-
-Tables and plots saved with {qtkit} can be easily restored. For image formats, you can use the `knitr::include_graphics()` function, markdown, or HTML:
+Tables and plots saved with {qtkit} can be easily restored from the directory where they have been saved (in this case `artifacts/`). For image formats, you can use the `knitr::include_graphics()` function, markdown, or HTML:
 
 ```r
 knitr::include_graphics("artifacts/mtcars_plot.png")
