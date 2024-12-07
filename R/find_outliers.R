@@ -46,7 +46,6 @@ find_outliers <-
       data,
       variable_name,
       verbose = TRUE) {
-      variable_name) {
     # Check if `data` is a data.frame
     if (!is.data.frame(data)) {
       stop("The first argument must be a data.frame.")
