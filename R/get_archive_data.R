@@ -20,19 +20,20 @@
 #' \dontrun{
 #' data_dir <- file.path(tempdir(), "data")
 #' url <-
-#'  "https://raw.githubusercontent.com/qtalr/qtkit/main/inst/extdata/test_data.zip"
+#'   "https://raw.githubusercontent.com/qtalr/qtkit/main/inst/extdata/test_data.zip"
 #' get_archive_data(
-#'  url = url,
-#'  target_dir = data_dir,
-#'  confirmed = TRUE)
+#'   url = url,
+#'   target_dir = data_dir,
+#'   confirmed = TRUE
+#' )
 #' }
 #' @export
 get_archive_data <-
   function(
-    url,
-    target_dir,
-    force = FALSE,
-    confirmed = FALSE) {
+      url,
+      target_dir,
+      force = FALSE,
+      confirmed = FALSE) {
     confirmed <- confirm_if_needed(confirmed)
     if (!confirmed) {
       return(message("Aborted."))
@@ -52,6 +53,7 @@ get_archive_data <-
     }
   }
 
+# Document this and the other internal functions in this file AI!
 # ' @keywords internal
 # Helper function to confirm permission
 confirm_if_needed <- function(confirmed) {
