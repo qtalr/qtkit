@@ -53,8 +53,24 @@ calc_assoc_metrics <-
 }
 
 
-# Helper function to calculate bigram probabilities
-# Document this function AI!
+#' Calculate Probabilities for Bigrams
+#'
+#' Helper function that calculates joint and marginal probabilities for bigrams
+#' in the input data. It processes the data to create bigrams and computes
+#' their probabilities along with individual token probabilities.
+#'
+#' @param data A data frame containing the corpus
+#' @param doc_index Column name for document index
+#' @param token_index Column name for token position
+#' @param type Column name for the actual tokens/terms
+#'
+#' @return A data frame containing:
+#'   \item{x}{First token in bigram}
+#'   \item{y}{Second token in bigram}
+#'   \item{p_xy}{Joint probability of the bigram}
+#'   \item{p_x}{Marginal probability of first token}
+#'   \item{p_y}{Marginal probability of second token}
+#'
 calculate_bigram_probabilities <-
   function(data, doc_index, token_index, type) {
     # Sort data by document and token
