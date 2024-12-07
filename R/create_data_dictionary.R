@@ -21,7 +21,6 @@
 #' @return A data frame containing the variable name, human-readable name,
 #' variable type, and description for each variable in the input data frame.
 #'
-#' @importFrom stringr str_trunc
 #' @importFrom openai list_models create_chat_completion
 #' @import dplyr
 #'
@@ -93,8 +92,7 @@ create_data_dictionary <-
         # truncate character variables to 50 characters
         dplyr::mutate_if(
           is.character,
-          stringr::str_trunc,
-          width = 50
+          function(x) substr(x, 1, 47) |> paste0("...")
         )
 
       # Convert the data sample to R code as a string
