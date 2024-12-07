@@ -117,8 +117,12 @@ curate_enntt_file <- function(dir_path, corpus_type) {
       # Process data
       dat_attrs <- lapply(dat, extract_dat_attrs)
       dat_attrs <- do.call(rbind, dat_attrs)
-      dataset <- cbind(dat_attrs, text = tok)
-      dataset$type <- corpus_type
+      dataset <- data.frame(
+        dat_attrs,
+        text = tok,
+        type = corpus_type,
+        stringsAsFactors = FALSE
+      )
       return(dataset)
     },
     error = function(e) {
