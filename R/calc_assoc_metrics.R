@@ -100,7 +100,24 @@ calculate_bigram_probabilities <-
     return(result)
   }
 
-# Document this funciton AI!
+#' Calculate Association Metrics
+#'
+#' Helper function that computes various association metrics for bigrams based on
+#' their probability distributions. Supports PMI (Pointwise Mutual Information),
+#' Dice's Coefficient, and G-score calculations.
+#'
+#' @param bigram_probs A data frame containing bigram probability data with columns:
+#'   \item{p_xy}{Joint probability of bigram}
+#'   \item{p_x}{Marginal probability of first token}
+#'   \item{p_y}{Marginal probability of second token}
+#' @param association Character vector specifying which metrics to calculate
+#'
+#' @return A data frame containing the original probability columns plus requested
+#' association metrics:
+#'   \item{pmi}{Pointwise Mutual Information}
+#'   \item{dice_coeff}{Dice's Coefficient}
+#'   \item{g_score}{G-score}
+#'
 calculate_metrics <-
   function(bigram_probs, association) {
     metrics <- bigram_probs
