@@ -83,7 +83,8 @@ calc_type_metrics <-
     }
     return(output_df)
   }
-
+# Document this function AI!
+#' @keywords internal
 validate_inputs_ctm <- function(data, type, document, frequency, dispersion) {
   # Check if data is a data.frame
   if (!is.data.frame(data)) {
