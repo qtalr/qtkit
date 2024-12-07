@@ -7,18 +7,28 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
 library(qtkit)
-library(tidyverse)  # Load core tidyverse packages
+library(fs)
+library(tibble)
+library(dplyr)
+library(glue)
+library(readr)
 ```
 
 # Introduction
 
 Proper dataset documentation is crucial for reproducible research and effective data sharing. The {qtkit} package provides two main functions to help standardize and automate the documentation process:
 
-- `create_data_origin()`: Creates standardized metadata about dataset sources
-- `create_data_dictionary()`: Generates detailed variable-level documentation
+- `create_data_origin()`: Creates standardized metadata about data(set) sources
+- `create_data_dictionary()`: Generates the scaffolding for a detailed variable-level documentation or can use AI to generate descriptions to be reviewed and updated as necessary
 
 # Creating Dataset Origin Documentation
 
@@ -37,7 +47,7 @@ origin_doc <- create_data_origin(
 )
 
 # View the template
-origin_doc %>% 
+origin_doc %>%
   glimpse()
 ```
 
@@ -131,35 +141,8 @@ diamonds_dict <- diamonds %>%
     file_path = "diamonds_dict.csv",
     model = "gpt-3.5-turbo",
     sample_n = 3,
-    grouping = "cut"  # Sample across different cut categories
+    grouping = "cut" # Sample across different cut categories
   )
-```
-
-# Workflow Integration
-
-Here's a complete workflow combining both functions:
-
-```{r}
-document_dataset <- function(data, name, base_path) {
-  # Create file paths using fs package
-  origin_path <- fs::path(base_path, str_glue("{name}_origin.csv"))
-  dict_path <- fs::path(base_path, str_glue("{name}_dictionary.csv"))
-  
-  # Create origin documentation
-  create_data_origin(origin_path)
-  
-  # Create data dictionary
-  create_data_dictionary(
-    data = data,
-    file_path = dict_path
-  )
-  
-  cli::cli_alert_success("Documentation created at: {base_path}")
-}
-
-# Example usage
-tmp_dir <- fs::file_temp()
-document_dataset(mtcars, "mtcars", tmp_dir)
 ```
 
 ## Best Practices
@@ -172,29 +155,6 @@ document_dataset(mtcars, "mtcars", tmp_dir)
 3. Store documentation alongside data in version control
 4. Include documentation paths in your project README
 
-# Advanced Topics
-
-## Custom Templates
-
-You can modify the default templates using tidyverse functions:
-
-```{r}
-# Add custom fields to origin documentation
-custom_origin <- function(file_path) {
-  create_data_origin(fs::file_temp(), return = TRUE) %>%
-    bind_rows(
-      tibble(
-        attribute = c("Data quality notes", "Processing script"),
-        description = c(
-          "Notes about data quality issues",
-          "Path to data processing script"
-        )
-      )
-    ) %>%
-    write_csv(file_path)
-}
-```
-
 # Conclusion
 
 The {qtkit} package provides flexible tools for standardizing dataset documentation. By combining `create_data_origin()` and `create_data_dictionary()`, you can create comprehensive documentation that enhances reproducibility and data sharing.
@@ -203,6 +163,6 @@ The {qtkit} package provides flexible tools for standardizing dataset documentat
 
 - Package documentation: `help(package = "qtkit")`
 - Related packages: {dataMaid}, {codebook}
-- [Project homepage](https://github.com/yourusername/qtkit)
+- [Project homepage](https://github.com/qtalr/qtkit)
 
 
