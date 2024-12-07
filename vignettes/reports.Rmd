@@ -1,8 +1,6 @@
 ---
 title: "Publishing Analysis Artifacts"
 output: rmarkdown::html_vignette
-resource_files:
-  - artifacts/
 vignette: >
   %\VignetteIndexEntry{Publishing Analysis Artifacts}
   %\VignetteEngine{knitr::rmarkdown}
@@ -157,11 +155,19 @@ These objects have all been saved in the `artifacts` directory, as seen below:
 fs::dir_tree("artifacts")
 ```
 
-Tables and plots saved with {qtkit} can be easily restored. For image formats, use the `knitr::include_graphics()` function:
+Tables and plots saved with {qtkit} can be easily restored. For image formats, you can use the `knitr::include_graphics()` function, markdown, or HTML:
 
-```{r mtcars_plot_restore}
-# Display the saved plot
+```r
 knitr::include_graphics("artifacts/mtcars_plot.png")
+```
+
+```md
+![mtcars_plot](artifacts/mtcars_plot.png)
+```
+
+
+```html
+<img src="artifacts/mtcars_plot.png" alt="mtcars_plot" style="display: block; margin: auto;" />
 ```
 
 Objects can be read back using `dget()`:
@@ -174,7 +180,7 @@ restored_data <- dget("artifacts/mtcars_4cyl")
 glimpse(restored_data)
 ```
 
-> [!TIP]
+> **Tip**
 > Note that tables and plots need not be saved with the `write_kbl()` and `write_gg()` functions to be restored. These objects can be saved and restored using the `write_obj()` and `dget()` function as well.
 
 
