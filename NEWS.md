@@ -2,7 +2,7 @@
 
 - Bug fix (#7): `calc_type_metrics()` now correctly allows for the `type` and `document` arguments to be specified as symbols that can take values other than type and document.
 - Adds `curate_enntt_data()` to curate the ENNTT data downloaded from GitHub [here](https://github.com/senisioi/enntt-release).
-- ...
+- Adds `curate_swda_data()` to curate the SWDA data downloaded from the LDC [here](https://catalog.ldc.upenn.edu/docs/LDC97S62/swb1_dialogact_annot.tar.gz).
 
 # qtkit 1.0.0
 
