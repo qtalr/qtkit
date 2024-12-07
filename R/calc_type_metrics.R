@@ -1,39 +1,42 @@
-#' Calculate Type Metrics for Text Data
+#' Calculate Frequency and Dispersion Metrics for Text Types
 #'
-#' This function calculates type metrics for tokenized text data.
+#' Calculates various frequency and dispersion metrics for types (terms/tokens) 
+#' in tokenized text data. Provides a comprehensive analysis of how types are 
+#' distributed across documents in a corpus.
 #'
-#' @param data A data frame containing the tokenized text data
-#' @param type The variable in `data` that contains the type
-#'             (e.g., term, lemma) to analyze.
-#' @param document The variable in `data` that contains the document IDs.
-#' @param frequency A character vector indicating which
-#'                  frequency metrics to use. If NULL (default),
-#'                  only the `type` and `n` are returned.
-#'                  Other options:
-#'                  'all',
-#'                  'rf' calculates relative frequency,
-#'                  'orf' calculates observed relative frequency.
-#'                  Can specify multiple options: c('rf', 'orf').
-#' @param dispersion A character vector indicating which
-#'                   dispersion metrics to use. If NULL (default),
-#'                   only the `type` and `n` are returned.
-#'                   Other options:
-#'                  'all',
-#'                  'df' calculates Document Frequency.
-#'                  'idf' calculates Inverse Document Frequency.
-#'                  'dp' calculates Gries' Deviation of Proportions.
-#'                  Can specify multiple options: c('df', 'idf').
+#' @param data Data frame. Contains the tokenized text data with document IDs
+#'        and types/terms.
+#' @param type Symbol. Column in `data` containing the types to analyze 
+#'        (e.g., terms, lemmas).
+#' @param document Symbol. Column in `data` containing the document identifiers.
+#' @param frequency Character vector. Frequency metrics to calculate:
+#'        - NULL (default): Returns only type counts
+#'        - 'all': All available metrics
+#'        - 'rf': Relative frequency
+#'        - 'orf': Observed relative frequency (per 100)
+#' @param dispersion Character vector. Dispersion metrics to calculate:
+#'        - NULL (default): Returns only type counts
+#'        - 'all': All available metrics
+#'        - 'df': Document frequency
+#'        - 'idf': Inverse document frequency
+#'        - 'dp': Gries' deviation of proportions
 #'
-#' @return A data frame with columns:
-#'   - `type`: The unique types from the input data.
-#'   - `n`: The frequency of each type across all document.
-#'   Optionally (based on the `frequency` and `dispersion` arguments):
-#'   - `rf`: The relative frequency of each type across all document.
-#'   - `orf`: The observed relative frequency (per 100) of each
-#'            type across all document.
-#'   - `df`: The document frequency of each type.
-#'   - `idf`: The inverse document frequency of each type.
-#'   - `dp`: Gries' Deviation of Proportions of each type.
+#' @return Data frame containing requested metrics:
+#' - type: Unique types from input data
+#' - n: Raw frequency count
+#' - rf: Relative frequency (if requested)
+#' - orf: Observed relative frequency per 100 (if requested)
+#' - df: Document frequency (if requested)
+#' - idf: Inverse document frequency (if requested)
+#' - dp: Deviation of proportions (if requested)
+#'
+#' @details
+#' The function creates a term-document matrix internally and calculates the
+#' requested metrics. Frequency metrics show how often types occur, while
+#' dispersion metrics show how evenly they are distributed across documents.
+#' 
+#' The 'dp' metric (Gries' Deviation of Proportions) ranges from 0 (perfectly 
+#' even distribution) to 1 (completely clumped distribution).
 #'
 #' @references
 #' Gries, Stefan Th. (2023). Statistical Methods in Corpus Linguistics.
