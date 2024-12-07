@@ -1,17 +1,36 @@
-#' Download an archive file and unarchive its contents
+#' Download and Extract Archive Files
 #'
-#' Possible file types include .zip, .gz, .tar, and .tgz
+#' @description
+#' Downloads compressed archive files from a URL and extracts their contents to a
+#' specified directory. Supports multiple archive formats and handles permission
+#' confirmation.
 #'
-#' @param url A character vector representing the full url to
-#' the compressed file
-#' @param target_dir The directory where the archive file should be downloaded
-#' @param force An optional argument which forcefully overwrites existing data
-#' @param confirmed If `TRUE`, the user has confirmed that they have
-#'  permission to use the data.
-#' If `FALSE`, the function will prompt the user to confirm permission.
-#' Setting this to `TRUE` is useful for reproducible workflows.
+#' @details
+#' Supported archive formats:
+#' - ZIP (.zip)
+#' - Gzip (.gz)
+#' - Tar (.tar)
+#' - Compressed tar (.tgz)
 #'
-#' @returns NULL, the archive file is unarchived in the target directory
+#' The function includes safety features:
+#' - Permission confirmation for data usage
+#' - Directory existence checks
+#' - Archive format validation
+#' - Automatic file cleanup
+#'
+#' @param url Character string. Full URL to the compressed archive file.
+#' @param target_dir Character string. Directory where the archive contents
+#'        should be extracted.
+#' @param force Logical. If TRUE, overwrites existing data in target directory.
+#'        Default is FALSE.
+#' @param confirmed Logical. If TRUE, skips permission confirmation prompt.
+#'        Useful for reproducible workflows. Default is FALSE.
+#'
+#' @return Invisible NULL. Called for side effects:
+#' - Downloads archive file
+#' - Creates target directory if needed
+#' - Extracts archive contents
+#' - Cleans up temporary files
 #'
 #' @importFrom utils download.file unzip untar
 #' @importFrom tools file_ext

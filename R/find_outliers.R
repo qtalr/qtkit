@@ -1,15 +1,34 @@
-#' Identify Outliers in a Numeric Variable
+#' Detect Statistical Outliers Using IQR Method
 #'
-#' This function identifies outliers in a numeric variable of a data.frame
-#' using the interquartile range (IQR) method.
+#' @description
+#' Identifies statistical outliers in a numeric variable using the Interquartile
+#' Range (IQR) method. Provides detailed diagnostics about the outlier detection
+#' process.
 #'
-#' @param data A data.frame object.
-#' @param variable_name A symbol representing a numeric variable in `data`.
+#' @details
+#' The function uses the standard IQR method for outlier detection:
+#' - Calculates Q1 (25th percentile) and Q3 (75th percentile)
+#' - Computes IQR = Q3 - Q1
+#' - Defines outliers as values outside [Q1 - 1.5*IQR, Q3 + 1.5*IQR]
 #'
-#' @return A data.frame containing the outliers in `variable_name`.
-#' If no outliers are found, the function returns `NULL`. The
-#' function also prints diagnostic information about the
-#' variable and the number of outliers found.
+#' @param data Data frame containing the variable to analyze.
+#' @param variable_name Unquoted name of the numeric variable to check for outliers.
+#'
+#' @return
+#' If outliers are found:
+#' - Data frame containing rows with outlier values
+#' - Prints diagnostic information about quartiles and fences
+#'
+#' If no outliers:
+#' - Returns NULL
+#' - Prints confirmation message
+#'
+#' @section Diagnostic Output:
+#' - Variable name
+#' - Q1 and Q3 values
+#' - IQR value
+#' - Upper and lower fence values
+#' - Number of outliers found
 #'
 #' @export
 #'
