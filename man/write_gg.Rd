@@ -2,7 +2,7 @@
 % Please edit documentation in R/write_gg.R
 \name{write_gg}
 \alias{write_gg}
-\title{Write a ggplot object to a file}
+\title{Save ggplot Objects to Files}
 \usage{
 write_gg(
   gg_obj = NULL,
@@ -36,11 +36,18 @@ function from the \code{ggplot2} package.}
 The path of the written file.
 }
 \description{
-This function is a wrapper around \code{ggsave} from the
-\code{ggplot2} package that allows you to write a ggplot object as part of
-a knitr document as an output for later use. It is designed to be used
-in a code block. The file name, if not specified, will be the label of
-the code block.
+A wrapper around \code{ggsave} that facilitates saving ggplot objects within knitr
+documents. Automatically handles file naming and directory creation, with
+support for multiple output formats.
+}
+\details{
+This function extends \code{ggplot2::ggsave} by:
+\itemize{
+\item Using knitr code block labels for automatic file naming
+\item Creating target directories if they don't exist
+\item Supporting multiple output formats (PDF, PNG, JPEG, TIFF, SVG)
+\item Applying custom themes to plots before saving
+}
 }
 \examples{
 \dontrun{
@@ -49,13 +56,15 @@ library(ggplot2)
 plot_dir <- file.path(tempdir(), "plot")
 
 # Write a ggplot object as a PDF file
-p <- ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point()
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point()
 
 write_gg(
- gg_obj = p,
- file = "plot_file",
- target_dir = plot_dir,
- device = "pdf")
+  gg_obj = p,
+  file = "plot_file",
+  target_dir = plot_dir,
+  device = "pdf"
+)
 
 unlink(plot_dir)
 }

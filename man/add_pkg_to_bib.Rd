@@ -2,22 +2,39 @@
 % Please edit documentation in R/add_pkg_to_bib.R
 \name{add_pkg_to_bib}
 \alias{add_pkg_to_bib}
-\title{Add package to BibTeX file}
+\title{Add Package Citations to BibTeX File}
 \usage{
 add_pkg_to_bib(pkg_name, bib_file = "packages.bib")
 }
 \arguments{
-\item{pkg_name}{The name of the package to add to the BibTeX file.}
+\item{pkg_name}{Character string. The name of the R package to add to
+the BibTeX file.}
 
-\item{bib_file}{The name of the BibTeX file to write to.}
+\item{bib_file}{Character string. The path and name of the BibTeX file
+to write to. Default is "packages.bib".}
+}
+\value{
+Invisible NULL. The function is called for its side effect of
+writing to the BibTeX file.
 }
 \description{
-This function adds a package to a BibTeX file. It uses the
-\code{knitr::write_bib} function to write the package name to the file.
+Adds citation information for R packages to a BibTeX file. Uses the
+\code{knitr::write_bib} function to generate and append package citations
+in BibTeX format.
+}
+\details{
+The function will create the BibTeX file if it doesn't exist,
+or append to it if it does. It includes citations for both the
+specified package and all currently loaded packages.
 }
 \examples{
+# Create a temporary BibTeX file
 my_bib_file <- tempfile(fileext = ".bib")
+
+# Add citations for dplyr package
 add_pkg_to_bib("dplyr", my_bib_file)
+
+# View the contents of the BibTeX file
 readLines(my_bib_file) |> cat(sep = "\n")
 
 }

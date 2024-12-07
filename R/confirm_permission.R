@@ -1,13 +1,19 @@
-#' Confirm permission to use data
+#' Confirm User Permission for Data Usage
 #'
-#' This function is for internal use only.
+#' Internal function that prompts the user to confirm they have permission to use
+#' the data. Only prompts in interactive sessions.
 #'
-#' This function confirms that the user has permission to use the data.
-#' If not, the script is returns FALSE and stops.
-#' @noRd
+#' @details
+#' This function displays a prompt asking users to confirm they have permission
+#' to use the data. It returns TRUE if confirmed, FALSE otherwise. The function
+#' only prompts in interactive sessions.
+#'
+#' @return Logical value:
+#' - TRUE if user confirms permission
+#' - FALSE if user denies permission or session is non-interactive
+#'
 #' @keywords internal
-#' @return TRUE if the user confirms permission, FALSE otherwise
-#'
+#' @noRd
 confirm_permission <- function() {
   # Confirm that the user has permission to use the data
   # If not, stop the script

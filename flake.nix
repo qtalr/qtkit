@@ -15,19 +15,18 @@
             # Software
             curl
             gettext
-            gh
-            git
+            imagemagick
             pandoc
             quarto
             R
             radianWrapper
             # R packages: development
             rPackages.devtools
+            rPackages.formatR
             rPackages.httr
             rPackages.httptest
             rPackages.languageserver
             rPackages.pak
-            rPackages.rcompendium
             rPackages.testthat
             rPackages.usethis
             rPackages.goodpractice
@@ -50,11 +49,13 @@
             rPackages.tibble
             rPackages.tidyr
             rPackages.tidytext
+            rPackages.xml2
             rPackages.webshot2
           ];
 
           shellHook = ''
             export R_LIBS_USER=$PWD/Library
+            mkdir -p "$R_LIBS_USER"
           '';
         };
       });

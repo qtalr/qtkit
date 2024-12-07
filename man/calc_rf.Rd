@@ -2,17 +2,63 @@
 % Please edit documentation in R/calc_disp.R
 \name{calc_rf}
 \alias{calc_rf}
-\title{Dispersion and frequency functions
-These functions are for internal use only.}
+\title{Internal Functions for Calculating Dispersion and Frequency Metrics}
 \usage{
 calc_rf(tdm)
 }
-\description{
-To be used with the \code{calc_type_metrics} function.
-Includes dispersion measures: \code{calc_df()} Document Frequency 'DF',
-\code{calc_idf()} Inverse Document Frequency 'IDF', and \code{calc_dp()} Gries'
-Deviation of Proportions 'DP' functions. Frequency measures include:
-\code{calc_rf()} and \code{calc_orf()}. Takes a term-document matrix (TDM) as
-input and returns the respective dispersion metrics for each type in the TDM.
+\arguments{
+\item{tdm}{A sparse term-document matrix (Matrix package format)}
 }
+\value{
+A numeric vector where each element represents a term's relative
+frequency in the corpus (range: 0-1)
+}
+\description{
+A collection of internal helper functions that calculate various dispersion
+and frequency metrics from term-document matrices. These functions support
+the main \code{calc_type_metrics} function by providing specialized calculations
+for different statistical measures.
+
+Computes the relative frequency (RF) for each term in a term-document matrix,
+representing how often each term occurs relative to the total corpus size.
+}
+\details{
+The package implements these metrics:
+
+Dispersion measures:
+\itemize{
+\item Document Frequency (DF): Count of documents containing each term
+\item Inverse Document Frequency (IDF): Log-scaled inverse of DF, emphasizing rare terms
+\item Deviation of Proportions (DP): Gries' measure of distributional evenness
+ranging from 0 (perfectly even) to 1 (completely clumped)
+}
+
+Frequency measures:
+\itemize{
+\item Relative Frequency (RF): Term frequency normalized by total corpus size
+\item Observed Relative Frequency (ORF): RF expressed as percentage (RF * 100)
+}
+
+Implementation notes:
+\itemize{
+\item All functions expect a sparse term-document matrix input
+\item Matrix operations are optimized using the Matrix package
+\item NA values are handled appropriately for each metric
+\item Results are returned as numeric vectors
+}
+
+The calculation process:
+\enumerate{
+\item Sums occurrences of each term across all documents
+\item Divides by total corpus size (sum of all terms)
+\item Returns proportions between 0 and 1
+}
+}
+\references{
+Gries, S. T. (2008). Dispersions and adjusted frequencies in corpora.
+International Journal of Corpus Linguistics, 13(4), 403-437.
+}
+\keyword{Calculate}
+\keyword{Frequency}
+\keyword{Relative}
 \keyword{internal}

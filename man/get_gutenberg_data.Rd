@@ -61,18 +61,19 @@ The resulting works are downloaded and saved as a CSV file in the target
 directory.
 
 For more information on Library of Congress Classification (LCC) subjects,
-refer to the \href{https://www.loc.gov/catdir/cpso/lcco/}{Library of
-Congress Classification Guide}.
+refer to the \url{https://www.loc.gov/catdir/cpso/lcco/} Library of
+Congress Classification Guide.
 }
 \examples{
 \dontrun{
 data_dir <- file.path(tempdir(), "data")
 
 get_gutenberg_data(
- target_dir = data_dir,
- lcc_subject = "JC"
- n_works = 5,
- confirmed = TRUE)
+  target_dir = data_dir,
+  lcc_subject = "JC",
+  n_works = 5,
+  confirmed = TRUE
+)
 }
 
 }

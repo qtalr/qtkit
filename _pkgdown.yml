@@ -35,6 +35,7 @@ reference:
     desc: 'Functions to create calculations'
     contents:
       - calc_assoc_metrics
+      - calc_normalized_entropy
       - calc_type_metrics
   - title: 'Inspection functions'
     desc: 'Functions to inspect data'
@@ -45,6 +46,8 @@ reference:
     contents:
       - create_data_dictionary
       - create_data_origin
+      - curate_enntt_data
+      - curate_swda_data
       - get_archive_data
       - get_gutenberg_data
   - title: 'Publishing functions'

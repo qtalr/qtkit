@@ -5,8 +5,8 @@ test_that("get_gutenberg_data function works correctly", {
   skip_on_cran()
   # Create a temporary directory for testing
   temp_dir <- tempdir()
-# Define the parameters for the function
-  lcc_subject <- "JC"
+  # Define the parameters for the function
+  lcc_subject <- "P"
   n_works <- 5
   confirmed <- TRUE
   # Call the function with the test parameters
@@ -28,13 +28,15 @@ test_that("get_gutenberg_data function works correctly", {
   expect_equal(length(unique(output_data$gutenberg_id)), n_works)
   # Check if the output data has the expected columns
   expected_columns <-
-    c("gutenberg_id",
+    c(
+      "gutenberg_id",
       "lcc",
       "gutenberg_bookshelf",
       "gutenberg_author_id",
       "author",
       "title",
-      "text")
+      "text"
+    )
   expect_equal(colnames(output_data), expected_columns)
   file.remove(expected_file)
 })

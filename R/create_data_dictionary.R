@@ -20,13 +20,9 @@
 #'
 #' @return A data frame containing the variable name, human-readable name,
 #' variable type, and description for each variable in the input data frame.
-#' @importFrom tibble tibble
-#' @importFrom glue glue
-#' @importFrom purrr map_chr
-#' @importFrom stringr str_trunc
+#'
 #' @importFrom openai list_models create_chat_completion
 #' @import dplyr
-#' @import readr
 #'
 #' @export
 create_data_dictionary <-
@@ -55,11 +51,12 @@ create_data_dictionary <-
     # If not, check to see if `model` is one of the available models
     if (is.null(model)) {
       data_dict <-
-        tibble::tibble(
+        data.frame(
           variable = names(data),
           name = NA_character_,
-          type = purrr::map_chr(data, class),
-          description = NA_character_
+          type = sapply(data, class, USE.NAMES = FALSE),
+          description = NA_character_,
+          stringsAsFactors = FALSE
         )
     } else {
       # Check to see if `model` is one of the available models
@@ -95,8 +92,7 @@ create_data_dictionary <-
         # truncate character variables to 50 characters
         dplyr::mutate_if(
           is.character,
-          stringr::str_trunc,
-          width = 50
+          function(x) substr(x, 1, 47) |> paste0("...")
         )
 
       # Convert the data sample to R code as a string
@@ -107,7 +103,7 @@ create_data_dictionary <-
         paste(collapse = " ") # collapse the output into a single string
 
       # Combine the instructions and the data sample into a single string
-      prompt <- glue::glue("{prompt_instructions}\n\n{prompt_data}")
+      prompt <- sprintf("%s\n\n%s", prompt_instructions, prompt_data)
 
       # Use openai to generate the descriptions for each of the variables in
       # the `data_sample` data frame.
@@ -123,11 +119,12 @@ create_data_dictionary <-
       data_dict <-
         response$choices["message.content"] |> # get the response from the API
         as.character() |> # convert to a character vector
-        readr::read_csv() |> # read the data dictionary as a data frame
+        textConnection() |> # create text connection
+        utils::read.csv(stringsAsFactors = FALSE) |> # read the data dictionary as a data frame
         suppressMessages() # suppress messages
     }
     # Write the data dictionary to a file
-    data_dict |> readr::write_csv(file = file_path)
+    write.csv(data_dict, file = file_path, row.names = FALSE)
 
     # Return the data dictionary
     return(data_dict)

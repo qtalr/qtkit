@@ -39,11 +39,22 @@ function from the \code{kableExtra} package.}
 The path of the written file.
 }
 \description{
-This function is a wrapper around \code{save_kable} from the
-\code{kableExtra} package that allows you to write a kable object as part of
-a knitr document as an output for later use. It is designed to be used
-in a code block. The file name, if not specified, will be the label of
-the code block.
+A wrapper around \code{kableExtra::save_kable} that facilitates saving kable objects
+within knitr documents. Automatically handles file naming, directory creation,
+and supports multiple output formats with Bootstrap theming options.
+}
+\details{
+The function extends \code{save_kable} functionality by:
+\itemize{
+\item Using knitr code block labels for automatic file naming
+\item Creating target directories if they don't exist
+\item Supporting multiple output formats (PDF, HTML, LaTeX, PNG, JPEG)
+\item Applying Bootstrap themes for HTML output
+\item Preserving table styling and formatting
+}
+
+For HTML output, the function supports all Bootstrap themes available in
+kableExtra. The default theme is "bootstrap".
 }
 \examples{
 \dontrun{
@@ -52,23 +63,26 @@ library(knitr)
 table_dir <- file.path(tempdir(), "table")
 
 mtcars_kbl <- kable(
- x = mtcars[1:5, ],
- format = "html")
+  x = mtcars[1:5, ],
+  format = "html"
+)
 
 # Write a kable object as a PDF file
 write_kbl(
- kbl_obj = mtcars_kbl,
- file = "kable_pdf",
- target_dir = table_dir,
- device = "pdf")
+  kbl_obj = mtcars_kbl,
+  file = "kable_pdf",
+  target_dir = table_dir,
+  device = "pdf"
+)
 
 # Write a kable as an HTML file with a custom Bootstrap theme
 write_kbl(
- kbl_obj = mtcars_kbl,
- file = "kable_html",
- target_dir = table_dir,
- device = "html",
- bs_theme = "flatly")
+  kbl_obj = mtcars_kbl,
+  file = "kable_html",
+  target_dir = table_dir,
+  device = "html",
+  bs_theme = "flatly"
+)
 
 unlink(table_dir)
 }

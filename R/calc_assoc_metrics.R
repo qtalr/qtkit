@@ -27,33 +27,50 @@
 #' @export
 calc_assoc_metrics <-
   function(
-    data,
-    doc_index,
-    token_index,
-    type,
-    association = "all",
-    verbose = FALSE) {
+      data,
+      doc_index,
+      token_index,
+      type,
+      association = "all",
+      verbose = FALSE) {
+    doc_index <- rlang::ensym(doc_index)
+    token_index <- rlang::ensym(token_index)
+    type <- rlang::ensym(type)
+    validate_inputs_cam(data, doc_index, token_index, type, association)
 
-  doc_index <- rlang::ensym(doc_index)
-  token_index <- rlang::ensym(token_index)
-  type <- rlang::ensym(type)
-  validate_inputs_cam(data, doc_index, token_index, type, association)
+    bigram_probs <-
+      calculate_bigram_probabilities(data, doc_index, token_index, type)
 
-  bigram_probs <-
-    calculate_bigram_probabilities(data, doc_index, token_index, type)
+    metrics <- calculate_metrics(bigram_probs, association)
 
-  metrics <- calculate_metrics(bigram_probs, association)
-
-  if (!verbose) {
-    metrics <- metrics[, !colnames(metrics) %in% c("p_xy", "p_x", "p_y")]
-    return(metrics)
-  } else {
-    return(metrics)
+    if (!verbose) {
+      metrics <- metrics[, !colnames(metrics) %in% c("p_xy", "p_x", "p_y")]
+      return(metrics)
+    } else {
+      return(metrics)
+    }
   }
-}
 
 
-# Helper function to calculate bigram probabilities
+#' Calculate Probabilities for Bigrams
+#'
+#' Helper function that calculates joint and marginal probabilities for bigrams
+#' in the input data. It processes the data to create bigrams and computes
+#' their probabilities along with individual token probabilities.
+#'
+#' @param data A data frame containing the corpus
+#' @param doc_index Column name for document index
+#' @param token_index Column name for token position
+#' @param type Column name for the actual tokens/terms
+#'
+#' @return A data frame containing:
+#'   - x: First token in bigram
+#'   - y: Second token in bigram
+#'   - p_xy: Joint probability of the bigram
+#'   - p_x: Marginal probability of first token
+#'   - p_y: Marginal probability of second token
+#'
+#' @keywords internal
 calculate_bigram_probabilities <-
   function(data, doc_index, token_index, type) {
     # Sort data by document and token
@@ -84,6 +101,26 @@ calculate_bigram_probabilities <-
     return(result)
   }
 
+#' Calculate Association Metrics
+#'
+#' Helper function that computes various association metrics for bigrams based on
+#' their probability distributions. Supports PMI (Pointwise Mutual Information),
+#' Dice's Coefficient, and G-score calculations.
+#'
+#' @param bigram_probs A data frame containing bigram probability data with columns:
+#'   - {p_xy} Joint probability of bigram
+#'   - {p_x} Marginal probability of first token
+#'   - {p_y} Marginal probability of second token
+#'
+#' @param association Character vector specifying which metrics to calculate
+#'
+#' @return A data frame containing the original probability columns plus requested
+#' association metrics:
+#'   - pmi: Pointwise Mutual Information
+#'   - dice_coeff: Dice's Coefficient
+#'   - g_score: G-score
+#'
+#' @keywords internal
 calculate_metrics <-
   function(bigram_probs, association) {
     metrics <- bigram_probs
@@ -101,7 +138,26 @@ calculate_metrics <-
   }
 
 
-# Helper function to validate input
+#' Validate Inputs for Association Metrics Calculation
+#'
+#' Helper function that validates the input parameters for the calc_assoc_metrics
+#' function. Checks data frame structure, column existence, and association metric
+#' specifications.
+#'
+#' @param data A data frame to validate
+#' @param doc_index Column name for document index
+#' @param token_index Column name for token position
+#' @param type Column name for the tokens/terms
+#' @param association Character vector of requested association metrics
+#'
+#' @return No return value, called for side effects
+#'
+#' @details Stops execution with error message if:
+#'   - data is not a data frame
+#'   - required columns are missing
+#'   - association contains invalid metric names
+#'
+#' @keywords internal
 validate_inputs_cam <-
   function(data, doc_index, token_index, type, association) {
     if (!is.data.frame(data)) {

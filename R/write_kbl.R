@@ -1,10 +1,20 @@
 #' Write a kable object to a file
 #'
-#' @description This function is a wrapper around `save_kable` from the
-#' `kableExtra` package that allows you to write a kable object as part of
-#' a knitr document as an output for later use. It is designed to be used
-#' in a code block. The file name, if not specified, will be the label of
-#' the code block.
+#' @description
+#' A wrapper around `kableExtra::save_kable` that facilitates saving kable objects
+#' within knitr documents. Automatically handles file naming, directory creation,
+#' and supports multiple output formats with Bootstrap theming options.
+#'
+#' @details
+#' The function extends `save_kable` functionality by:
+#' - Using knitr code block labels for automatic file naming
+#' - Creating target directories if they don't exist
+#' - Supporting multiple output formats (PDF, HTML, LaTeX, PNG, JPEG)
+#' - Applying Bootstrap themes for HTML output
+#' - Preserving table styling and formatting
+#'
+#' For HTML output, the function supports all Bootstrap themes available in
+#' kableExtra. The default theme is "bootstrap".
 #'
 #' @param kbl_obj The knitr_kable object to be written.
 #' @param file The name of the file to be written. If not specified,
@@ -31,36 +41,38 @@
 #' table_dir <- file.path(tempdir(), "table")
 #'
 #' mtcars_kbl <- kable(
-#'  x = mtcars[1:5, ],
-#'  format = "html")
+#'   x = mtcars[1:5, ],
+#'   format = "html"
+#' )
 #'
 #' # Write a kable object as a PDF file
 #' write_kbl(
-#'  kbl_obj = mtcars_kbl,
-#'  file = "kable_pdf",
-#'  target_dir = table_dir,
-#'  device = "pdf")
+#'   kbl_obj = mtcars_kbl,
+#'   file = "kable_pdf",
+#'   target_dir = table_dir,
+#'   device = "pdf"
+#' )
 #'
 #' # Write a kable as an HTML file with a custom Bootstrap theme
 #' write_kbl(
-#'  kbl_obj = mtcars_kbl,
-#'  file = "kable_html",
-#'  target_dir = table_dir,
-#'  device = "html",
-#'  bs_theme = "flatly")
+#'   kbl_obj = mtcars_kbl,
+#'   file = "kable_html",
+#'   target_dir = table_dir,
+#'   device = "html",
+#'   bs_theme = "flatly"
+#' )
 #'
 #' unlink(table_dir)
 #' }
 #' @export write_kbl
 #' @keywords publishing
 write_kbl <-
-  function(
-    kbl_obj,
-    file = NULL,
-    target_dir = NULL,
-    device = "pdf",
-    bs_theme = "bootstrap",
-    ...) {
+  function(kbl_obj,
+           file = NULL,
+           target_dir = NULL,
+           device = "pdf",
+           bs_theme = "bootstrap",
+           ...) {
     # Retrieve the label of the current code chunk
     block_label <- knitr::opts_current$get("label")
     # If file name is not specified, use the block label as the file name this
@@ -102,9 +114,11 @@ write_kbl <-
           stop("The detected browser path does not exist: ", browser_path)
         }
       } else {
-        msg <- paste0("A Chromium-based browser (e.g., Google Chrome, ",
+        msg <- paste0(
+          "A Chromium-based browser (e.g., Google Chrome, ",
           "Chromium, Microsoft Edge, or Brave) is required on your system ",
-          "to save kable objects in ", device, " format.")
+          "to save kable objects in ", device, " format."
+        )
         stop(msg)
       }
     }
@@ -119,14 +133,17 @@ write_kbl <-
 # Helper functions
 check_chromium_browser <- function() {
   if (requireNamespace("chromote", quietly = TRUE)) {
-    tryCatch({
-      browser_path <- chromote::find_chrome()
-      if (!is.null(browser_path) && file.exists(browser_path)) {
-        return(browser_path)
+    tryCatch(
+      {
+        browser_path <- chromote::find_chrome()
+        if (!is.null(browser_path) && file.exists(browser_path)) {
+          return(browser_path)
+        }
+      },
+      error = function(e) {
+        warning("Error in chromote::find_chrome(): ", e$message)
       }
-    }, error = function(e) {
-      warning("Error in chromote::find_chrome(): ", e$message)
-    })
+    )
   }
   return(NULL)
 }

@@ -21,11 +21,21 @@ specified, the current working directory will be used.}
 The path of the written file.
 }
 \description{
-This function is a wrapper around \code{dput} that allows you
-to write an R object as part of a knitr document as an output for
-later use. It is designed to be used in a code block. The file name, if
-not specified, will be the label of the code block. Use the standard
-\code{dget} function to read the file back into an R session.
+A wrapper around \code{dput} that facilitates saving R objects within knitr documents.
+Automatically handles file naming and directory creation, with support for
+preserving object structure and attributes.
+}
+\details{
+This function extends \code{dput} functionality by:
+\itemize{
+\item Using knitr code block labels for automatic file naming
+\item Creating target directories if they don't exist
+\item Preserving complex object structures and attributes
+\item Supporting all R object types (vectors, lists, data frames, etc.)
+}
+
+Objects saved with this function can be read back using the standard
+\code{dget} function.
 }
 \examples{
 \dontrun{
@@ -33,9 +43,10 @@ obj_dir <- file.path(tempdir(), "obj")
 
 # Write a data frame as a file
 write_obj(
- obj = mtcars,
- file = "mtcars_data",
- target_dir = obj_dir)
+  obj = mtcars,
+  file = "mtcars_data",
+  target_dir = obj_dir
+)
 
 # Read the file back into an R session
 my_mtcars <- dget(file.path(obj_dir, "mtcars_data"))
