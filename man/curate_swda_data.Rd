@@ -30,7 +30,7 @@ format.
 \details{
 The function expects a directory containing .utt files or subdirectories
 with .utt files, as found in the raw SWDA data
-'\url{https://catalog.ldc.upenn.edu/docs/LDC97S62}.
+\url{https://catalog.ldc.upenn.edu/docs/LDC97S62}.
 }
 \examples{
 # Example using simulated data bundled with the package

@@ -7,7 +7,7 @@
 #' @details
 #' The function expects a directory containing .utt files or subdirectories
 #' with .utt files, as found in the raw SWDA data
-#' '\url{https://catalog.ldc.upenn.edu/docs/LDC97S62}.
+#' \url{https://catalog.ldc.upenn.edu/docs/LDC97S62}.
 #'
 #' @param dir_path Character string. Path to the directory containing .utt
 #'        files. Must be an existing directory.
