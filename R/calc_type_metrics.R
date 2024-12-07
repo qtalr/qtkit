@@ -63,15 +63,15 @@ calc_type_metrics <-
     # Create a Sparse Term-Document Matrix (TDM)
     # Create document-term counts
     counts <- as.data.frame(table(
-      data[[rlang::as_name(rlang::enquo(type))]], 
+      data[[rlang::as_name(rlang::enquo(type))]],
       data[[rlang::as_name(rlang::enquo(document))]]
     ))
     colnames(counts) <- c("type", "document", "n")
-    
+
     # Create sparse matrix
     tdm <- Matrix::sparseMatrix(
       i = as.numeric(factor(counts$type)),
-      j = as.numeric(factor(counts$document)), 
+      j = as.numeric(factor(counts$document)),
       x = counts$n,
       dimnames = list(
         levels(factor(counts$type)),
@@ -80,8 +80,10 @@ calc_type_metrics <-
     )
     # Initialize an empty data frame
     row_sums <- Matrix::rowSums(tdm)
-    output_df <- data.frame(type = rownames(tdm), n = row_sums, 
-                           stringsAsFactors = FALSE)
+    output_df <- data.frame(
+      type = rownames(tdm), n = row_sums,
+      stringsAsFactors = FALSE
+    )
     # Calculate frequency metrics based on user choice
     metrics <- c("rf", "orf")
     for (metric in metrics) {

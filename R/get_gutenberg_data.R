@@ -53,7 +53,6 @@
 #'
 #' @import gutenbergr
 #' @importFrom dplyr select mutate filter
-#' @importFrom readr write_csv
 #'
 #' @export
 get_gutenberg_data <-
