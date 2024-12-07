@@ -1,0 +1,6 @@
+structure(list(mpg = c(22.8, 24.4, 22.8, 32.4, 30.4, 33.9, 21.5, 
+27.3, 26, 30.4, 21.4), wt = c(2.32, 3.19, 3.15, 2.2, 1.615, 1.835, 
+2.465, 1.935, 2.14, 1.513, 2.78), hp = c(93, 62, 95, 66, 52, 
+65, 97, 66, 91, 113, 109)), row.names = c("Datsun 710", "Merc 240D", 
+"Merc 230", "Fiat 128", "Honda Civic", "Toyota Corolla", "Toyota Corona", 
+"Fiat X1-9", "Porsche 914-2", "Lotus Europa", "Volvo 142E"), class = "data.frame")

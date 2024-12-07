@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Leveraging publishing functions • qtkit</title>
+<title>Publishing Analysis Artifacts • qtkit</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Leveraging publishing functions">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Publishing Analysis Artifacts">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">qtkit</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Leveraging publishing functions</h1>
+      <h1>Publishing Analysis Artifacts</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/qtalr/qtkit/blob/main/vignettes/reports.Rmd" class="external-link"><code>vignettes/reports.Rmd</code></a></small>
@@ -60,12 +60,211 @@
 
     
     
-<!--
-- [ ] Add vignette using publishing functions
--->
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org/package=qtkit" class="external-link">qtkit</a></span><span class="op">)</span></span></code></pre></div>
-  </main>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org/package=qtkit" class="external-link">qtkit</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/" class="external-link">knitr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/" class="external-link">kableExtra</a></span><span class="op">)</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>The {qtkit} package provides several functions to help publish
+analysis artifacts in a standardized way:</p>
+<ul>
+<li>
+<code><a href="../reference/write_kbl.html">write_kbl()</a></code>: Save kable/kableExtra tables to files</li>
+<li>
+<code><a href="../reference/write_gg.html">write_gg()</a></code>: Save ggplot2 plots to files</li>
+<li>
+<code><a href="../reference/write_obj.html">write_obj()</a></code>: Save R objects to files</li>
+</ul>
+<p>These functions handle common tasks like:</p>
+<ul>
+<li>Automatic file naming based on code chunk labels</li>
+<li>Directory creation</li>
+<li>Multiple output formats</li>
+<li>Consistent styling and theming</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="writing-tables">Writing Tables<a class="anchor" aria-label="anchor" href="#writing-tables"></a>
+</h2>
+<div class="section level3">
+<h3 id="basic-table-export">Basic Table Export<a class="anchor" aria-label="anchor" href="#basic-table-export"></a>
+</h3>
+<p>Let’s create and save a simple table using
+<code><a href="../reference/write_kbl.html">write_kbl()</a></code>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Create a basic table</span></span>
+<span><span class="va">mtcars_table</span> <span class="op">&lt;-</span> <span class="va">mtcars</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>format <span class="op">=</span> <span class="st">"html"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>bootstrap_options <span class="op">=</span> <span class="st">"striped"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Save to file</span></span>
+<span><span class="fu"><a href="../reference/write_kbl.html">write_kbl</a></span><span class="op">(</span></span>
+<span>  kbl_obj <span class="op">=</span> <span class="va">mtcars_table</span>,</span>
+<span>  file <span class="op">=</span> <span class="st">"mtcars_table"</span>,</span>
+<span>  target_dir <span class="op">=</span> <span class="st">"artifacts"</span>,</span>
+<span>  device <span class="op">=</span> <span class="st">"png"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; file:////tmp/RtmpKuSrwI/mtcars_table6aef154d2e4f.html screenshot completed</span></span>
+<span><span class="co">#&gt; save_kable will have the best result with magick installed.</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="customizing-table-output">Customizing Table Output<a class="anchor" aria-label="anchor" href="#customizing-table-output"></a>
+</h3>
+<p>You can customize the output format and styling:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars_table</span> <span class="op">&lt;-</span> <span class="va">mtcars</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>format <span class="op">=</span> <span class="st">"html"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span></span>
+<span>    bootstrap_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span>, <span class="st">"hover"</span><span class="op">)</span>,</span>
+<span>    full_width <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html" class="external-link">row_spec</a></span><span class="op">(</span><span class="fl">0</span>, bold <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/write_kbl.html">write_kbl</a></span><span class="op">(</span></span>
+<span>  kbl_obj <span class="op">=</span> <span class="va">mtcars_table</span>,</span>
+<span>  file <span class="op">=</span> <span class="st">"mtcars_styled"</span>,</span>
+<span>  target_dir <span class="op">=</span> <span class="st">"artifacts"</span>,</span>
+<span>  device <span class="op">=</span> <span class="st">"png"</span>,</span>
+<span>  bs_theme <span class="op">=</span> <span class="st">"flatly"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; file:////tmp/RtmpKuSrwI/mtcars_styled6aef24e45a82.html screenshot completed</span></span>
+<span><span class="co">#&gt; save_kable will have the best result with magick installed.</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="writing-plots">Writing Plots<a class="anchor" aria-label="anchor" href="#writing-plots"></a>
+</h2>
+<div class="section level3">
+<h3 id="basic-plot-export">Basic Plot Export<a class="anchor" aria-label="anchor" href="#basic-plot-export"></a>
+</h3>
+<p>Save ggplot2 plots with <code><a href="../reference/write_gg.html">write_gg()</a></code>:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Create a basic plot</span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">wt</span>, <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Save to file</span></span>
+<span><span class="fu"><a href="../reference/write_gg.html">write_gg</a></span><span class="op">(</span></span>
+<span>  gg_obj <span class="op">=</span> <span class="va">p</span>,</span>
+<span>  file <span class="op">=</span> <span class="st">"mtcars_plot"</span>,</span>
+<span>  target_dir <span class="op">=</span> <span class="st">"artifacts"</span>,</span>
+<span>  device <span class="op">=</span> <span class="st">"png"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Saving 7.29 x 4.51 in image</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="customizing-plot-output">Customizing Plot Output<a class="anchor" aria-label="anchor" href="#customizing-plot-output"></a>
+</h3>
+<p>Add custom themes and formatting:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">wt</span>, <span class="va">mpg</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Car Weight vs Fuel Efficiency"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Weight (1000 lbs)"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Miles per Gallon"</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"Cylinders"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/write_gg.html">write_gg</a></span><span class="op">(</span></span>
+<span>  gg_obj <span class="op">=</span> <span class="va">p</span>,</span>
+<span>  file <span class="op">=</span> <span class="st">"mtcars_plot_styled"</span>,</span>
+<span>  target_dir <span class="op">=</span> <span class="st">"artifacts"</span>,</span>
+<span>  device <span class="op">=</span> <span class="st">"png"</span>,</span>
+<span>  width <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>  height <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>  dpi <span class="op">=</span> <span class="fl">300</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="writing-r-objects">Writing R Objects<a class="anchor" aria-label="anchor" href="#writing-r-objects"></a>
+</h2>
+<div class="section level3">
+<h3 id="saving-data-objects">Saving Data Objects<a class="anchor" aria-label="anchor" href="#saving-data-objects"></a>
+</h3>
+<p>Use <code><a href="../reference/write_obj.html">write_obj()</a></code> to save R objects for later use:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Create a filtered dataset</span></span>
+<span><span class="va">mtcars_subset</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">wt</span>, <span class="va">hp</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Save to file</span></span>
+<span><span class="fu"><a href="../reference/write_obj.html">write_obj</a></span><span class="op">(</span></span>
+<span>  obj <span class="op">=</span> <span class="va">mtcars_subset</span>,</span>
+<span>  file <span class="op">=</span> <span class="st">"mtcars_4cyl"</span>,</span>
+<span>  target_dir <span class="op">=</span> <span class="st">"artifacts"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="reading-saved-artifacts">Reading Saved Artifacts<a class="anchor" aria-label="anchor" href="#reading-saved-artifacts"></a>
+</h3>
+<p>These objects have all been saved in the <code>artifacts</code>
+directory, as seen below:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/dir_tree.html" class="external-link">dir_tree</a></span><span class="op">(</span><span class="st">"artifacts"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB; font-weight: bold;">artifacts</span></span></span>
+<span><span class="co">#&gt; ├── mtcars_4cyl</span></span>
+<span><span class="co">#&gt; ├── <span style="color: #BB00BB; font-weight: bold;">mtcars_plot.png</span></span></span>
+<span><span class="co">#&gt; ├── <span style="color: #BB00BB; font-weight: bold;">mtcars_plot_styled.png</span></span></span>
+<span><span class="co">#&gt; ├── <span style="color: #BB00BB; font-weight: bold;">mtcars_styled.png</span></span></span>
+<span><span class="co">#&gt; └── <span style="color: #BB00BB; font-weight: bold;">mtcars_table.png</span></span></span></code></pre></div>
+<p>Tables and plots saved with {qtkit} can be easily restored. For image
+formats, use the <code><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">knitr::include_graphics()</a></code> function:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Display the saved plot</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"artifacts/mtcars_plot.png"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="artifacts%2Fmtcars_plot.png"><!-- --></p>
+<p>Objects can be read back using <code><a href="https://rdrr.io/r/base/dput.html" class="external-link">dget()</a></code>:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Read the saved object</span></span>
+<span><span class="va">restored_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dput.html" class="external-link">dget</a></span><span class="op">(</span><span class="st">"artifacts/mtcars_4cyl"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Check the restored object</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">restored_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 11</span></span>
+<span><span class="co">#&gt; Columns: 3</span></span>
+<span><span class="co">#&gt; $ mpg <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 22.8, 24.4, 22.8, 32.4, 30.4, 33.9, 21.5, 27.3, 26.0, 30.4, 21.4</span></span>
+<span><span class="co">#&gt; $ wt  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.320, 3.190, 3.150, 2.200, 1.615, 1.835, 2.465, 1.935, 2.140, 1.5…</span></span>
+<span><span class="co">#&gt; $ hp  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 93, 62, 95, 66, 52, 65, 97, 66, 91, 113, 109</span></span></code></pre></div>
+<blockquote>
+<p>[!TIP] Note that tables and plots need not be saved with the
+<code><a href="../reference/write_kbl.html">write_kbl()</a></code> and <code><a href="../reference/write_gg.html">write_gg()</a></code> functions to be
+restored. These objects can be saved and restored using the
+<code><a href="../reference/write_obj.html">write_obj()</a></code> and <code><a href="https://rdrr.io/r/base/dput.html" class="external-link">dget()</a></code> function as well.</p>
+</blockquote>
+</div>
+</div>
+<div class="section level2">
+<h2 id="best-practices">Best Practices<a class="anchor" aria-label="anchor" href="#best-practices"></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>Use consistent naming conventions</li>
+<li>Create organized directory structures</li>
+<li>Document output formats and locations</li>
+<li>Include version control for outputs when appropriate</li>
+<li>Validate restored objects match originals</li>
+</ol>
+</div>
+<div class="section level2">
+<h2 id="additional-resources">Additional Resources<a class="anchor" aria-label="anchor" href="#additional-resources"></a>
+</h2>
+<ul>
+<li>Package documentation: <code><a href="https://rdrr.io/pkg/qtkit/man" class="external-link">help(package = "qtkit")</a></code>
+</li>
+<li>Related packages: {kableExtra}, {ggplot2}, {webshot2}</li>
+<li><a href="https://github.com/qtalr/qtkit" class="external-link">Project homepage</a></li>
+</ul>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
@@ -75,7 +274,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>

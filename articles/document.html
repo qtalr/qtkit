@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Documenting data and datasets • qtkit</title>
+<title>Documenting Datasets • qtkit</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Documenting data and datasets">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Documenting Datasets">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">qtkit</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Documenting data and datasets</h1>
+      <h1>Documenting Datasets</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/qtalr/qtkit/blob/main/vignettes/document.Rmd" class="external-link"><code>vignettes/document.Rmd</code></a></small>
@@ -60,13 +60,184 @@
 
     
     
-<!--
-
-- [ ] Add vignette using documentation functions
--->
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org/package=qtkit" class="external-link">qtkit</a></span><span class="op">)</span></span></code></pre></div>
-  </main>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org/package=qtkit" class="external-link">qtkit</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://fs.r-lib.org" class="external-link">fs</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://glue.tidyverse.org/" class="external-link">glue</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org" class="external-link">readr</a></span><span class="op">)</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>Proper dataset documentation is crucial for reproducible research and
+effective data sharing. The {qtkit} package provides two main functions
+to help standardize and automate the documentation process:</p>
+<ul>
+<li>
+<code><a href="../reference/create_data_origin.html">create_data_origin()</a></code>: Creates standardized metadata
+about data(set) sources</li>
+<li>
+<code><a href="../reference/create_data_dictionary.html">create_data_dictionary()</a></code>: Generates the scaffolding for
+a detailed variable-level documentation or can use AI to generate
+descriptions to be reviewed and updated as necessary</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="creating-dataset-origin-documentation">Creating Dataset Origin Documentation<a class="anchor" aria-label="anchor" href="#creating-dataset-origin-documentation"></a>
+</h2>
+<div class="section level3">
+<h3 id="basic-usage">Basic Usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
+</h3>
+<p>Let’s start with documenting the built-in <code>mtcars</code>
+dataset:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Create a temporary file for our documentation</span></span>
+<span><span class="va">origin_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://fs.r-lib.org/reference/file_temp.html" class="external-link">file_temp</a></span><span class="op">(</span>ext <span class="op">=</span> <span class="st">"csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create the origin documentation template</span></span>
+<span><span class="va">origin_doc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_data_origin.html">create_data_origin</a></span><span class="op">(</span></span>
+<span>  file_path <span class="op">=</span> <span class="va">origin_file</span>,</span>
+<span>  return <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Data origin file created at `file_path`.</span></span>
+<span></span>
+<span><span class="co"># View the template</span></span>
+<span><span class="va">origin_doc</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 8</span></span>
+<span><span class="co">#&gt; Columns: 2</span></span>
+<span><span class="co">#&gt; $ attribute   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Resource name", "Data source", "Data sampling frame", "Da…</span></span>
+<span><span class="co">#&gt; $ description <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "The name of the resource.", "URL, DOI, etc.", "Language, …</span></span></code></pre></div>
+<p>The template provides fields for essential metadata. You can either
+open the CSV file in a spreadsheet editor or fill it out
+programmatically, as shown below.</p>
+<p>Here’s how you might fill it out for <code>mtcars</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">origin_doc</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>description <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Motor Trend Car Road Tests"</span>,</span>
+<span>    <span class="st">"Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391–411."</span>,</span>
+<span>    <span class="st">"US automobile market, passenger vehicles"</span>,</span>
+<span>    <span class="st">"1973-74"</span>,</span>
+<span>    <span class="st">"Built-in R dataset (.rda)"</span>,</span>
+<span>    <span class="st">"Single data frame with 32 observations of 11 variables"</span>,</span>
+<span>    <span class="st">"Public Domain"</span>,</span>
+<span>    <span class="st">"Citation: Henderson and Velleman (1981)"</span></span>
+<span>  <span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html" class="external-link">write_csv</a></span><span class="op">(</span><span class="va">origin_file</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="customizing-origin-documentation">Customizing Origin Documentation<a class="anchor" aria-label="anchor" href="#customizing-origin-documentation"></a>
+</h3>
+<p>You can force overwrite existing documentation:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/create_data_origin.html">create_data_origin</a></span><span class="op">(</span></span>
+<span>  file_path <span class="op">=</span> <span class="va">origin_file</span>,</span>
+<span>  force <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Data origin file created at `file_path`.</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="creating-data-dictionaries">Creating Data Dictionaries<a class="anchor" aria-label="anchor" href="#creating-data-dictionaries"></a>
+</h2>
+<div class="section level3">
+<h3 id="basic-dictionary-creation">Basic Dictionary Creation<a class="anchor" aria-label="anchor" href="#basic-dictionary-creation"></a>
+</h3>
+<p>Create a basic data dictionary without AI assistance:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Create a temporary file for our dictionary</span></span>
+<span><span class="va">dict_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://fs.r-lib.org/reference/file_temp.html" class="external-link">file_temp</a></span><span class="op">(</span>ext <span class="op">=</span> <span class="st">"csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Generate dictionary for iris dataset</span></span>
+<span><span class="va">iris_dict</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_data_dictionary.html">create_data_dictionary</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">iris</span>,</span>
+<span>  file_path <span class="op">=</span> <span class="va">dict_file</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># View the results</span></span>
+<span><span class="va">iris_dict</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 5</span></span>
+<span><span class="co">#&gt; Columns: 4</span></span>
+<span><span class="co">#&gt; $ variable    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Widt…</span></span>
+<span><span class="co">#&gt; $ name        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ type        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "numeric", "numeric", "numeric", "numeric", "factor"</span></span>
+<span><span class="co">#&gt; $ description <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="ai-enhanced-data-dictionaries">AI-Enhanced Data Dictionaries<a class="anchor" aria-label="anchor" href="#ai-enhanced-data-dictionaries"></a>
+</h3>
+<p>If you have an OpenAI API key, you can generate more detailed
+descriptions:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Not run - requires API key</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>OPENAI_API_KEY <span class="op">=</span> <span class="st">"your-api-key"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">iris_dict_ai</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_data_dictionary.html">create_data_dictionary</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">iris</span>,</span>
+<span>  file_path <span class="op">=</span> <span class="va">dict_file</span>,</span>
+<span>  model <span class="op">=</span> <span class="st">"gpt-4"</span>,</span>
+<span>  sample_n <span class="op">=</span> <span class="fl">5</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Example output might look like:</p>
+<pre><code><span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 4</span></span></span>
+<span><span class="co">#&gt;   variable     name         type    description                       </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                             </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Sepal.Length Sepal Length numeric Length of the sepal in centimeters</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Sepal.Width  Sepal Width  numeric Width of the sepal in centimeters</span></span></code></pre>
+</div>
+<div class="section level3">
+<h3 id="working-with-larger-datasets">Working with Larger Datasets<a class="anchor" aria-label="anchor" href="#working-with-larger-datasets"></a>
+</h3>
+<p>For larger datasets, you can use sampling and grouping:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">diamonds_dict</span> <span class="op">&lt;-</span> <span class="va">diamonds</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/create_data_dictionary.html">create_data_dictionary</a></span><span class="op">(</span></span>
+<span>    file_path <span class="op">=</span> <span class="st">"diamonds_dict.csv"</span>,</span>
+<span>    model <span class="op">=</span> <span class="st">"gpt-4"</span>,</span>
+<span>    sample_n <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    grouping <span class="op">=</span> <span class="st">"cut"</span> <span class="co"># Sample across different cut categories</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="best-practices">Best Practices<a class="anchor" aria-label="anchor" href="#best-practices"></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>Create documentation when first obtaining/creating a dataset</li>
+<li>Update documentation when:
+<ul>
+<li>Adding new variables</li>
+<li>Modifying data structure</li>
+<li>Changing data sources</li>
+</ul>
+</li>
+<li>Store documentation alongside data in version control</li>
+<li>Include documentation paths in your project README</li>
+</ol>
+</div>
+</div>
+<div class="section level2">
+<h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
+</h2>
+<p>The {qtkit} package provides flexible tools for standardizing dataset
+documentation. By combining <code><a href="../reference/create_data_origin.html">create_data_origin()</a></code> and
+<code><a href="../reference/create_data_dictionary.html">create_data_dictionary()</a></code>, you can create comprehensive
+documentation that enhances reproducibility and data sharing.</p>
+<div class="section level3">
+<h3 id="additional-resources">Additional Resources<a class="anchor" aria-label="anchor" href="#additional-resources"></a>
+</h3>
+<ul>
+<li>Package documentation: <code><a href="https://rdrr.io/pkg/qtkit/man" class="external-link">help(package = "qtkit")</a></code>
+</li>
+<li>Related packages: {dataMaid}, {codebook}</li>
+<li><a href="https://github.com/qtalr/qtkit" class="external-link">Project homepage</a></li>
+</ul>
+</div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
@@ -76,7 +247,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
