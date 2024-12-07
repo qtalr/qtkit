@@ -135,8 +135,25 @@ calculate_metrics <-
   }
 
 
-# Helper function to validate input
-# Document this function AI!
+#' Validate Inputs for Association Metrics Calculation
+#'
+#' Helper function that validates the input parameters for the calc_assoc_metrics
+#' function. Checks data frame structure, column existence, and association metric
+#' specifications.
+#'
+#' @param data A data frame to validate
+#' @param doc_index Column name for document index
+#' @param token_index Column name for token position
+#' @param type Column name for the tokens/terms
+#' @param association Character vector of requested association metrics
+#'
+#' @return No return value, called for side effects
+#'
+#' @throws Stops execution with error message if:
+#'   \item{data is not a data frame}
+#'   \item{required columns are missing}
+#'   \item{association contains invalid metric names}
+#'
 validate_inputs_cam <-
   function(data, doc_index, token_index, type, association) {
     if (!is.data.frame(data)) {
