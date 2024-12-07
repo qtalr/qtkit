@@ -1,10 +1,20 @@
 #' Write a kable object to a file
 #'
-#' @description This function is a wrapper around `save_kable` from the
-#' `kableExtra` package that allows you to write a kable object as part of
-#' a knitr document as an output for later use. It is designed to be used
-#' in a code block. The file name, if not specified, will be the label of
-#' the code block.
+#' @description
+#' A wrapper around `kableExtra::save_kable` that facilitates saving kable objects
+#' within knitr documents. Automatically handles file naming, directory creation,
+#' and supports multiple output formats with Bootstrap theming options.
+#'
+#' @details
+#' The function extends `save_kable` functionality by:
+#' - Using knitr code block labels for automatic file naming
+#' - Creating target directories if they don't exist
+#' - Supporting multiple output formats (PDF, HTML, LaTeX, PNG, JPEG)
+#' - Applying Bootstrap themes for HTML output
+#' - Preserving table styling and formatting
+#' 
+#' For HTML output, the function supports all Bootstrap themes available in
+#' kableExtra. The default theme is "bootstrap".
 #'
 #' @param kbl_obj The knitr_kable object to be written.
 #' @param file The name of the file to be written. If not specified,
