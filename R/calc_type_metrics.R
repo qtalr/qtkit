@@ -83,7 +83,26 @@ calc_type_metrics <-
     }
     return(output_df)
   }
-# Document this function AI!
+
+#' Validate Inputs for Type Metrics Calculation
+#'
+#' Helper function that validates the input parameters for the calc_type_metrics
+#' function. Checks data frame structure, column existence, and metric specifications.
+#'
+#' @param data A data frame to validate
+#' @param type Column name for the type/term variable
+#' @param document Column name for the document ID variable
+#' @param frequency Character vector of requested frequency metrics
+#' @param dispersion Character vector of requested dispersion metrics
+#'
+#' @return No return value, called for side effects
+#'
+#' @throws Stops execution with error message if:
+#'   \item{data is not a data frame}
+#'   \item{required columns are missing}
+#'   \item{frequency contains invalid metric names}
+#'   \item{dispersion contains invalid metric names}
+#'
 #' @keywords internal
 validate_inputs_ctm <- function(data, type, document, frequency, dispersion) {
   # Check if data is a data.frame
