@@ -24,4 +24,4 @@ packages.bib
 doc/
 Library/
 .lintr
-
+.aider*
