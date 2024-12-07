@@ -29,10 +29,11 @@ Possible file types include .zip, .gz, .tar, and .tgz
 \dontrun{
 data_dir <- file.path(tempdir(), "data")
 url <-
- "https://raw.githubusercontent.com/qtalr/qtkit/main/inst/extdata/test_data.zip"
+  "https://raw.githubusercontent.com/qtalr/qtkit/main/inst/extdata/test_data.zip"
 get_archive_data(
- url = url,
- target_dir = data_dir,
- confirmed = TRUE)
+  url = url,
+  target_dir = data_dir,
+  confirmed = TRUE
+)
 }
 }

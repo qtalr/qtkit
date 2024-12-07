@@ -33,9 +33,10 @@ obj_dir <- file.path(tempdir(), "obj")
 
 # Write a data frame as a file
 write_obj(
- obj = mtcars,
- file = "mtcars_data",
- target_dir = obj_dir)
+  obj = mtcars,
+  file = "mtcars_data",
+  target_dir = obj_dir
+)
 
 # Read the file back into an R session
 my_mtcars <- dget(file.path(obj_dir, "mtcars_data"))

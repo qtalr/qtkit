@@ -7,6 +7,12 @@ These functions are for internal use only.}
 \usage{
 calc_rf(tdm)
 }
+\arguments{
+\item{tdm}{A term-document matrix}
+}
+\value{
+A numeric vector of relative frequencies for each term
+}
 \description{
 To be used with the \code{calc_type_metrics} function.
 Includes dispersion measures: \code{calc_df()} Document Frequency 'DF',
@@ -15,4 +21,31 @@ Deviation of Proportions 'DP' functions. Frequency measures include:
 \code{calc_rf()} and \code{calc_orf()}. Takes a term-document matrix (TDM) as
 input and returns the respective dispersion metrics for each type in the TDM.
 }
+\keyword{(RF)}
+\keyword{Calculate}
+\keyword{Computes}
+\keyword{Frequency}
+\keyword{RF}
+\keyword{Relative}
+\keyword{a}
+\keyword{as}
+\keyword{by}
+\keyword{calculated}
+\keyword{corpus}
+\keyword{divided}
+\keyword{each}
+\keyword{for}
+\keyword{frequency}
+\keyword{in}
 \keyword{internal}
+\keyword{is}
+\keyword{matrix.}
+\keyword{occurrences}
+\keyword{of}
+\keyword{relative}
+\keyword{size.}
+\keyword{sum}
+\keyword{term}
+\keyword{term-document}
+\keyword{the}
+\keyword{total}

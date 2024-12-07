@@ -48,24 +48,27 @@ library(knitr)
 table_dir <- file.path(tempdir(), "table")
 
 mtcars_kbl <- kable(
- x = mtcars[1:5, ],
- format = "html")
+  x = mtcars[1:5, ],
+  format = "html"
+)
 
 # Write a kable object as a PDF file
 write_kbl(
- kbl_obj = mtcars_kbl,
- file = "kable_pdf",
- target_dir = table_dir,
- device = "pdf")
+  kbl_obj = mtcars_kbl,
+  file = "kable_pdf",
+  target_dir = table_dir,
+  device = "pdf"
+)
 # Write a kable object as a HTML file
 
 # Write a kable as an HTML file with a custom Bootstrap theme
 write_kbl(
- kbl_obj = mtcars_kbl,
- file = "kable_html",
- target_dir = table_dir,
- device = "html",
- bs_theme = "flatly")
+  kbl_obj = mtcars_kbl,
+  file = "kable_html",
+  target_dir = table_dir,
+  device = "html",
+  bs_theme = "flatly"
+)
 
 unlink(table_dir)
 }

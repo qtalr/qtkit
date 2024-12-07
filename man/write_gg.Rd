@@ -49,13 +49,15 @@ library(ggplot2)
 plot_dir <- file.path(tempdir(), "plot")
 
 # Write a ggplot object as a PDF file
-p <- ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point()
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point()
 
 write_gg(
- gg_obj = p,
- file = "plot_file",
- target_dir = plot_dir,
- device = "pdf")
+  gg_obj = p,
+  file = "plot_file",
+  target_dir = plot_dir,
+  device = "pdf"
+)
 
 unlink(plot_dir)
 }
