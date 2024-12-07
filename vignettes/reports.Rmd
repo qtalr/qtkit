@@ -1,8 +1,8 @@
 ---
-title: "Leveraging publishing functions"
+title: "Publishing Analysis Artifacts with qtkit"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Leveraging publishing functions}
+  %\VignetteIndexEntry{Publishing Analysis Artifacts with qtkit}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -11,7 +11,7 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "artifacts/",
+  fig.path = "figures/",
   out.width = "100%"
 )
 ```
@@ -55,7 +55,7 @@ mtcars_table <- mtcars[1:5, 1:4] |>
 write_kbl(
   kbl_obj = mtcars_table,
   file = "mtcars_table",
-  target_dir = "artifacts",
+  target_dir = "figures",
   device = "png"
 )
 ```
@@ -63,7 +63,7 @@ write_kbl(
 The table is saved as a PNG file and can then be included in reports or presentations. For example, the `include_graphics()` function from  {knitr} can be used to include the image in an R Markdown document:
 
 ```{r mtcars_table_show}
-knitr::include_graphics("./mtcars_table.png")
+knitr::include_graphics("figures/mtcars_table.png")
 ```
 
 ## Customizing Table Output
@@ -82,7 +82,7 @@ mtcars_table <- mtcars[1:5, 1:4] |>
 write_kbl(
   kbl_obj = mtcars_table,
   file = "mtcars_styled",
-  target_dir = "artifacts",
+  target_dir = "figures",
   device = "pdf",
   bs_theme = "flatly"
 )
@@ -161,7 +161,7 @@ Objects can be read back using `dget()`:
 
 ```{r}
 # Read the saved object
-restored_data <- dget("./artifacts/mtcars_4cyl")
+restored_data <- dget("./figures/mtcars_4cyl")
 ```
 
 # Best Practices
