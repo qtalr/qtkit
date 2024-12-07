@@ -108,9 +108,10 @@ calculate_bigram_probabilities <-
 #' Dice's Coefficient, and G-score calculations.
 #'
 #' @param bigram_probs A data frame containing bigram probability data with columns:
-#'   \item{p_xy}{Joint probability of bigram}
-#'   \item{p_x}{Marginal probability of first token}
-#'   \item{p_y}{Marginal probability of second token}
+#'   - {p_xy} Joint probability of bigram
+#'   - {p_x} Marginal probability of first token
+#'   - {p_y} Marginal probability of second token
+#'
 #' @param association Character vector specifying which metrics to calculate
 #'
 #' @return A data frame containing the original probability columns plus requested
@@ -152,9 +153,9 @@ calculate_metrics <-
 #' @return No return value, called for side effects
 #'
 #' @details Stops execution with error message if:
-#'   \item{data is not a data frame}
-#'   \item{required columns are missing}
-#'   \item{association contains invalid metric names}
+#'   - data is not a data frame
+#'   - required columns are missing
+#'   - association contains invalid metric names
 #'
 #' @keywords internal
 validate_inputs_cam <-

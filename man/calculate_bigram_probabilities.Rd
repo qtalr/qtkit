@@ -17,11 +17,13 @@ calculate_bigram_probabilities(data, doc_index, token_index, type)
 }
 \value{
 A data frame containing:
-\item{x}{First token in bigram}
-\item{y}{Second token in bigram}
-\item{p_xy}{Joint probability of the bigram}
-\item{p_x}{Marginal probability of first token}
-\item{p_y}{Marginal probability of second token}
+\itemize{
+\item x: First token in bigram
+\item y: Second token in bigram
+\item p_xy: Joint probability of the bigram
+\item p_x: Marginal probability of first token
+\item p_y: Marginal probability of second token
+}
 }
 \description{
 Helper function that calculates joint and marginal probabilities for bigrams

@@ -87,7 +87,8 @@ calc_type_metrics <-
 #' Validate Inputs for Type Metrics Calculation
 #'
 #' Helper function that validates the input parameters for the calc_type_metrics
-#' function. Checks data frame structure, column existence, and metric specifications.
+#' function. Checks data frame structure, column existence, and metric
+#' specifications.
 #'
 #' @param data A data frame to validate
 #' @param type Column name for the type/term variable

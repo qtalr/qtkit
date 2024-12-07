@@ -27,8 +27,10 @@ specifications.
 }
 \details{
 Stops execution with error message if:
-\item{data is not a data frame}
-\item{required columns are missing}
-\item{association contains invalid metric names}
+\itemize{
+\item data is not a data frame
+\item required columns are missing
+\item association contains invalid metric names
+}
 }
 \keyword{internal}

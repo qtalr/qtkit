@@ -8,18 +8,22 @@ calculate_metrics(bigram_probs, association)
 }
 \arguments{
 \item{bigram_probs}{A data frame containing bigram probability data with columns:
-\item{p_xy}{Joint probability of bigram}
-\item{p_x}{Marginal probability of first token}
-\item{p_y}{Marginal probability of second token}}
+\itemize{
+\item {p_xy} Joint probability of bigram
+\item {p_x} Marginal probability of first token
+\item {p_y} Marginal probability of second token
+}}
 
 \item{association}{Character vector specifying which metrics to calculate}
 }
 \value{
 A data frame containing the original probability columns plus requested
 association metrics:
-\item{pmi}{Pointwise Mutual Information}
-\item{dice_coeff}{Dice's Coefficient}
-\item{g_score}{G-score}
+\itemize{
+\item pmi: Pointwise Mutual Information
+\item dice_coeff: Dice's Coefficient
+\item g_score: G-score
+}
 }
 \description{
 Helper function that computes various association metrics for bigrams based on

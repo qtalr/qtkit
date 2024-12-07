@@ -22,13 +22,16 @@ No return value, called for side effects
 }
 \description{
 Helper function that validates the input parameters for the calc_type_metrics
-function. Checks data frame structure, column existence, and metric specifications.
+function. Checks data frame structure, column existence, and metric
+specifications.
 }
 \details{
 Stops execution with error message if:
-\item{data is not a data frame}
-\item{required columns are missing}
-\item{frequency contains invalid metric names}
-\item{dispersion contains invalid metric names}
+\itemize{
+\item data is not a data frame
+\item required columns are missing
+\item frequency contains invalid metric names
+\item dispersion contains invalid metric names
+}
 }
 \keyword{internal}
