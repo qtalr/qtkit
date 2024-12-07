@@ -108,7 +108,7 @@ analysis artifacts in a standardized way:</p>
 <span>  target_dir <span class="op">=</span> <span class="st">"artifacts"</span>,</span>
 <span>  device <span class="op">=</span> <span class="st">"png"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; file:////tmp/RtmpKuSrwI/mtcars_table6aef154d2e4f.html screenshot completed</span></span>
+<span><span class="co">#&gt; file:////tmp/RtmphMjooj/mtcars_table2c5c3fa86eb5.html screenshot completed</span></span>
 <span><span class="co">#&gt; save_kable will have the best result with magick installed.</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -131,7 +131,7 @@ analysis artifacts in a standardized way:</p>
 <span>  device <span class="op">=</span> <span class="st">"png"</span>,</span>
 <span>  bs_theme <span class="op">=</span> <span class="st">"flatly"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; file:////tmp/RtmpKuSrwI/mtcars_styled6aef24e45a82.html screenshot completed</span></span>
+<span><span class="co">#&gt; file:////tmp/RtmphMjooj/mtcars_styled2c5c71529c4f.html screenshot completed</span></span>
 <span><span class="co">#&gt; save_kable will have the best result with magick installed.</span></span></code></pre></div>
 </div>
 </div>
@@ -217,13 +217,14 @@ directory, as seen below:</p>
 <span><span class="co">#&gt; ├── <span style="color: #BB00BB; font-weight: bold;">mtcars_styled.png</span></span></span>
 <span><span class="co">#&gt; └── <span style="color: #BB00BB; font-weight: bold;">mtcars_table.png</span></span></span></code></pre></div>
 <p>Tables and plots saved with {qtkit} can be easily restored. For image
-formats, use the <code><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">knitr::include_graphics()</a></code> function:</p>
+formats, you can use the <code><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">knitr::include_graphics()</a></code>
+function, markdown, or HTML:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Display the saved plot</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"artifacts/mtcars_plot.png"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="artifacts%2Fmtcars_plot.png"><!-- --></p>
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"artifacts/mtcars_plot.png"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="al">![mtcars_plot](artifacts/mtcars_plot.png)</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"artifacts/mtcars_plot.png"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"mtcars_plot"</span><span class="ot"> style</span><span class="op">=</span><span class="st">"display: block; margin: auto;"</span><span class="ot"> </span><span class="dt">/&gt;</span></span></code></pre></div>
 <p>Objects can be read back using <code><a href="https://rdrr.io/r/base/dput.html" class="external-link">dget()</a></code>:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Read the saved object</span></span>
 <span><span class="va">restored_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dput.html" class="external-link">dget</a></span><span class="op">(</span><span class="st">"artifacts/mtcars_4cyl"</span><span class="op">)</span></span>
 <span></span>
@@ -235,9 +236,9 @@ formats, use the <code><a href="https://rdrr.io/pkg/knitr/man/include_graphics.h
 <span><span class="co">#&gt; $ wt  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.320, 3.190, 3.150, 2.200, 1.615, 1.835, 2.465, 1.935, 2.140, 1.5…</span></span>
 <span><span class="co">#&gt; $ hp  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 93, 62, 95, 66, 52, 65, 97, 66, 91, 113, 109</span></span></code></pre></div>
 <blockquote>
-<p>[!TIP] Note that tables and plots need not be saved with the
-<code><a href="../reference/write_kbl.html">write_kbl()</a></code> and <code><a href="../reference/write_gg.html">write_gg()</a></code> functions to be
-restored. These objects can be saved and restored using the
+<p><strong>Tip</strong> Note that tables and plots need not be saved
+with the <code><a href="../reference/write_kbl.html">write_kbl()</a></code> and <code><a href="../reference/write_gg.html">write_gg()</a></code> functions
+to be restored. These objects can be saved and restored using the
 <code><a href="../reference/write_obj.html">write_obj()</a></code> and <code><a href="https://rdrr.io/r/base/dput.html" class="external-link">dget()</a></code> function as well.</p>
 </blockquote>
 </div>
