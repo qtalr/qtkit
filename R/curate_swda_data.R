@@ -7,7 +7,7 @@
 #' @details
 #' The function expects a directory containing .utt files or subdirectories
 #' with .utt files, as found in the raw SWDA data
-#' \url{https://catalog.ldc.upenn.edu/docs/LDC97S62}.
+#' (Linguistic Data Consortium. LDC97S62: Switchboard Dialog Act Corpus.)
 #'
 #' @param dir_path Character string. Path to the directory containing .utt
 #'        files. Must be an existing directory.

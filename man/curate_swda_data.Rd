@@ -30,7 +30,7 @@ format.
 \details{
 The function expects a directory containing .utt files or subdirectories
 with .utt files, as found in the raw SWDA data
-\url{https://catalog.ldc.upenn.edu/docs/LDC97S62}.
+(Linguistic Data Consortium. LDC97S62: Switchboard Dialog Act Corpus.)
 }
 \examples{
 # Example using simulated data bundled with the package

@@ -30,7 +30,7 @@ It handles both .dat files (containing XML metadata) and .tok files
 \details{
 The function expects a directory containing paired .dat and .tok files with
 matching names, as found in the raw ENNTT data
-'\url{https://github.com/senisioi/enntt-release}.
+\url{https://github.com/senisioi/enntt-release}.
 The .dat files should contain XML-formatted metadata with attributes:
 \itemize{
 \item session_id: Unique identifier for the parliamentary session
