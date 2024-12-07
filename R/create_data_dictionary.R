@@ -21,7 +21,6 @@
 #' @return A data frame containing the variable name, human-readable name,
 #' variable type, and description for each variable in the input data frame.
 #'
-#' @importFrom purrr map_chr
 #' @importFrom stringr str_trunc
 #' @importFrom openai list_models create_chat_completion
 #' @import dplyr
@@ -56,7 +55,7 @@ create_data_dictionary <-
         data.frame(
           variable = names(data),
           name = NA_character_,
-          type = purrr::map_chr(data, class),
+          type = sapply(data, class, USE.NAMES = FALSE),
           description = NA_character_,
           stringsAsFactors = FALSE
         )

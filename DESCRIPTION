@@ -25,7 +25,6 @@ Imports:
     knitr,
     Matrix,
     openai,
-    purrr,
     rlang,
     stringr,
     xml2
