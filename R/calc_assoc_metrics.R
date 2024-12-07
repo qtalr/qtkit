@@ -136,6 +136,7 @@ calculate_metrics <-
 
 
 # Helper function to validate input
+# Document this function AI!
 validate_inputs_cam <-
   function(data, doc_index, token_index, type, association) {
     if (!is.data.frame(data)) {
