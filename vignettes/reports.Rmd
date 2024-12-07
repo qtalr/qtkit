@@ -198,4 +198,3 @@ glimpse(restored_data)
 - Related packages: {kableExtra}, {ggplot2}, {webshot2}
 - [Project homepage](https://github.com/qtalr/qtkit)
 
-

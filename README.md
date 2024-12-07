@@ -9,6 +9,7 @@
 status](https://www.r-pkg.org/badges/version/qtkit)](https://CRAN.R-project.org/package=qtkit)
 [![qtkit status
 badge](https://qtalr.r-universe.dev/badges/qtkit)](https://qtalr.r-universe.dev/qtkit)
+![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/qtkit)
 <!-- badges: end -->
 
 ## Getting started
