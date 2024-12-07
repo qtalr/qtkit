@@ -26,7 +26,6 @@
 #' @importFrom stringr str_trunc
 #' @importFrom openai list_models create_chat_completion
 #' @import dplyr
-#' @import readr
 #'
 #' @export
 create_data_dictionary <-
@@ -123,11 +122,12 @@ create_data_dictionary <-
       data_dict <-
         response$choices["message.content"] |> # get the response from the API
         as.character() |> # convert to a character vector
-        readr::read_csv() |> # read the data dictionary as a data frame
+        textConnection() |> # create text connection
+        utils::read.csv(stringsAsFactors = FALSE) |> # read the data dictionary as a data frame
         suppressMessages() # suppress messages
     }
     # Write the data dictionary to a file
-    data_dict |> readr::write_csv(file = file_path)
+    write.csv(data_dict, file = file_path, row.names = FALSE)
 
     # Return the data dictionary
     return(data_dict)
