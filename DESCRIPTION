@@ -33,7 +33,11 @@ Suggests:
     httptest,
     rmarkdown,
     testthat (>= 3.0.0),
-    webshot2
+    webshot2,
+    fs,
+    tibble,
+    glue,
+    readr
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
