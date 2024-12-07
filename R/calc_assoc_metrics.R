@@ -64,11 +64,13 @@ calc_assoc_metrics <-
 #' @param type Column name for the actual tokens/terms
 #'
 #' @return A data frame containing:
-#'   \item{x}{First token in bigram}
-#'   \item{y}{Second token in bigram}
-#'   \item{p_xy}{Joint probability of the bigram}
-#'   \item{p_x}{Marginal probability of first token}
-#'   \item{p_y}{Marginal probability of second token}
+#' \itemize{
+#'   \item x: First token in bigram
+#'   \item y: Second token in bigram
+#'   \item p_xy: Joint probability of the bigram
+#'   \item p_x: Marginal probability of first token
+#'   \item p_y: Marginal probability of second token
+#' }
 #'
 #' @keywords internal
 calculate_bigram_probabilities <-
@@ -115,9 +117,11 @@ calculate_bigram_probabilities <-
 #'
 #' @return A data frame containing the original probability columns plus requested
 #' association metrics:
-#'   \item{pmi}{Pointwise Mutual Information}
-#'   \item{dice_coeff}{Dice's Coefficient}
-#'   \item{g_score}{G-score}
+#' \itemize{
+#'   \item pmi: Pointwise Mutual Information
+#'   \item dice_coeff: Dice's Coefficient
+#'   \item g_score: G-score
+#' }
 #'
 #' @keywords internal
 calculate_metrics <-
