@@ -20,7 +20,6 @@
 #'
 #' @return A data frame containing the variable name, human-readable name,
 #' variable type, and description for each variable in the input data frame.
-#' @importFrom glue glue
 #' @importFrom purrr map_chr
 #' @importFrom stringr str_trunc
 #' @importFrom openai list_models create_chat_completion
@@ -106,7 +105,7 @@ create_data_dictionary <-
         paste(collapse = " ") # collapse the output into a single string
 
       # Combine the instructions and the data sample into a single string
-      prompt <- glue::glue("{prompt_instructions}\n\n{prompt_data}")
+      prompt <- sprintf("%s\n\n%s", prompt_instructions, prompt_data)
 
       # Use openai to generate the descriptions for each of the variables in
       # the `data_sample` data frame.
