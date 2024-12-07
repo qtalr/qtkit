@@ -12,7 +12,10 @@
 #' - Defines outliers as values outside (Q1 - 1.5*IQR, Q3 + 1.5*IQR)
 #'
 #' @param data Data frame containing the variable to analyze.
-#' @param variable_name Unquoted name of the numeric variable to check for outliers.
+#' @param variable_name Unquoted name of the numeric variable to check for
+#' outliers.
+#' @param verbose Logical. If TRUE, prints diagnostic information about
+#' quartiles, fences, and number of outliers found. Default is TRUE.
 #'
 #' @return
 #' If outliers are found:
@@ -32,9 +35,6 @@
 #'
 #' @export
 #'
-#' @param verbose Logical. If TRUE, prints diagnostic information about quartiles,
-#'        fences, and number of outliers found. Default is TRUE.
-#'
 #' @examples
 #' data(mtcars)
 #' find_outliers(mtcars, mpg)
@@ -42,10 +42,9 @@
 #'
 #' @importFrom stats quantile
 find_outliers <-
-  function(
-      data,
-      variable_name,
-      verbose = TRUE) {
+  function(data,
+           variable_name,
+           verbose = TRUE) {
     # Check if `data` is a data.frame
     if (!is.data.frame(data)) {
       stop("The first argument must be a data.frame.")
@@ -75,7 +74,8 @@ find_outliers <-
     }
 
     # Calculate the quartiles using base R functions
-    quartiles <- stats::quantile(data[[var_name]], probs = c(0.25, 0.75), na.rm = TRUE) # nolint
+    quartiles <-
+      stats::quantile(data[[var_name]], probs = c(0.25, 0.75), na.rm = TRUE)
     q1 <- quartiles[1]
     q3 <- quartiles[2]
 
@@ -87,7 +87,8 @@ find_outliers <-
     lower_fence <- q1 - 1.5 * iqr
 
     # Filter the dataset by fences to identify outliers
-    outlier_rows <- data[[var_name]] > upper_fence | data[[var_name]] < lower_fence # nolint
+    outlier_rows <-
+      data[[var_name]] > upper_fence | data[[var_name]] < lower_fence
 
     # Remove NA values from consideration
     outlier_rows[is.na(outlier_rows)] <- FALSE

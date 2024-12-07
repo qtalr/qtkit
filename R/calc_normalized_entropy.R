@@ -8,10 +8,10 @@
 #' The function:
 #' - Handles both character vectors and factors as input
 #' - Treats NA values as a separate category
-#' - Normalizes entropy to range [0,1] where:
+#' - Normalizes entropy to range (0,1) where:
 #'   * 0 indicates complete certainty (one category dominates)
 #'   * 1 indicates maximum uncertainty (equal distribution)
-#' 
+#'
 #' The calculation process:
 #' 1. Computes category proportions
 #' 2. Calculates raw entropy using Shannon's formula

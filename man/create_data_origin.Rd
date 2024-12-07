@@ -2,25 +2,40 @@
 % Please edit documentation in R/create_data_origin.R
 \name{create_data_origin}
 \alias{create_data_origin}
-\title{Create data origin file}
+\title{Create Data Origin Documentation}
 \usage{
 create_data_origin(file_path, return = FALSE, force = FALSE)
 }
 \arguments{
-\item{file_path}{File path where the data origin file should be saved.}
+\item{file_path}{Character string. Path where the CSV file should be saved.}
 
-\item{return}{Logical value indicating whether the data origin should be
-returned.}
+\item{return}{Logical. If TRUE, returns the data frame in addition to saving.
+Default is FALSE.}
 
-\item{force}{Logical value indicating whether to overwrite the file if it
-already exists.}
+\item{force}{Logical. If TRUE, overwrites existing file at path.
+Default is FALSE.}
 }
 \value{
-A data frame containing the data origin information.
+If return=TRUE, returns a data frame containing the data origin
+template. Otherwise returns invisible(NULL).
 }
 \description{
-Data frame with attributes about the data origin, written to a CSV file
-and optionally returned.
+Creates a standardized data origin documentation file in CSV format,
+containing essential metadata about a dataset's source, format, and usage
+rights.
+}
+\details{
+Generates a template with the following metadata fields:
+\itemize{
+\item Resource name
+\item Data source (URL/DOI)
+\item Sampling frame (language, modality, genre)
+\item Collection dates
+\item Data format
+\item Schema description
+\item License information
+\item Attribution requirements
+}
 }
 \examples{
 tmp_file <- tempfile(fileext = ".csv")

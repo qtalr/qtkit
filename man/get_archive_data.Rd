@@ -2,28 +2,52 @@
 % Please edit documentation in R/get_archive_data.R
 \name{get_archive_data}
 \alias{get_archive_data}
-\title{Download an archive file and unarchive its contents}
+\title{Download and Extract Archive Files}
 \usage{
 get_archive_data(url, target_dir, force = FALSE, confirmed = FALSE)
 }
 \arguments{
-\item{url}{A character vector representing the full url to
-the compressed file}
+\item{url}{Character string. Full URL to the compressed archive file.}
 
-\item{target_dir}{The directory where the archive file should be downloaded}
+\item{target_dir}{Character string. Directory where the archive contents
+should be extracted.}
 
-\item{force}{An optional argument which forcefully overwrites existing data}
+\item{force}{Logical. If TRUE, overwrites existing data in target directory.
+Default is FALSE.}
 
-\item{confirmed}{If \code{TRUE}, the user has confirmed that they have
-permission to use the data.
-If \code{FALSE}, the function will prompt the user to confirm permission.
-Setting this to \code{TRUE} is useful for reproducible workflows.}
+\item{confirmed}{Logical. If TRUE, skips permission confirmation prompt.
+Useful for reproducible workflows. Default is FALSE.}
 }
 \value{
-NULL, the archive file is unarchived in the target directory
+Invisible NULL. Called for side effects:
+\itemize{
+\item Downloads archive file
+\item Creates target directory if needed
+\item Extracts archive contents
+\item Cleans up temporary files
+}
 }
 \description{
-Possible file types include .zip, .gz, .tar, and .tgz
+Downloads compressed archive files from a URL and extracts their contents to a
+specified directory. Supports multiple archive formats and handles permission
+confirmation.
+}
+\details{
+Supported archive formats:
+\itemize{
+\item ZIP (.zip)
+\item Gzip (.gz)
+\item Tar (.tar)
+\item Compressed tar (.tgz)
+}
+
+The function includes safety features:
+\itemize{
+\item Permission confirmation for data usage
+\item Directory existence checks
+\item Archive format validation
+\item Automatic file cleanup
+}
 }
 \examples{
 \dontrun{

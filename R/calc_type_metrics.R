@@ -1,12 +1,12 @@
 #' Calculate Frequency and Dispersion Metrics for Text Types
 #'
-#' Calculates various frequency and dispersion metrics for types (terms/tokens) 
-#' in tokenized text data. Provides a comprehensive analysis of how types are 
+#' Calculates various frequency and dispersion metrics for types (terms/tokens)
+#' in tokenized text data. Provides a comprehensive analysis of how types are
 #' distributed across documents in a corpus.
 #'
 #' @param data Data frame. Contains the tokenized text data with document IDs
 #'        and types/terms.
-#' @param type Symbol. Column in `data` containing the types to analyze 
+#' @param type Symbol. Column in `data` containing the types to analyze
 #'        (e.g., terms, lemmas).
 #' @param document Symbol. Column in `data` containing the document identifiers.
 #' @param frequency Character vector. Frequency metrics to calculate:
@@ -34,8 +34,8 @@
 #' The function creates a term-document matrix internally and calculates the
 #' requested metrics. Frequency metrics show how often types occur, while
 #' dispersion metrics show how evenly they are distributed across documents.
-#' 
-#' The 'dp' metric (Gries' Deviation of Proportions) ranges from 0 (perfectly 
+#'
+#' The 'dp' metric (Gries' Deviation of Proportions) ranges from 0 (perfectly
 #' even distribution) to 1 (completely clumped distribution).
 #'
 #' @references

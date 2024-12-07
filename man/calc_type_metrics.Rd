@@ -2,53 +2,56 @@
 % Please edit documentation in R/calc_type_metrics.R
 \name{calc_type_metrics}
 \alias{calc_type_metrics}
-\title{Calculate Type Metrics for Text Data}
+\title{Calculate Frequency and Dispersion Metrics for Text Types}
 \usage{
 calc_type_metrics(data, type, document, frequency = NULL, dispersion = NULL)
 }
 \arguments{
-\item{data}{A data frame containing the tokenized text data}
+\item{data}{Data frame. Contains the tokenized text data with document IDs
+and types/terms.}
 
-\item{type}{The variable in \code{data} that contains the type
-(e.g., term, lemma) to analyze.}
+\item{type}{Symbol. Column in \code{data} containing the types to analyze
+(e.g., terms, lemmas).}
 
-\item{document}{The variable in \code{data} that contains the document IDs.}
+\item{document}{Symbol. Column in \code{data} containing the document identifiers.}
 
-\item{frequency}{A character vector indicating which
-frequency metrics to use. If NULL (default),
-only the \code{type} and \code{n} are returned.
-Other options:
-'all',
-'rf' calculates relative frequency,
-'orf' calculates observed relative frequency.
-Can specify multiple options: c('rf', 'orf').}
+\item{frequency}{Character vector. Frequency metrics to calculate:
+- NULL (default): Returns only type counts
+- 'all': All available metrics
+- 'rf': Relative frequency
+- 'orf': Observed relative frequency (per 100)}
 
-\item{dispersion}{A character vector indicating which
-dispersion metrics to use. If NULL (default),
-only the \code{type} and \code{n} are returned.
-Other options:
-'all',
-'df' calculates Document Frequency.
-'idf' calculates Inverse Document Frequency.
-'dp' calculates Gries' Deviation of Proportions.
-Can specify multiple options: c('df', 'idf').}
+\item{dispersion}{Character vector. Dispersion metrics to calculate:
+- NULL (default): Returns only type counts
+- 'all': All available metrics
+- 'df': Document frequency
+- 'idf': Inverse document frequency
+- 'dp': Gries' deviation of proportions}
 }
 \value{
-A data frame with columns:
+Data frame containing requested metrics:
 \itemize{
-\item \code{type}: The unique types from the input data.
-\item \code{n}: The frequency of each type across all document.
-Optionally (based on the \code{frequency} and \code{dispersion} arguments):
-\item \code{rf}: The relative frequency of each type across all document.
-\item \code{orf}: The observed relative frequency (per 100) of each
-type across all document.
-\item \code{df}: The document frequency of each type.
-\item \code{idf}: The inverse document frequency of each type.
-\item \code{dp}: Gries' Deviation of Proportions of each type.
+\item type: Unique types from input data
+\item n: Raw frequency count
+\item rf: Relative frequency (if requested)
+\item orf: Observed relative frequency per 100 (if requested)
+\item df: Document frequency (if requested)
+\item idf: Inverse document frequency (if requested)
+\item dp: Deviation of proportions (if requested)
 }
 }
 \description{
-This function calculates type metrics for tokenized text data.
+Calculates various frequency and dispersion metrics for types (terms/tokens)
+in tokenized text data. Provides a comprehensive analysis of how types are
+distributed across documents in a corpus.
+}
+\details{
+The function creates a term-document matrix internally and calculates the
+requested metrics. Frequency metrics show how often types occur, while
+dispersion metrics show how evenly they are distributed across documents.
+
+The 'dp' metric (Gries' Deviation of Proportions) ranges from 0 (perfectly
+even distribution) to 1 (completely clumped distribution).
 }
 \examples{
 data_path <- system.file("extdata", "types_data.rds", package = "qtkit")

@@ -2,28 +2,59 @@
 % Please edit documentation in R/find_outliers.R
 \name{find_outliers}
 \alias{find_outliers}
-\title{Identify Outliers in a Numeric Variable}
+\title{Detect Statistical Outliers Using IQR Method}
 \usage{
-find_outliers(data, variable_name)
+find_outliers(data, variable_name, verbose = TRUE)
 }
 \arguments{
-\item{data}{A data.frame object.}
+\item{data}{Data frame containing the variable to analyze.}
 
-\item{variable_name}{A symbol representing a numeric variable in \code{data}.}
+\item{variable_name}{Unquoted name of the numeric variable to check for
+outliers.}
+
+\item{verbose}{Logical. If TRUE, prints diagnostic information about
+quartiles, fences, and number of outliers found. Default is TRUE.}
 }
 \value{
-A data.frame containing the outliers in \code{variable_name}.
-If no outliers are found, the function returns \code{NULL}. The
-function also prints diagnostic information about the
-variable and the number of outliers found.
+If outliers are found:
+\itemize{
+\item Data frame containing rows with outlier values
+\item Prints diagnostic information about quartiles and fences
+}
+
+If no outliers:
+\itemize{
+\item Returns NULL
+\item Prints confirmation message
+}
 }
 \description{
-This function identifies outliers in a numeric variable of a data.frame
-using the interquartile range (IQR) method.
+Identifies statistical outliers in a numeric variable using the Interquartile
+Range (IQR) method. Provides detailed diagnostics about the outlier detection
+process.
 }
+\details{
+The function uses the standard IQR method for outlier detection:
+\itemize{
+\item Calculates Q1 (25th percentile) and Q3 (75th percentile)
+\item Computes IQR = Q3 - Q1
+\item Defines outliers as values outside (Q1 - 1.5\emph{IQR, Q3 + 1.5}IQR)
+}
+}
+\section{Diagnostic Output}{
+
+\itemize{
+\item Variable name
+\item Q1 and Q3 values
+\item IQR value
+\item Upper and lower fence values
+\item Number of outliers found
+}
+}
+
 \examples{
 data(mtcars)
 find_outliers(mtcars, mpg)
-find_outliers(mtcars, wt)
+find_outliers(mtcars, wt, verbose = FALSE)
 
 }
