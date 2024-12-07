@@ -1,36 +1,53 @@
 #' Internal Functions for Calculating Dispersion and Frequency Metrics
 #'
 #' @description
-#' Collection of internal helper functions for calculating various dispersion
-#' and frequency metrics from term-document matrices. Used by the
-#' `calc_type_metrics` function.
+#' A collection of internal helper functions that calculate various dispersion
+#' and frequency metrics from term-document matrices. These functions support
+#' the main `calc_type_metrics` function by providing specialized calculations
+#' for different statistical measures.
 #'
 #' @details
-#' Includes the following metrics:
-#' 
+#' The package implements these metrics:
+#'
 #' Dispersion measures:
-#' - Document Frequency (DF): Number of documents containing the term
-#' - Inverse Document Frequency (IDF): Log-scaled inverse of DF
+#' - Document Frequency (DF): Count of documents containing each term
+#' - Inverse Document Frequency (IDF): Log-scaled inverse of DF, emphasizing rare terms
 #' - Deviation of Proportions (DP): Gries' measure of distributional evenness
+#'   ranging from 0 (perfectly even) to 1 (completely clumped)
 #'
 #' Frequency measures:
-#' - Relative Frequency (RF): Term frequency normalized by corpus size
-#' - Observed Relative Frequency (ORF): RF expressed as percentage
+#' - Relative Frequency (RF): Term frequency normalized by total corpus size
+#' - Observed Relative Frequency (ORF): RF expressed as percentage (RF * 100)
 #'
-#' All functions take a term-document matrix as input and return vectors of
-#' the respective metrics.
+#' Implementation notes:
+#' - All functions expect a sparse term-document matrix input
+#' - Matrix operations are optimized using the Matrix package
+#' - NA values are handled appropriately for each metric
+#' - Results are returned as numeric vectors
+#'
+#' @references
+#' Gries, S. T. (2008). Dispersions and adjusted frequencies in corpora.
+#' International Journal of Corpus Linguistics, 13(4), 403-437.
 #'
 #' @keywords internal
 #'
 
 #' Calculate Relative Frequency
 #'
-#' Computes the relative frequency (RF) for each term in a term-document matrix.
-#' RF is calculated as the sum of occurrences divided by total corpus size.
+#' @description
+#' Computes the relative frequency (RF) for each term in a term-document matrix,
+#' representing how often each term occurs relative to the total corpus size.
 #'
-#' @param tdm A term-document matrix
+#' @details
+#' The calculation process:
+#' 1. Sums occurrences of each term across all documents
+#' 2. Divides by total corpus size (sum of all terms)
+#' 3. Returns proportions between 0 and 1
 #'
-#' @return A numeric vector of relative frequencies for each term
+#' @param tdm A sparse term-document matrix (Matrix package format)
+#'
+#' @return A numeric vector where each element represents a term's relative
+#' frequency in the corpus (range: 0-1)
 #'
 #' @importFrom Matrix rowSums
 #'
