@@ -29,7 +29,6 @@ Imports:
     purrr,
     rlang,
     stringr,
-    tibble,
     tidytext,
     xml2
 Suggests:

@@ -20,7 +20,6 @@
 #'
 #' @return A data frame containing the variable name, human-readable name,
 #' variable type, and description for each variable in the input data frame.
-#' @importFrom tibble tibble
 #' @importFrom glue glue
 #' @importFrom purrr map_chr
 #' @importFrom stringr str_trunc
@@ -54,11 +53,12 @@ create_data_dictionary <-
     # If not, check to see if `model` is one of the available models
     if (is.null(model)) {
       data_dict <-
-        tibble::tibble(
+        data.frame(
           variable = names(data),
           name = NA_character_,
           type = purrr::map_chr(data, class),
-          description = NA_character_
+          description = NA_character_,
+          stringsAsFactors = FALSE
         )
     } else {
       # Check to see if `model` is one of the available models

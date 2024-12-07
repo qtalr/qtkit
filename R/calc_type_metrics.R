@@ -69,7 +69,8 @@ calc_type_metrics <-
       tidytext::cast_sparse({{ type }}, {{ document }}, n)
     # Initialize an empty data frame
     row_sums <- Matrix::rowSums(tdm)
-    output_df <- tibble::tibble(type = rownames(tdm), n = row_sums)
+    output_df <- data.frame(type = rownames(tdm), n = row_sums, 
+                           stringsAsFactors = FALSE)
     # Calculate frequency metrics based on user choice
     metrics <- c("rf", "orf")
     for (metric in metrics) {
