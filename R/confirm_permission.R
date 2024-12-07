@@ -8,6 +8,7 @@
 #' @keywords internal
 #' @return TRUE if the user confirms permission, FALSE otherwise
 #'
+#' @keywords internal
 confirm_permission <- function() {
   # Confirm that the user has permission to use the data
   # If not, stop the script

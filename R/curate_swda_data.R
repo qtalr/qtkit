@@ -60,6 +60,7 @@ curate_swda_data <- function(dir_path) {
   )
   return(data_df)
 }
+
 #' Process a single SWDA utterance file
 #'
 #' @param file_path Character string. Path to the .utt file
@@ -74,6 +75,7 @@ curate_swda_file <- function(file_path) {
   utterances_df <- extract_utterances(doc_lines, speaker_info)
   return(utterances_df)
 }
+
 #' Extract speaker information from document lines
 #'
 #' @param doc_lines Character vector of file lines
@@ -95,6 +97,7 @@ extract_speaker_info <- function(doc_lines) {
     speaker_b_id = speaker_info_parts[3]
   ))
 }
+
 #' Extract and process utterances from document lines
 #'
 #' @param doc_lines Character vector of file lines
@@ -143,6 +146,7 @@ extract_utterances <- function(doc_lines, speaker_info) {
   )
   return(result_df)
 }
+
 #' Process speaker turn information
 #'
 #' @param speaker_turn Vector of speaker turns

@@ -70,6 +70,7 @@ calc_assoc_metrics <-
 #'   \item{p_x}{Marginal probability of first token}
 #'   \item{p_y}{Marginal probability of second token}
 #'
+#' @keywords internal
 calculate_bigram_probabilities <-
   function(data, doc_index, token_index, type) {
     # Sort data by document and token
@@ -118,6 +119,7 @@ calculate_bigram_probabilities <-
 #'   \item{dice_coeff}{Dice's Coefficient}
 #'   \item{g_score}{G-score}
 #'
+#' @keywords internal
 calculate_metrics <-
   function(bigram_probs, association) {
     metrics <- bigram_probs
@@ -154,6 +156,7 @@ calculate_metrics <-
 #'   \item{required columns are missing}
 #'   \item{association contains invalid metric names}
 #'
+#' @keywords internal
 validate_inputs_cam <-
   function(data, doc_index, token_index, type, association) {
     if (!is.data.frame(data)) {

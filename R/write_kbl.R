@@ -27,24 +27,27 @@
 #' table_dir <- file.path(tempdir(), "table")
 #'
 #' mtcars_kbl <- kable(
-#'  x = mtcars[1:5, ],
-#'  format = "html")
+#'   x = mtcars[1:5, ],
+#'   format = "html"
+#' )
 #'
 #' # Write a kable object as a PDF file
 #' write_kbl(
-#'  kbl_obj = mtcars_kbl,
-#'  file = "kable_pdf",
-#'  target_dir = table_dir,
-#'  device = "pdf")
+#'   kbl_obj = mtcars_kbl,
+#'   file = "kable_pdf",
+#'   target_dir = table_dir,
+#'   device = "pdf"
+#' )
 #' # Write a kable object as a HTML file
 #'
 #' # Write a kable as an HTML file with a custom Bootstrap theme
 #' write_kbl(
-#'  kbl_obj = mtcars_kbl,
-#'  file = "kable_html",
-#'  target_dir = table_dir,
-#'  device = "html",
-#'  bs_theme = "flatly")
+#'   kbl_obj = mtcars_kbl,
+#'   file = "kable_html",
+#'   target_dir = table_dir,
+#'   device = "html",
+#'   bs_theme = "flatly"
+#' )
 #'
 #' unlink(table_dir)
 #' }
@@ -52,12 +55,12 @@
 #' @keywords publishing
 write_kbl <-
   function(
-    kbl_obj,
-    file = NULL,
-    target_dir = NULL,
-    device = "pdf",
-    bs_theme = "bootstrap",
-    ...) {
+      kbl_obj,
+      file = NULL,
+      target_dir = NULL,
+      device = "pdf",
+      bs_theme = "bootstrap",
+      ...) {
     # Retrieve the label of the current code chunk
     block_label <- knitr::opts_current$get("label")
     # If file name is not specified, use the block label as the file name this

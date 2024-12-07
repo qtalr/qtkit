@@ -28,13 +28,15 @@
 #' plot_dir <- file.path(tempdir(), "plot")
 #'
 #' # Write a ggplot object as a PDF file
-#' p <- ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point()
+#' p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+#'   geom_point()
 #'
 #' write_gg(
-#'  gg_obj = p,
-#'  file = "plot_file",
-#'  target_dir = plot_dir,
-#'  device = "pdf")
+#'   gg_obj = p,
+#'   file = "plot_file",
+#'   target_dir = plot_dir,
+#'   device = "pdf"
+#' )
 #'
 #' unlink(plot_dir)
 #' }
@@ -45,50 +47,50 @@
 #' @keywords publishing
 write_gg <-
   function(
-    gg_obj = NULL,
-    file = NULL,
-    target_dir = NULL,
-    device = "pdf",
-    theme = NULL,
-    ...) {
-  # Retrieve the label of the current code chunk
-  block_label <- knitr::opts_current$get("label")
-  # If ggplot is not specified, use the last ggplot created
-  if (is.null(gg_obj)) {
-    gg_obj <- ggplot2::last_plot()
-  }
-  # If file name is not specified, use the block label as the file name
-  if (is.null(file)) {
-    if (is.null(block_label)) {
-      # Stop execution and throw an error if both file name
-      # and block label are not specified
-      stop("file must be specified")
+      gg_obj = NULL,
+      file = NULL,
+      target_dir = NULL,
+      device = "pdf",
+      theme = NULL,
+      ...) {
+    # Retrieve the label of the current code chunk
+    block_label <- knitr::opts_current$get("label")
+    # If ggplot is not specified, use the last ggplot created
+    if (is.null(gg_obj)) {
+      gg_obj <- ggplot2::last_plot()
     }
-    # Use the block label as the file name
-    file <- block_label
+    # If file name is not specified, use the block label as the file name
+    if (is.null(file)) {
+      if (is.null(block_label)) {
+        # Stop execution and throw an error if both file name
+        # and block label are not specified
+        stop("file must be specified")
+      }
+      # Use the block label as the file name
+      file <- block_label
+    }
+    # If target directory is not specified, use the current working directory
+    if (is.null(target_dir)) {
+      target_dir <- getwd()
+    }
+    # If the target directory does not exist, create it
+    if (!dir.exists(target_dir)) {
+      dir.create(target_dir, recursive = TRUE)
+      # Output a message indicating that the directory has been created
+      message("Directory created: ", target_dir)
+    }
+    # Construct the full file path
+    extension <- switch(device,
+      "pdf" = ".pdf",
+      "png" = ".png",
+      "jpeg" = ".jpeg",
+      "tiff" = ".tiff",
+      "svg" = ".svg"
+    )
+    file <- paste0(file, extension)
+    file <- file.path(target_dir, file)
+    # Write the ggplot to the specified file
+    ggplot2::ggsave(file, gg_obj, device = device, ...)
+    # Return the file path, invisibly
+    return(invisible(file))
   }
-  # If target directory is not specified, use the current working directory
-  if (is.null(target_dir)) {
-    target_dir <- getwd()
-  }
-  # If the target directory does not exist, create it
-  if (!dir.exists(target_dir)) {
-    dir.create(target_dir, recursive = TRUE)
-    # Output a message indicating that the directory has been created
-    message("Directory created: ", target_dir)
-  }
-  # Construct the full file path
-  extension <- switch(device,
-    "pdf" = ".pdf",
-    "png" = ".png",
-    "jpeg" = ".jpeg",
-    "tiff" = ".tiff",
-    "svg" = ".svg"
-  )
-  file <- paste0(file, extension)
-  file <- file.path(target_dir, file)
-  # Write the ggplot to the specified file
-  ggplot2::ggsave(file, gg_obj, device = device, ...)
-  # Return the file path, invisibly
-  return(invisible(file))
-}
