@@ -9,7 +9,7 @@
 #' The function uses the standard IQR method for outlier detection:
 #' - Calculates Q1 (25th percentile) and Q3 (75th percentile)
 #' - Computes IQR = Q3 - Q1
-#' - Defines outliers as values outside [Q1 - 1.5*IQR, Q3 + 1.5*IQR]
+#' - Defines outliers as values outside (Q1 - 1.5*IQR, Q3 + 1.5*IQR)
 #'
 #' @param data Data frame containing the variable to analyze.
 #' @param variable_name Unquoted name of the numeric variable to check for outliers.
@@ -38,6 +38,7 @@
 #' find_outliers(mtcars, wt)
 #'
 #' @importFrom stats quantile
+# Add an argument 'verbose' to control the diagnostic output AI!
 find_outliers <-
   function(
       data,
