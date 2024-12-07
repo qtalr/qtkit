@@ -54,6 +54,7 @@ calc_assoc_metrics <-
 
 
 # Helper function to calculate bigram probabilities
+# Document this function AI!
 calculate_bigram_probabilities <-
   function(data, doc_index, token_index, type) {
     # Sort data by document and token
