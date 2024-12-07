@@ -1,10 +1,19 @@
 #' Write an R object as a file
 #'
-#' @description This function is a wrapper around `dput` that allows you
-#' to write an R object as part of a knitr document as an output for
-#' later use. It is designed to be used in a code block. The file name, if
-#' not specified, will be the label of the code block. Use the standard
-#' `dget` function to read the file back into an R session.
+#' @description
+#' A wrapper around `dput` that facilitates saving R objects within knitr documents.
+#' Automatically handles file naming and directory creation, with support for
+#' preserving object structure and attributes.
+#'
+#' @details
+#' This function extends `dput` functionality by:
+#' - Using knitr code block labels for automatic file naming
+#' - Creating target directories if they don't exist
+#' - Preserving complex object structures and attributes
+#' - Supporting all R object types (vectors, lists, data frames, etc.)
+#' 
+#' Objects saved with this function can be read back using the standard
+#' `dget` function.
 #'
 #' @param obj The R object to be written.
 #' @param file The name of the file to be written. If not specified, the
