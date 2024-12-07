@@ -1,5 +1,5 @@
 ---
-title: "Publishing Analysis Artifacts with qtkit"
+title: "Leveraging publishing functions"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Leveraging publishing functions}
@@ -10,7 +10,9 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.path = "artifacts/",
+  out.width = "100%"
 )
 ```
 
@@ -27,7 +29,7 @@ library(kableExtra)
 The {qtkit} package provides several functions to help publish analysis artifacts in a standardized way:
 
 - `write_kbl()`: Save kable/kableExtra tables to files
-- `write_gg()`: Save ggplot2 plots to files  
+- `write_gg()`: Save ggplot2 plots to files
 - `write_obj()`: Save R objects to files
 
 These functions handle common tasks like:
@@ -53,8 +55,15 @@ mtcars_table <- mtcars[1:5, 1:4] |>
 write_kbl(
   kbl_obj = mtcars_table,
   file = "mtcars_table",
-  device = "html"
+  target_dir = "artifacts",
+  device = "png"
 )
+```
+
+The table is saved as a PNG file and can then be included in reports or presentations. For example, the `include_graphics()` function from  {knitr} can be used to include the image in an R Markdown document:
+
+```{r mtcars_table_show}
+knitr::include_graphics("./mtcars_table.png")
 ```
 
 ## Customizing Table Output
@@ -73,12 +82,13 @@ mtcars_table <- mtcars[1:5, 1:4] |>
 write_kbl(
   kbl_obj = mtcars_table,
   file = "mtcars_styled",
+  target_dir = "artifacts",
   device = "pdf",
   bs_theme = "flatly"
 )
 ```
 
-# Writing Plots 
+# Writing Plots
 
 ## Basic Plot Export
 
@@ -94,6 +104,7 @@ p <- ggplot(mtcars, aes(wt, mpg)) +
 write_gg(
   gg_obj = p,
   file = "mtcars_plot",
+  target_dir = "artifacts",
   device = "pdf"
 )
 ```
@@ -116,6 +127,7 @@ p <- ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
 write_gg(
   gg_obj = p,
   file = "mtcars_plot_styled",
+  target_dir = "artifacts",
   device = "png",
   width = 8,
   height = 6,
@@ -138,7 +150,8 @@ mtcars_subset <- mtcars |>
 # Save to file
 write_obj(
   obj = mtcars_subset,
-  file = "mtcars_4cyl"
+  file = "mtcars_4cyl",
+  target_dir = "artifacts"
 )
 ```
 
@@ -148,7 +161,7 @@ Objects can be read back using `dget()`:
 
 ```{r}
 # Read the saved object
-restored_data <- dget("mtcars_4cyl")
+restored_data <- dget("./artifacts/mtcars_4cyl")
 ```
 
 # Best Practices
