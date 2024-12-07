@@ -1,8 +1,10 @@
 ---
-title: "Publishing Analysis Artifacts with qtkit"
+title: "Publishing Analysis Artifacts"
 output: rmarkdown::html_vignette
+resource_files:
+  - artifacts/
 vignette: >
-  %\VignetteIndexEntry{Publishing Analysis Artifacts with qtkit}
+  %\VignetteIndexEntry{Publishing Analysis Artifacts}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -10,9 +12,7 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  fig.path = "figures/",
-  out.width = "100%"
+  comment = "#>"
 )
 ```
 
@@ -45,7 +45,7 @@ These functions handle common tasks like:
 
 Let's create and save a simple table using `write_kbl()`:
 
-```{r}
+```{r mtcars_table}
 # Create a basic table
 mtcars_table <- mtcars[1:5, 1:4] |>
   kable(format = "html") |>
@@ -55,22 +55,16 @@ mtcars_table <- mtcars[1:5, 1:4] |>
 write_kbl(
   kbl_obj = mtcars_table,
   file = "mtcars_table",
-  target_dir = "figures",
+  target_dir = "artifacts",
   device = "png"
 )
-```
-
-The table is saved as a PNG file and can then be included in reports or presentations. For example, the `include_graphics()` function from  {knitr} can be used to include the image in an R Markdown document:
-
-```{r mtcars_table_show}
-knitr::include_graphics("figures/mtcars_table.png")
 ```
 
 ## Customizing Table Output
 
 You can customize the output format and styling:
 
-```{r}
+```{r mtcars_table_styled}
 mtcars_table <- mtcars[1:5, 1:4] |>
   kable(format = "html") |>
   kable_styling(
@@ -82,8 +76,8 @@ mtcars_table <- mtcars[1:5, 1:4] |>
 write_kbl(
   kbl_obj = mtcars_table,
   file = "mtcars_styled",
-  target_dir = "figures",
-  device = "pdf",
+  target_dir = "artifacts",
+  device = "png",
   bs_theme = "flatly"
 )
 ```
@@ -94,7 +88,7 @@ write_kbl(
 
 Save ggplot2 plots with `write_gg()`:
 
-```{r}
+```{r mtcars_plot}
 # Create a basic plot
 p <- ggplot(mtcars, aes(wt, mpg)) +
   geom_point() +
@@ -105,7 +99,7 @@ write_gg(
   gg_obj = p,
   file = "mtcars_plot",
   target_dir = "artifacts",
-  device = "pdf"
+  device = "png"
 )
 ```
 
@@ -113,7 +107,7 @@ write_gg(
 
 Add custom themes and formatting:
 
-```{r}
+```{r mtcars_plot_styled}
 p <- ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
   geom_point(size = 3) +
   theme_minimal() +
@@ -141,7 +135,7 @@ write_gg(
 
 Use `write_obj()` to save R objects for later use:
 
-```{r}
+```{r mtcars_subset}
 # Create a filtered dataset
 mtcars_subset <- mtcars |>
   filter(cyl == 4) |>
@@ -155,14 +149,34 @@ write_obj(
 )
 ```
 
-## Reading Saved Objects
+## Reading Saved Artifacts
+
+These objects have all been saved in the `artifacts` directory, as seen below:
+
+```{r artifacts_list}
+fs::dir_tree("artifacts")
+```
+
+Tables and plots saved with {qtkit} can be easily restored. For image formats, use the `knitr::include_graphics()` function:
+
+```{r mtcars_plot_restore}
+# Display the saved plot
+knitr::include_graphics("artifacts/mtcars_plot.png")
+```
 
 Objects can be read back using `dget()`:
 
-```{r}
+```{r mtcars_subset_restore}
 # Read the saved object
-restored_data <- dget("./figures/mtcars_4cyl")
+restored_data <- dget("artifacts/mtcars_4cyl")
+
+# Check the restored object
+glimpse(restored_data)
 ```
+
+> [!TIP]
+> Note that tables and plots need not be saved with the `write_kbl()` and `write_gg()` functions to be restored. These objects can be saved and restored using the `write_obj()` and `dget()` function as well.
+
 
 # Best Practices
 

@@ -17,7 +17,7 @@
 ^LICENSE\.md$
 ^pkgdown$
 ^README\.Rmd$
-^vignettes/articles$
+^vignettes/artifacts$
 ^\.aider\.tags\.cache\.v3$
 ^\.aider\.chat\.history\.md$
 ^\.aider\.input\.history$

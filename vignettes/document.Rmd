@@ -1,8 +1,8 @@
 ---
-title: "Documenting Datasets with qtkit"
+title: "Documenting Datasets"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Documenting Datasets with qtkit}
+  %\VignetteIndexEntry{Documenting Datasets}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup, include=FALSE}
+```{r setup, message=FALSE, warning=FALSE}
 library(qtkit)
 library(fs)
 library(tibble)
@@ -38,7 +38,7 @@ Let's start with documenting the built-in `mtcars` dataset:
 
 ```{r}
 # Create a temporary file for our documentation
-origin_file <- fs::file_temp(ext = "csv")
+origin_file <- file_temp(ext = "csv")
 
 # Create the origin documentation template
 origin_doc <- create_data_origin(
@@ -47,14 +47,16 @@ origin_doc <- create_data_origin(
 )
 
 # View the template
-origin_doc %>%
+origin_doc |>
   glimpse()
 ```
 
-The template provides fields for essential metadata. Here's how you might fill it out for `mtcars`:
+The template provides fields for essential metadata. You can either open the CSV file in a spreadsheet editor or fill it out programmatically, as shown below.
+
+Here's how you might fill it out for `mtcars`:
 
 ```{r}
-origin_doc %>%
+origin_doc |>
   mutate(description = c(
     "Motor Trend Car Road Tests",
     "Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391–411.",
@@ -64,7 +66,7 @@ origin_doc %>%
     "Single data frame with 32 observations of 11 variables",
     "Public Domain",
     "Citation: Henderson and Velleman (1981)"
-  )) %>%
+  )) |>
   write_csv(origin_file)
 ```
 
@@ -87,7 +89,7 @@ Create a basic data dictionary without AI assistance:
 
 ```{r}
 # Create a temporary file for our dictionary
-dict_file <- fs::file_temp(ext = "csv")
+dict_file <- file_temp(ext = "csv")
 
 # Generate dictionary for iris dataset
 iris_dict <- create_data_dictionary(
@@ -96,7 +98,7 @@ iris_dict <- create_data_dictionary(
 )
 
 # View the results
-iris_dict %>%
+iris_dict |>
   glimpse()
 ```
 
@@ -111,7 +113,7 @@ Sys.setenv(OPENAI_API_KEY = "your-api-key")
 iris_dict_ai <- create_data_dictionary(
   data = iris,
   file_path = dict_file,
-  model = "gpt-3.5-turbo",
+  model = "gpt-4",
   sample_n = 5
 )
 ```
@@ -136,10 +138,10 @@ tibble(
 For larger datasets, you can use sampling and grouping:
 
 ```{r, eval=FALSE}
-diamonds_dict <- diamonds %>%
+diamonds_dict <- diamonds |>
   create_data_dictionary(
     file_path = "diamonds_dict.csv",
-    model = "gpt-3.5-turbo",
+    model = "gpt-4",
     sample_n = 3,
     grouping = "cut" # Sample across different cut categories
   )
