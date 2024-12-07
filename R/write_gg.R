@@ -1,10 +1,16 @@
-#' Write a ggplot object to a file
+#' Save ggplot Objects to Files
 #'
-#' @description This function is a wrapper around `ggsave` from the
-#' `ggplot2` package that allows you to write a ggplot object as part of
-#' a knitr document as an output for later use. It is designed to be used
-#' in a code block. The file name, if not specified, will be the label of
-#' the code block.
+#' @description
+#' A wrapper around `ggsave` that facilitates saving ggplot objects within knitr
+#' documents. Automatically handles file naming and directory creation, with
+#' support for multiple output formats.
+#'
+#' @details
+#' This function extends `ggplot2::ggsave` by:
+#' - Using knitr code block labels for automatic file naming
+#' - Creating target directories if they don't exist
+#' - Supporting multiple output formats (PDF, PNG, JPEG, TIFF, SVG)
+#' - Applying custom themes to plots before saving
 #'
 #' @param gg_obj The ggplot to be written. If not specified, the last
 #' ggplot created will be written.
