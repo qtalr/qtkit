@@ -1,13 +1,24 @@
-#' Dispersion and frequency functions
-
-#' These functions are for internal use only.
+#' Internal Functions for Calculating Dispersion and Frequency Metrics
 #'
-#' To be used with the `calc_type_metrics` function.
-#' Includes dispersion measures: `calc_df()` Document Frequency 'DF',
-#' `calc_idf()` Inverse Document Frequency 'IDF', and `calc_dp()` Gries'
-#' Deviation of Proportions 'DP' functions. Frequency measures include:
-#' `calc_rf()` and `calc_orf()`. Takes a term-document matrix (TDM) as
-#' input and returns the respective dispersion metrics for each type in the TDM.
+#' @description
+#' Collection of internal helper functions for calculating various dispersion
+#' and frequency metrics from term-document matrices. Used by the
+#' `calc_type_metrics` function.
+#'
+#' @details
+#' Includes the following metrics:
+#' 
+#' Dispersion measures:
+#' - Document Frequency (DF): Number of documents containing the term
+#' - Inverse Document Frequency (IDF): Log-scaled inverse of DF
+#' - Deviation of Proportions (DP): Gries' measure of distributional evenness
+#'
+#' Frequency measures:
+#' - Relative Frequency (RF): Term frequency normalized by corpus size
+#' - Observed Relative Frequency (ORF): RF expressed as percentage
+#'
+#' All functions take a term-document matrix as input and return vectors of
+#' the respective metrics.
 #'
 #' @keywords internal
 #'

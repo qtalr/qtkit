@@ -1,14 +1,29 @@
-#' Create data origin file
+#' Create Data Origin Documentation
 #'
-#' Data frame with attributes about the data origin, written to a CSV file
-#' and optionally returned.
+#' @description
+#' Creates a standardized data origin documentation file in CSV format,
+#' containing essential metadata about a dataset's source, format, and usage
+#' rights.
 #'
-#' @param file_path File path where the data origin file should be saved.
-#' @param return Logical value indicating whether the data origin should be
-#' returned.
-#' @param force Logical value indicating whether to overwrite the file if it
-#' already exists.
-#' @return A data frame containing the data origin information.
+#' @details
+#' Generates a template with the following metadata fields:
+#' - Resource name
+#' - Data source (URL/DOI)
+#' - Sampling frame (language, modality, genre)
+#' - Collection dates
+#' - Data format
+#' - Schema description
+#' - License information
+#' - Attribution requirements
+#'
+#' @param file_path Character string. Path where the CSV file should be saved.
+#' @param return Logical. If TRUE, returns the data frame in addition to saving.
+#'        Default is FALSE.
+#' @param force Logical. If TRUE, overwrites existing file at path.
+#'        Default is FALSE.
+#'
+#' @return If return=TRUE, returns a data frame containing the data origin
+#'         template. Otherwise returns invisible(NULL).
 #' @export
 #'
 #' @examples
