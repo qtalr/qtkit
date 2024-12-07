@@ -16,7 +16,7 @@ Bug fixes:
 Enhancements:
 
 - Adds vignettes for documenting data and using the publishing functions.
-- Removes many external dependencies from the package.
+- Removes many external dependencies from the package (glue, purrr, readr, stringr, tibble, and tidytext) to reduce the number of dependencies and make the package more lightweight.
 
 # qtkit 1.0.0
 
