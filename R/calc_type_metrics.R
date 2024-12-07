@@ -98,12 +98,10 @@ calc_type_metrics <-
 #' @return No return value, called for side effects
 #'
 #' @details Stops execution with error message if:
-#' \itemize{
-#'   \item data is not a data frame
-#'   \item required columns are missing
-#'   \item frequency contains invalid metric names
-#'   \item dispersion contains invalid metric names
-#' }
+#'   - data is not a data frame
+#'   - required columns are missing
+#'   - frequency contains invalid metric names
+#'   - dispersion contains invalid metric names
 #'
 #' @keywords internal
 validate_inputs_ctm <- function(data, type, document, frequency, dispersion) {
