@@ -53,9 +53,16 @@ get_archive_data <-
     }
   }
 
-# Document this and the other internal functions in this file AI!
-# ' @keywords internal
-# Helper function to confirm permission
+#' Check if Permission Confirmation is Needed
+#'
+#' Helper function that determines whether to prompt the user for permission
+#' confirmation based on the confirmed parameter.
+#'
+#' @param confirmed Logical indicating if permission is pre-confirmed
+#'
+#' @return Logical indicating if permission is granted
+#'
+#' @keywords internal
 confirm_if_needed <- function(confirmed) {
   if (!confirmed) {
     return(confirm_permission())
@@ -63,16 +70,36 @@ confirm_if_needed <- function(confirmed) {
   return(TRUE)
 }
 
-# ' @keywords internal
-# Helper function to validate file extension
+#' Validate Archive File Extension
+#'
+#' Helper function that checks if the file extension is supported
+#' (zip, gz, tar, or tgz).
+#'
+#' @param ext Character string of the file extension
+#'
+#' @return No return value, called for side effects
+#'
+#' @throws Stops execution if extension is not supported
+#'
+#' @keywords internal
 validate_file_extension <- function(ext) {
   if (!ext %in% c("zip", "gz", "tar", "tgz")) {
     stop("Target file given is not supported")
   }
 }
 
-# ' @keywords internal
-# Helper function to download and decompress file
+#' Download and Decompress Archive File
+#'
+#' Helper function that downloads an archive file to a temporary location
+#' and decompresses it to the target directory.
+#'
+#' @param url Character string of the archive file URL
+#' @param target_dir Character string of the target directory path
+#' @param ext Character string of the file extension
+#'
+#' @return No return value, called for side effects
+#'
+#' @keywords internal
 download_and_decompress <- function(url, target_dir, ext) {
   message("Downloading data... \n")
   temp <- tempfile()
@@ -87,8 +114,16 @@ download_and_decompress <- function(url, target_dir, ext) {
   message("Data downloaded! \n")
 }
 
-# ' @keywords internal
-# Helper function to clean filenames
+#' Clean Downloaded File Names
+#'
+#' Helper function that removes spaces from filenames in the target directory,
+#' replacing them with underscores.
+#'
+#' @param target_dir Character string of the target directory path
+#'
+#' @return Invisible NULL, called for side effects
+#'
+#' @keywords internal
 clean_filenames <- function(target_dir) {
   files <- list.files(target_dir)
   new_files <- gsub(" ", "_", files)
