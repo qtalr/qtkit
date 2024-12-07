@@ -53,7 +53,7 @@ mtcars_table <- mtcars[1:5, 1:4] |>
 write_kbl(
   kbl_obj = mtcars_table,
   file = "mtcars_table",
-  target_dir = "artifacts",
+  target_dir = "artifacts/",
   device = "png"
 )
 ```
@@ -74,7 +74,7 @@ mtcars_table <- mtcars[1:5, 1:4] |>
 write_kbl(
   kbl_obj = mtcars_table,
   file = "mtcars_styled",
-  target_dir = "artifacts",
+  target_dir = "artifacts/",
   device = "png",
   bs_theme = "flatly"
 )
@@ -96,7 +96,7 @@ p <- ggplot(mtcars, aes(wt, mpg)) +
 write_gg(
   gg_obj = p,
   file = "mtcars_plot",
-  target_dir = "artifacts",
+  target_dir = "artifacts/",
   device = "png"
 )
 ```
@@ -119,7 +119,7 @@ p <- ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
 write_gg(
   gg_obj = p,
   file = "mtcars_plot_styled",
-  target_dir = "artifacts",
+  target_dir = "artifacts/",
   device = "png",
   width = 8,
   height = 6,
@@ -143,7 +143,7 @@ mtcars_subset <- mtcars |>
 write_obj(
   obj = mtcars_subset,
   file = "mtcars_4cyl",
-  target_dir = "artifacts"
+  target_dir = "artifacts/"
 )
 ```
 
