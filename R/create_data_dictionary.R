@@ -20,6 +20,7 @@
 #'
 #' @return A data frame containing the variable name, human-readable name,
 #' variable type, and description for each variable in the input data frame.
+#'
 #' @importFrom purrr map_chr
 #' @importFrom stringr str_trunc
 #' @importFrom openai list_models create_chat_completion
