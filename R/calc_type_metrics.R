@@ -56,7 +56,6 @@
 #' @importFrom rlang as_label enquo
 #' @importFrom dplyr count
 #' @importFrom tidytext cast_sparse
-#' @importFrom tibble tibble
 #' @export
 calc_type_metrics <-
   function(data, type, document, frequency = NULL, dispersion = NULL) {
