@@ -71,12 +71,21 @@ create_data_dictionary <-
       }
 
       # Set the instructions for the prompt
-      # TODO: Update the instructions to be more specific so that the response
-      # from the model only returns the CSV lines as requested, and no code block
-      # or other extraneous information AI!
       prompt_instructions <- "
-      I have a dataset I would like you to create a data dictionary for.
-      The information I want is the `variable`, `name` (human readable),
+      Create a data dictionary in raw CSV format for this dataset.
+      Return ONLY the CSV data with these columns:
+      - variable: exact column name from data
+      - name: human readable name
+      - type: one of 'categorical', 'ordinal' or 'numeric'
+      - description: clear description of the variable
+      
+      Important:
+      - Enclose text values in quotes
+      - Return ONLY the CSV data with no explanations or code blocks
+      - Use variable names to infer info for null columns
+      - Each row should be: variable,name,type,description
+      
+      Sample data to analyze:
       `type` (one of 'categorical', 'ordinal' or 'numeric'), and `description`.
       Here's a small sample of the data for you to work with. In some cases
       some variables in the dataset may be null. In these cases use the
