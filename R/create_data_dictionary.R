@@ -73,25 +73,19 @@ create_data_dictionary <-
       # Set the instructions for the prompt
       prompt_instructions <- "
       Create a data dictionary in raw CSV format for this dataset.
+
       Return ONLY the CSV data with these columns:
       - variable: exact column name from data
       - name: human readable name
       - type: one of 'categorical', 'ordinal' or 'numeric'
-      - description: clear description of the variable
-      
+      - description: clear description of the variable and its values
+
       Important:
-      - Enclose text values in quotes
+      - Enclose text values, e.g. values for 'description', in quotes to
+        avoid misparsing of commas
       - Return ONLY the CSV data with no explanations or code blocks
+        before or after the CSV data
       - Use variable names to infer info for null columns
-      - Each row should be: variable,name,type,description
-      
-      Sample data to analyze:
-      `type` (one of 'categorical', 'ordinal' or 'numeric'), and `description`.
-      Here's a small sample of the data for you to work with. In some cases
-      some variables in the dataset may be null. In these cases use the
-      variable name to predict the other information. Please return your data
-      dictionary in raw CSV format. Remember to enclose text in quotes and only
-      return the formatted data, no explanations.
       "
 
       # Get a the first 5 rows of the data frame
@@ -128,6 +122,7 @@ create_data_dictionary <-
 
       # Create a data frame with the variable names, human-readable names,
       # and descriptions
+      # Handle the case where there is an error in the response AI!
       data_dict <-
         response$choices["message.content"] |> # get the response from the API
         as.character() |> # convert to a character vector
@@ -139,5 +134,5 @@ create_data_dictionary <-
     write.csv(data_dict, file = file_path, row.names = FALSE)
 
     # Return the data dictionary
-    return(data_dict)
+    return(response) # WARN: return the response (debugging)
   }
