@@ -74,7 +74,8 @@ create_data_dictionary <-
       - variable: exact column name from data
       - name: human readable name
       - type: one of 'categorical', 'ordinal' or 'numeric'
-      - description: clear description of the variable and its values
+      - description: clear description of the variable and the values it
+        can take
       Important:
       - Enclose text values, e.g. values for 'description', in quotes to
         avoid misparsing of commas
@@ -114,10 +115,10 @@ create_data_dictionary <-
       # and descriptions
       result <- tryCatch(
         {
-          parsed_dict <- response$choices["message.content"] |> # get the response from the API
-            as.character() |> # convert to a character vector
-            textConnection() |> # create text connection
-            utils::read.csv(stringsAsFactors = FALSE) |> # read the data dictionary as a data frame
+          parsed_dict <- response$choices["message.content"] |>
+            as.character() |>
+            textConnection() |>
+            utils::read.csv(stringsAsFactors = FALSE) |>
             suppressMessages() # suppress messages
           list(success = TRUE, data = parsed_dict)
         },
@@ -126,12 +127,13 @@ create_data_dictionary <-
           list(success = FALSE, error = e$message)
         }
       )
-      
       # If parsing failed, create a basic dictionary
       data_dict <- if (result$success) {
         result$data
       } else {
-        warning("Falling back to basic dictionary structure")
+        warning("Falling back to basic dictionary structure.
+          You can run the call again or you may need to manually edit
+          the data dictionary.")
         data.frame(
           variable = names(data),
           name = NA_character_,
