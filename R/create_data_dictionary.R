@@ -71,6 +71,9 @@ create_data_dictionary <-
       }
 
       # Set the instructions for the prompt
+      # TODO: Update the instructions to be more specific so that the response
+      # from the model only returns the CSV lines as requested, and no code block
+      # or other extraneous information AI!
       prompt_instructions <- "
       I have a dataset I would like you to create a data dictionary for.
       The information I want is the `variable`, `name` (human readable),
