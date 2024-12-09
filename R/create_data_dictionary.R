@@ -112,19 +112,34 @@ create_data_dictionary <-
         )
       # Create a data frame with the variable names, human-readable names,
       # and descriptions
-      # Update so that errors are reported but the function continues AI!
-      tryCatch(
+      result <- tryCatch(
         {
-          data_dict <-
-            response$choices["message.content"] |> # get the response from the API
+          parsed_dict <- response$choices["message.content"] |> # get the response from the API
             as.character() |> # convert to a character vector
             textConnection() |> # create text connection
             utils::read.csv(stringsAsFactors = FALSE) |> # read the data dictionary as a data frame
             suppressMessages() # suppress messages
+          list(success = TRUE, data = parsed_dict)
         },
         error = function(e) {
-          stop("Failed to parse API response into data dictionary: ", e$message)
+          warning("Failed to parse API response: ", e$message)
+          list(success = FALSE, error = e$message)
         }
+      )
+      
+      # If parsing failed, create a basic dictionary
+      data_dict <- if (result$success) {
+        result$data
+      } else {
+        warning("Falling back to basic dictionary structure")
+        data.frame(
+          variable = names(data),
+          name = NA_character_,
+          type = sapply(data, class, USE.NAMES = FALSE),
+          description = NA_character_,
+          stringsAsFactors = FALSE
+        )
+      }
       )
     }
     # Write the data dictionary to a file
