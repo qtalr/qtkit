@@ -46,7 +46,6 @@ create_data_dictionary <-
       return(message("File already exists at `file_path`.
                       Use `force = TRUE` to overwrite."))
     }
-
     # Check to see if `model` is NULL. If so, create dictionary scaffolding.
     # If not, check to see if `model` is one of the available models
     if (is.null(model)) {
@@ -64,22 +63,18 @@ create_data_dictionary <-
         stop("`model` must be one of the available chat completion models.
              See `openai::list_models()`.")
       }
-
       # Check to see if OPENAI_API_KEY is set
       if (is.na(Sys.getenv()["OPENAI_API_KEY"])) {
         stop("Set your OPENAI_API_KEY environment variable.")
       }
-
       # Set the instructions for the prompt
       prompt_instructions <- "
       Create a data dictionary in raw CSV format for this dataset.
-
       Return ONLY the CSV data with these columns:
       - variable: exact column name from data
       - name: human readable name
       - type: one of 'categorical', 'ordinal' or 'numeric'
       - description: clear description of the variable and its values
-
       Important:
       - Enclose text values, e.g. values for 'description', in quotes to
         avoid misparsing of commas
@@ -87,7 +82,6 @@ create_data_dictionary <-
         before or after the CSV data
       - Use variable names to infer info for null columns
       "
-
       # Get a the first 5 rows of the data frame
       data_sample <-
         data |>
@@ -100,17 +94,14 @@ create_data_dictionary <-
           is.character,
           function(x) substr(x, 1, 47) |> paste0("...")
         )
-
       # Convert the data sample to R code as a string
       prompt_data <-
         data_sample |>
         dput() |> # convert to R code
         utils::capture.output() |> # capture the output
         paste(collapse = " ") # collapse the output into a single string
-
       # Combine the instructions and the data sample into a single string
       prompt <- sprintf("%s\n\n%s", prompt_instructions, prompt_data)
-
       # Use openai to generate the descriptions for each of the variables in
       # the `data_sample` data frame.
       response <-
@@ -119,23 +110,25 @@ create_data_dictionary <-
           messages = list(list("role" = "user", "content" = prompt)),
           max_tokens = 500
         )
-
       # Create a data frame with the variable names, human-readable names,
       # and descriptions
-      tryCatch({
-        data_dict <-
-          response$choices["message.content"] |> # get the response from the API
-          as.character() |> # convert to a character vector
-          textConnection() |> # create text connection
-          utils::read.csv(stringsAsFactors = FALSE) |> # read the data dictionary as a data frame
-          suppressMessages() # suppress messages
-      }, error = function(e) {
-        stop("Failed to parse API response into data dictionary: ", e$message)
-      })
+      # Update so that errors are reported but the function continues AI!
+      tryCatch(
+        {
+          data_dict <-
+            response$choices["message.content"] |> # get the response from the API
+            as.character() |> # convert to a character vector
+            textConnection() |> # create text connection
+            utils::read.csv(stringsAsFactors = FALSE) |> # read the data dictionary as a data frame
+            suppressMessages() # suppress messages
+        },
+        error = function(e) {
+          stop("Failed to parse API response into data dictionary: ", e$message)
+        }
+      )
     }
     # Write the data dictionary to a file
     write.csv(data_dict, file = file_path, row.names = FALSE)
-
     # Return the data dictionary
     return(data_dict)
   }
