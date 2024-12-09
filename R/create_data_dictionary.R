@@ -140,7 +140,6 @@ create_data_dictionary <-
           stringsAsFactors = FALSE
         )
       }
-      )
     }
     # Write the data dictionary to a file
     write.csv(data_dict, file = file_path, row.names = FALSE)
