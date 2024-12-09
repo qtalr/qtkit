@@ -1,3 +1,13 @@
+# qtkit 1.1.1
+
+Bug fixes:
+
+- Bug fix (#9): `create_data_dictionary()` now catches errors when the \
+  AI model fails to produce a CSV output that will parse correctly. A warning \
+  is issued and the function returns a data dictionary without the AI model. \
+  _Note: In testing, gpt-3.5-turbo and gpt-4 have been found to be the most \
+  reliable models for this task._
+
 # qtkit 1.1.0
 
 New features:
