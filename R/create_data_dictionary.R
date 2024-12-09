@@ -122,17 +122,20 @@ create_data_dictionary <-
 
       # Create a data frame with the variable names, human-readable names,
       # and descriptions
-      # Handle the case where there is an error in the response AI!
-      data_dict <-
-        response$choices["message.content"] |> # get the response from the API
-        as.character() |> # convert to a character vector
-        textConnection() |> # create text connection
-        utils::read.csv(stringsAsFactors = FALSE) |> # read the data dictionary as a data frame
-        suppressMessages() # suppress messages
+      tryCatch({
+        data_dict <-
+          response$choices["message.content"] |> # get the response from the API
+          as.character() |> # convert to a character vector
+          textConnection() |> # create text connection
+          utils::read.csv(stringsAsFactors = FALSE) |> # read the data dictionary as a data frame
+          suppressMessages() # suppress messages
+      }, error = function(e) {
+        stop("Failed to parse API response into data dictionary: ", e$message)
+      })
     }
     # Write the data dictionary to a file
     write.csv(data_dict, file = file_path, row.names = FALSE)
 
     # Return the data dictionary
-    return(response) # WARN: return the response (debugging)
+    return(data_dict)
   }
