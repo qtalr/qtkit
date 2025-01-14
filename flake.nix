@@ -23,14 +23,16 @@
             # R packages: development
             rPackages.devtools
             rPackages.formatR
-            rPackages.httr
+            rPackages.goodpractice
             rPackages.httptest
+            rPackages.httr
             rPackages.languageserver
             rPackages.pak
+            rPackages.profvis
             rPackages.testthat
             rPackages.usethis
-            rPackages.goodpractice
             # R packages: package
+            rPackages.Matrix
             rPackages.dplyr
             rPackages.fs
             rPackages.ggplot2
@@ -38,7 +40,6 @@
             rPackages.gutenbergr
             rPackages.kableExtra
             rPackages.knitr
-            rPackages.Matrix
             rPackages.openai
             rPackages.purrr
             rPackages.readr
@@ -49,8 +50,8 @@
             rPackages.tibble
             rPackages.tidyr
             rPackages.tidytext
-            rPackages.xml2
             rPackages.webshot2
+            rPackages.xml2
           ];
 
           shellHook = ''
