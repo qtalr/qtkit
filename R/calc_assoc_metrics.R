@@ -80,11 +80,10 @@ calculate_bigram_probabilities <- function(data, doc_index, token_index, type) {
   bigrams <- bigrams[!is.na(bigrams$y), ]
 
   bigram_counts <- bigrams |>
-    dplyr::count(x, y, name = "N")
+    dplyr::count(x, y, name = "n")
 
-  total_bigrams <- sum(bigram_counts$N)
-  bigram_counts$p_xy <- bigram_counts$N / total_bigrams
-  bigram_counts$N <- NULL
+  total_bigrams <- sum(bigram_counts$n)
+  bigram_counts$p_xy <- bigram_counts$n / total_bigrams
 
   p_x <- data |>
     dplyr::count(!!rlang::sym(type), name = "p_x") |>

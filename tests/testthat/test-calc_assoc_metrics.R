@@ -10,13 +10,8 @@ test_that("calc_assoc_metrics handles invalid inputs", {
 })
 
 test_that("calc_assoc_metrics calculates metrics correctly", {
-  data <- data.frame(
-    doc_index = c(1, 1, 1, 2),
-    token_index = c(1, 2, 3, 1),
-    type = c("word1", "word2", "word3", "word2")
-  )
   result <- calc_assoc_metrics(data, "doc_index", "token_index", "type", "all", TRUE)
-  expect_equal(nrow(result), 3)
-  expect_equal(ncol(result), 8)
-  expect_equal(colnames(result), c("y", "x", "p_xy", "p_x", "p_y", "pmi", "dice_coeff", "g_score"))
+  expect_equal(nrow(result), 8)
+  expect_equal(ncol(result), 9)
+  expect_equal(colnames(result), c("y", "x", "n", "p_xy", "p_x", "p_y", "pmi", "dice_coeff", "g_score"))
 })
