@@ -56,50 +56,37 @@
 #' @importFrom rlang as_label enquo
 #' @importFrom dplyr count
 #' @export
-calc_type_metrics <-
-  function(data, type, document, frequency = NULL, dispersion = NULL) {
-    # Validate inputs
-    validate_inputs_ctm(data, {{ type }}, {{ document }}, frequency, dispersion)
-    # Create a Sparse Term-Document Matrix (TDM)
-    # Create document-term counts
-    counts <- as.data.frame(table(
-      data[[rlang::as_name(rlang::enquo(type))]],
-      data[[rlang::as_name(rlang::enquo(document))]]
-    ))
-    colnames(counts) <- c("type", "document", "n")
+calc_type_metrics <- function(data, type, document, frequency = NULL, dispersion = NULL) {
+  # Validate inputs
+  validate_inputs_ctm(data, {{ type }}, {{ document }}, frequency, dispersion)
+  # Create a Sparse Term-Document Matrix (TDM) Create document-term counts
+  counts <- as.data.frame(table(data[[rlang::as_name(rlang::enquo(type))]], data[[rlang::as_name(rlang::enquo(document))]]))
+  colnames(counts) <- c("type", "document", "n")
 
-    # Create sparse matrix
-    tdm <- Matrix::sparseMatrix(
-      i = as.numeric(factor(counts$type)),
-      j = as.numeric(factor(counts$document)),
-      x = counts$n,
-      dimnames = list(
-        levels(factor(counts$type)),
-        levels(factor(counts$document))
-      )
-    )
-    # Initialize an empty data frame
-    row_sums <- Matrix::rowSums(tdm)
-    output_df <- data.frame(
-      type = rownames(tdm), n = row_sums,
-      stringsAsFactors = FALSE
-    )
-    # Calculate frequency metrics based on user choice
-    metrics <- c("rf", "orf")
-    for (metric in metrics) {
-      if ("all" %in% frequency || metric %in% frequency) {
-        output_df[[metric]] <- get(paste0("calc_", metric))(tdm)
-      }
+  # Create sparse matrix
+  tdm <- Matrix::sparseMatrix(
+    i = as.numeric(factor(counts$type)), j = as.numeric(factor(counts$document)),
+    x = counts$n, dimnames = list(levels(factor(counts$type)), levels(factor(counts$document)))
+  )
+  # Initialize an empty data frame
+  row_sums <- Matrix::rowSums(tdm)
+  output_df <- data.frame(type = rownames(tdm), n = row_sums, stringsAsFactors = FALSE)
+  # Calculate frequency metrics based on user choice
+  metrics <- c("rf", "orf")
+  for (metric in metrics) {
+    if ("all" %in% frequency || metric %in% frequency) {
+      output_df[[metric]] <- get(paste0("calc_", metric))(tdm)
     }
-    # Calculate dispersion metrics based on user choice
-    metrics <- c("df", "idf", "dp")
-    for (metric in metrics) {
-      if ("all" %in% dispersion || metric %in% dispersion) {
-        output_df[[metric]] <- get(paste0("calc_", metric))(tdm)
-      }
-    }
-    return(output_df)
   }
+  # Calculate dispersion metrics based on user choice
+  metrics <- c("df", "idf", "dp")
+  for (metric in metrics) {
+    if ("all" %in% dispersion || metric %in% dispersion) {
+      output_df[[metric]] <- get(paste0("calc_", metric))(tdm)
+    }
+  }
+  return(output_df)
+}
 
 #' Validate Inputs for Type Metrics Calculation
 #'
@@ -146,9 +133,8 @@ validate_inputs_ctm <- function(data, type, document, frequency, dispersion) {
   }
   # If dispersion is not NULL, check if it's a character vector and if all of
   # its values are allowed
-  if (!is.null(dispersion) &&
-    (!is.character(dispersion) ||
-      !all(dispersion %in% c("all", "df", "idf", "dp")))) {
+  if (!is.null(dispersion) && (!is.character(dispersion) || !all(dispersion %in%
+    c("all", "df", "idf", "dp")))) {
     stop("The argument 'dispersion' must be a character vector containing any
       combination of: 'df', 'idf', 'dp' or 'all'.")
   }
