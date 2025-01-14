@@ -7,6 +7,9 @@ Bug fixes:
   is issued and the function returns a data dictionary without the AI model. \
   _Note: In testing, gpt-3.5-turbo and gpt-4 have been found to be the most \
   reliable models for this task._
+- Bug fix: `calc_assoc_metrics()` now uses {dplyr} functions to perform more \
+efficient calculations. Previously, the function was using base R functions \
+to calculate the metrics, and memory usage was high for large datasets.
 
 # qtkit 1.1.0
 
@@ -26,7 +29,9 @@ Bug fixes:
 Enhancements:
 
 - Adds vignettes for documenting data and using the publishing functions.
-- Removes many external dependencies from the package (glue, purrr, readr, stringr, tibble, and tidytext) to reduce the number of dependencies and make the package more lightweight.
+- Removes many external dependencies from the package (glue, purrr, readr, \
+stringr, tibble, and tidytext) to reduce the number of dependencies and make\
+the package more lightweight.
 
 # qtkit 1.0.0
 
