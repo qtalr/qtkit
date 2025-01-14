@@ -23,16 +23,16 @@
 #' calc_assoc_metrics(data, doc_index, token_index, type)
 #'
 #' @importFrom rlang ensym as_string
+#' @importFrom dplyr count mutate filter
 
 #' @export
 calc_assoc_metrics <-
-  function(
-      data,
-      doc_index,
-      token_index,
-      type,
-      association = "all",
-      verbose = FALSE) {
+  function(data,
+           doc_index,
+           token_index,
+           type,
+           association = "all",
+           verbose = FALSE) {
     doc_index <- rlang::ensym(doc_index)
     token_index <- rlang::ensym(token_index)
     type <- rlang::ensym(type)
@@ -54,9 +54,10 @@ calc_assoc_metrics <-
 
 #' Calculate Probabilities for Bigrams
 #'
-#' Helper function that calculates joint and marginal probabilities for bigrams
-#' in the input data. It processes the data to create bigrams and computes
-#' their probabilities along with individual token probabilities.
+#' Helper function that calculates joint and marginal probabilities for
+#' bigrams in the input data using dplyr. It processes the data to create
+#' bigrams and computes their probabilities along with individual token
+#' probabilities.
 #'
 #' @param data A data frame containing the corpus
 #' @param doc_index Column name for document index
@@ -71,51 +72,56 @@ calc_assoc_metrics <-
 #'   - p_y: Marginal probability of second token
 #'
 #' @keywords internal
-calculate_bigram_probabilities <-
-  function(data, doc_index, token_index, type) {
-    # Sort data by document and token
-    data <- data[order(data[[doc_index]], data[[token_index]]), ]
-    # Create bigrams
-    x <- data[[type]]
-    y <- c(x[-1], NA)
-    bigrams <- data.frame(x = x, y = y)
-    bigrams <- bigrams[!is.na(bigrams$y), ]
-    # Count bigrams
-    bigram_counts <- table(bigrams)
-    total_bigrams <- sum(bigram_counts)
-    # Calculate probabilities
-    p_xy <- as.data.frame(bigram_counts / total_bigrams)
-    colnames(p_xy) <- c("x", "y", "p_xy")
-    # Calculate unigram probabilities
-    p_x <- as.data.frame(table(x) / length(x))
-    colnames(p_x) <- c("x", "p_x")
-    p_y <- as.data.frame(table(y) / length(y))
-    colnames(p_y) <- c("y", "p_y")
-    # Merge probabilities
-    result <- merge(p_xy, p_x, by = "x", all.x = TRUE)
-    result <- merge(result, p_y, by = "y", all.x = TRUE)
-    # Convert to numeric
-    result$p_xy <- as.numeric(result$p_xy)
-    result$p_x <- as.numeric(result$p_x)
-    result$p_y <- as.numeric(result$p_y)
-    return(result)
-  }
+calculate_bigram_probabilities <- function(data, doc_index, token_index, type) {
+  data <- data[order(data[[doc_index]], data[[token_index]]), ]
+  x <- data[[type]]
+  y <- c(x[-1], NA)
+  bigrams <- data.frame(x = x, y = y)
+  bigrams <- bigrams[!is.na(bigrams$y), ]
 
+  bigram_counts <- bigrams |>
+    dplyr::count(x, y, name = "N")
+
+  total_bigrams <- sum(bigram_counts$N)
+  bigram_counts$p_xy <- bigram_counts$N / total_bigrams
+  bigram_counts$N <- NULL
+
+  p_x <- data |>
+    dplyr::count(!!rlang::sym(type), name = "p_x") |>
+    dplyr::mutate(p_x = p_x / nrow(data))
+  names(p_x)[1] <- "x"
+
+  p_y <- data.frame(y = y) |>
+    dplyr::count(y, name = "p_y") |>
+    dplyr::filter(!is.na(y)) |>
+    dplyr::mutate(p_y = p_y / (nrow(data) - 1))
+
+  result <- merge(bigram_counts, p_x, by = "x", all.x = TRUE)
+  result <- merge(result, p_y, by = "y", all.x = TRUE)
+
+  # Convert to numeric
+  result$p_xy <- as.numeric(result$p_xy)
+  result$p_x <- as.numeric(result$p_x)
+  result$p_y <- as.numeric(result$p_y)
+
+  return(result)
+}
 #' Calculate Association Metrics
 #'
-#' Helper function that computes various association metrics for bigrams based on
-#' their probability distributions. Supports PMI (Pointwise Mutual Information),
-#' Dice's Coefficient, and G-score calculations.
+#' Helper function that computes various association metrics for bigrams
+#' based on their probability distributions. Supports PMI (Pointwise Mutual
+#' Information), Dice's Coefficient, and G-score calculations.
 #'
-#' @param bigram_probs A data frame containing bigram probability data with columns:
+#' @param bigram_probs A data frame containing bigram probability data with
+#' columns:
 #'   - {p_xy} Joint probability of bigram
 #'   - {p_x} Marginal probability of first token
 #'   - {p_y} Marginal probability of second token
 #'
 #' @param association Character vector specifying which metrics to calculate
 #'
-#' @return A data frame containing the original probability columns plus requested
-#' association metrics:
+#' @return A data frame containing the original probability columns plus
+#' requested association metrics:
 #'   - pmi: Pointwise Mutual Information
 #'   - dice_coeff: Dice's Coefficient
 #'   - g_score: G-score
@@ -140,9 +146,9 @@ calculate_metrics <-
 
 #' Validate Inputs for Association Metrics Calculation
 #'
-#' Helper function that validates the input parameters for the calc_assoc_metrics
-#' function. Checks data frame structure, column existence, and association metric
-#' specifications.
+#' Helper function that validates the input parameters for
+#' the calc_assoc_metrics function. Checks data frame structure, column
+#' existence, and association metric specifications.
 #'
 #' @param data A data frame to validate
 #' @param doc_index Column name for document index

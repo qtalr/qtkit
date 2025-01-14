@@ -2,7 +2,7 @@
 % Please edit documentation in R/calc_assoc_metrics.R
 \name{calculate_bigram_probabilities}
 \alias{calculate_bigram_probabilities}
-\title{Calculate Probabilities for Bigrams}
+\title{Calculate Probabilities for Bigrams (dplyr version)}
 \usage{
 calculate_bigram_probabilities(data, doc_index, token_index, type)
 }
@@ -27,7 +27,7 @@ A data frame containing:
 }
 \description{
 Helper function that calculates joint and marginal probabilities for bigrams
-in the input data. It processes the data to create bigrams and computes
+in the input data using dplyr. It processes the data to create bigrams and computes
 their probabilities along with individual token probabilities.
 }
 \keyword{internal}

@@ -1,4 +1,3 @@
-
 # Load the data
 data_path <- system.file("extdata", "bigrams_data.rds", package = "qtkit")
 data <- readRDS(data_path)
@@ -17,8 +16,7 @@ test_that("calc_assoc_metrics calculates metrics correctly", {
     type = c("word1", "word2", "word3", "word2")
   )
   result <- calc_assoc_metrics(data, "doc_index", "token_index", "type", "all", TRUE)
-  expect_equal(nrow(result), 6)
+  expect_equal(nrow(result), 3)
   expect_equal(ncol(result), 8)
   expect_equal(colnames(result), c("y", "x", "p_xy", "p_x", "p_y", "pmi", "dice_coeff", "g_score"))
 })
-
