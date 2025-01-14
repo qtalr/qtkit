@@ -21,9 +21,9 @@ validate_inputs_cam(data, doc_index, token_index, type, association)
 No return value, called for side effects
 }
 \description{
-Helper function that validates the input parameters for the calc_assoc_metrics
-function. Checks data frame structure, column existence, and association metric
-specifications.
+Helper function that validates the input parameters for
+the calc_assoc_metrics function. Checks data frame structure, column
+existence, and association metric specifications.
 }
 \details{
 Stops execution with error message if:
