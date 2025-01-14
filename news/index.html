@@ -41,6 +41,9 @@ AI model fails to produce a CSV output that will parse correctly. A warning<br>
 is issued and the function returns a data dictionary without the AI model.<br><em>Note: In testing, gpt-3.5-turbo and gpt-4 have been found to be the most<br>
 reliable models for this task.</em>
 </li>
+<li>Bug fix: <code><a href="../reference/calc_assoc_metrics.html">calc_assoc_metrics()</a></code> now uses {dplyr} functions to perform more<br>
+efficient calculations. Previously, the function was using base R functions<br>
+to calculate the metrics, and memory usage was high for large datasets.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.0" id="qtkit-110">qtkit 1.1.0<a class="anchor" aria-label="anchor" href="#qtkit-110"></a></h2><p class="text-muted">CRAN release: 2024-12-07</p>
@@ -55,7 +58,9 @@ and <code>document</code> arguments to be specified as symbols that can take val
 other than type and document.</li>
 </ul><p>Enhancements:</p>
 <ul><li>Adds vignettes for documenting data and using the publishing functions.</li>
-<li>Removes many external dependencies from the package (glue, purrr, readr, stringr, tibble, and tidytext) to reduce the number of dependencies and make the package more lightweight.</li>
+<li>Removes many external dependencies from the package (glue, purrr, readr,<br>
+stringr, tibble, and tidytext) to reduce the number of dependencies and make<br>
+the package more lightweight.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.0" id="qtkit-100">qtkit 1.0.0<a class="anchor" aria-label="anchor" href="#qtkit-100"></a></h2><p class="text-muted">CRAN release: 2024-08-17</p>

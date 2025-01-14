@@ -96,32 +96,15 @@ calculated metric.</p>
 <span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="va">data_path</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">calc_assoc_metrics</span><span class="op">(</span><span class="va">data</span>, <span class="va">doc_index</span>, <span class="va">token_index</span>, <span class="va">type</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        y     x       pmi dice_coeff    g_score</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  word2 word1 1.8787708  0.7272727 -0.5191244</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  word2 word2      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  word2 word3 0.7801586  0.4363636 -1.6177367</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  word2 word4      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  word2 word5      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  word3 word1      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  word3 word2 1.4733057  0.8727273 -0.2314424</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  word3 word3      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  word3 word4 0.3746934  0.3636364 -2.0232018</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 word3 word5      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 word4 word1      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 word4 word2      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 word4 word3 1.0678406  0.7272727 -0.6369075</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 word4 word4      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 word4 word5 0.7801586  0.4363636 -1.6177367</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16 word5 word1      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17 word5 word2      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 word5 word3      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 word5 word4 1.4733057  0.8727273 -0.2314424</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 word5 word5      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 word6 word1      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22 word6 word2      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23 word6 word3      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24 word6 word4      -Inf  0.0000000       -Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25 word6 word5 1.8787708  0.7272727 -0.5191244</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       y     x       pmi dice_coeff    g_score</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 word2 word1 1.7917595  0.6857143 -0.6061358</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 word2 word3 0.6931472  0.4210526 -1.7047481</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 word3 word2 1.3862944  0.8275862 -0.3184537</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 word3 word4 0.2876821  0.3478261 -2.1102132</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 word4 word3 0.9808293  0.6956522 -0.7239188</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 word4 word5 0.6931472  0.4137931 -1.7047481</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7 word5 word4 1.3862944  0.8421053 -0.3184537</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8 word6 word5 1.7917595  0.7058824 -0.6061358</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
